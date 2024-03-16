@@ -1,7 +1,11 @@
+---
+import { Image } from 'astro:assets'
+import mockupImage from '../../assets/img/mocks/mock-stock-data-page.png'
+---
 
 <section>
   <div
-    class="mx-auto w-full lg:px-24 max-w-7xl md:px-12 items-center px-8 py-24"
+    class="mx-auto w-full lg:px-24 max-w-7xl md:px-12 items-center px-8 py-12"
   >
     <div>
       <div class="text-center max-w-4xl mx-auto">
@@ -36,12 +40,12 @@
       <div class="flex justify-center gap-3 mt-10 flex-col sm:flex-row">
         <a
           class="items-center justify-center h-12 font-medium rounded-xl focus-visible:outline-black focus:outline-none inline-flex bg-black border-2 border-black duration-200 focus-visible:ring-black hover:bg-transparent hover:border-black hover:text-black lg:w-auto px-6 py-3 text-center text-white w-full"
-          href="https://github.com/michael-andreuzza/astrosaas" 
+          href="#" 
           >Finanzas Personales</a
         ><!-- cambiar link -->
         <a
           class="items-center justify-center h-12 font-medium rounded-xl focus-visible:outline-black focus:outline-none inline-flex bg-black border-2 border-black duration-200 focus-visible:ring-black hover:bg-transparent hover:border-black hover:text-black lg:w-auto px-6 py-3 text-center text-white w-full"
-          href="https://lexingtonthemes.com" 
+          href="#" 
           >Gestión de Carteras<!--  &nbsp; &rarr; -->
         </a><!-- cambiar link -->
       </div>
@@ -75,34 +79,10 @@
         </div>
       </dl>
     </div>
-    <div class="relative w-full mx-auto max-w-7xl items-center py-12 pb-12">
+    <div class="relative w-full mx-auto max-w-7xl items-center py-12 pb-12 mt-8">
       <div class="bg-gray-100 p-8 rounded-3xl">
-        <img
-          alt="#_"
-          class="relative w-full border lg:rounded-2xl object-cover rounded shadow-2xl"
-          src="https://brightlight.lexingtonthemes.com/assets/dashboard.svg"
-        />
+        <Image src={mockupImage} alt="Un Mockup de la página de WealthIQ donde se muestra la interfaz de usuario de la plataforma." class="relative w-full border lg:rounded-2xl object-cover shadow-2xl"/>
       </div>
     </div>
-    <!-- <div class="grid grid-cols-2 gap-0.5 lg:mt-8 md:grid-cols-6 mt-6">
-      <div class="flex justify-center col-span-1">
-        <img alt="logo" class="h-8" src="/Figma.svg" />
-      </div>
-      <div class="flex justify-center col-span-1">
-        <img alt="logo" class="h-8" src="/Canva.svg" />
-      </div>
-      <div class="flex justify-center col-span-1">
-        <img alt="logo" class="h-8" src="/Stripe.svg" />
-      </div>
-      <div class="flex justify-center col-span-1">
-        <img alt="logo" class="h-8" src="/Gitlab.svg" />
-      </div>
-      <div class="flex justify-center col-span-1">
-        <img alt="logo" class="h-8" src="/Linear.svg" />
-      </div>
-      <div class="flex justify-center col-span-1">
-        <img alt="logo" class="h-8" src="/Gumroad.svg" />
-      </div>
-    </div> -->
   </div>
 </section>
