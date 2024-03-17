@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "AuthenticatedBackendApplication",
+            "request": "launch",
+            "mainClass": "AuthenticatedBackendApplication",
+            "projectName": "AuthenticatedBackend"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AuthenticatedBackendApplication<AuthenticatedBackend>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.unkownkoder.AuthenticatedBackendApplication",
+            "projectName": "AuthenticatedBackend",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
