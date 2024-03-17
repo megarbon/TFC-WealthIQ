@@ -1,1 +1,0 @@
-https://www.honeybadger.io/blog/javascript-authentication-guide/

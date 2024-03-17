@@ -1,1 +1,0 @@
-https://dev.to/thedevdrawer/login-validation-authentication-using-vanilla-javascript-4i45
