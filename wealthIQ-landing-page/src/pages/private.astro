@@ -1,0 +1,64 @@
+---
+const isAuthorized = Astro.cookies.get("auth_token").value ?? false;
+---
+
+<astro>
+  <section>
+    <script>
+      import { checkAuth } from "../utils/authentication";
+      export const load = async (params) => {
+        const cookies = params.cookies;
+        const accessToken = Astro.cookies.get("auth_token").value;
+
+        // Check if the user is authorized
+        const isAuthorized = await checkAuth(accessToken);
+
+        if (!isAuthorized) {
+          // Redirect to the login page
+          return {
+            status: 302,
+            headers: {
+              location: "/login",
+            },
+          };
+        }
+
+        // Return data to render the page
+        return {
+          isAuthorized: true,
+        };
+      };
+    </script>
+    {
+      !isAuthorized && (
+        <>
+          <h1>Unauthorized</h1>
+          <p>
+            You are not authorized to view this page. Please log in to view this
+            page.
+          </p>
+          <script>
+            // wait 3 seconds before redirecting to the login page
+            setTimeout(() => {
+              window.location.href = "./login";
+            }, 2000);
+            </script>
+        </>
+      )
+    }
+    {
+      isAuthorized && (
+        <>
+          <h1>Authorized</h1>
+          <p>You are authorized to view this page.</p>
+          // Wait 2 seconds and redirect to his dashboard
+            <script>
+                setTimeout(() => {
+                window.location.href = "./faq";
+                }, 2000);
+            </script>
+        </>
+      )
+    }
+  </section>
+</astro>
