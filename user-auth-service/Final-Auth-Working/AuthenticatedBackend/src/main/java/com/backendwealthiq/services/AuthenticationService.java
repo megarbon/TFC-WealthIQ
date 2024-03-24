@@ -37,7 +37,7 @@ public class AuthenticationService {
     @Autowired
     private TokenService tokenService;
 
-    public ApplicationUser registerUser(String username, String password){
+    public ApplicationUser registerUser(String username, String password) {
 
         String encodedPassword = passwordEncoder.encode(password);
         Role userRole = roleRepository.findByAuthority("USER").get();
@@ -49,20 +49,47 @@ public class AuthenticationService {
         return userRepository.save(new ApplicationUser(0, username, encodedPassword, authorities));
     }
 
-    public LoginResponseDTO loginUser(String username, String password){
+    public LoginResponseDTO loginUser(String username, String password) {
 
-        try{
+        try {
             Authentication auth = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(username, password)
-            );
+                    new UsernamePasswordAuthenticationToken(username, password));
 
             String token = tokenService.generateJwt(auth);
 
             return new LoginResponseDTO(userRepository.findByUsername(username).get(), token);
 
-        } catch(AuthenticationException e){
+        } catch (AuthenticationException e) {
             return new LoginResponseDTO(null, "");
         }
+    }
+
+    public boolean validateToken(String token) {
+        try {
+            // Use tokenService to validate the JWT token
+            return tokenService.validateJwt(token);
+        } catch (Exception e) {
+            // Log any exceptions that occur during token validation
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public void logout(String username) {
+        // Implement logout logic here, such as invalidating the token
+        // For simplicity, let's assume clearing the token from the client-side
+        // In a real-world scenario, you may also want to revoke the token on the
+        // server-side
+        // For example, you could maintain a list of invalidated tokens in a database
+
+        // Here, you could send a response to the client instructing it to clear the
+        // token
+        // Or you could set an expiration time for the token so it becomes invalid after
+        // a certain period
+
+        // For demonstration purposes, let's just print a message indicating the user
+        // has been logged out
+        System.out.println("User " + username + " has been logged out.");
     }
 
 }

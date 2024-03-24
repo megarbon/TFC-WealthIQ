@@ -1,4 +1,4 @@
-package com.unkownkoder.models;
+package com.backendwealthiq.models;
 
 import org.springframework.security.core.GrantedAuthority;
 
