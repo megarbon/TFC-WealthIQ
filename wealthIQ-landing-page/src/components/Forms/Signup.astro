@@ -13,13 +13,13 @@
             <h2
               class="font-medium leading-tight text-black text-xl font-display"
             >
-              Sign up to AstroSaaS
+              Regístrate Totalmente Gratis
             </h2><div class="py-3">
               <span class="w-full inline-flex relative mt-3 z-0"
                 ><button
                   class="w-full focus:outline-none h-12 border py-3 bg-white border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:z-10 font-medium hover:bg-gray-50 inline-flex items-center justify-center px-4 relative rounded-xl text-gray-700 text-sm"
                   type="button"
-                  ><span>Sign up with</span>
+                  ><span>Acceder con Google</span>
                   <span class="ml-3"
                     ><svg
                       fill="none"
@@ -47,55 +47,58 @@
                   <div class="w-full border-t border-gray-300"></div>
                 </div><div class="flex relative justify-center">
                   <span class="bg-white text-sm px-2 text-gray-500"
-                    >Or continue with</span
+                    >Registrarse con credenciales</span
                   >
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <form >
-
-          <div
-            class="space-y-6"
-          >
+        <form>
+          <div class="space-y-6">
             <div class="w-full flex flex-row gap-3">
               <div class="w-full">
-                <label class="sr-only" for="first_name">First name</label>
+                Nombre
+                <label class="sr-only" for="first_name">Nombre</label>
                 <input
                   class="w-full focus:outline-none border py-3 appearance-none h-12 bg-gray-50 block border-gray-200 focus:bg-white focus:border-accent-500 focus:ring-accent-500 placeholder-gray-400 px-3 rounded-xl sm:text-sm text-accent-500"
                   id="first_name"
                   name="first_name"
                   autocomplete="given-name"
-                  required=""
+                  required="true"
+                  placeholder="Escribe tu nombre..."
                 />
               </div><div class="w-full">
-                <label class="sr-only" for="last_name">Last name</label><input
+                Apellidos
+                <label class="sr-only" for="last_name">Apellidos</label><input
                   class="w-full focus:outline-none border py-3 appearance-none h-12 bg-gray-50 block border-gray-200 focus:bg-white focus:border-accent-500 focus:ring-accent-500 placeholder-gray-400 px-3 rounded-xl sm:text-sm text-accent-500"
                   id="last_name"
                   name="last_name"
                   autocomplete="family-name"
-                  required=""
+                  required="true"
+                  placeholder="Escribe tus apellidos..."
                 />
               </div>
             </div><div>
-              <label for="last_name" class="sr-only" name="email"
-                >Email Adress</label
-              >
+              Email
+              <label for="last_name" class="sr-only">Email</label>
               <input
                 id="email"
                 name="email"
                 class="w-full focus:outline-none border py-3 appearance-none h-12 bg-gray-50 block border-gray-200 focus:bg-white focus:border-accent-500 focus:ring-accent-500 placeholder-gray-400 px-3 rounded-xl sm:text-sm text-accent-500"
-                placeholder="Type here..."
+                placeholder="correo@dominio.com"
+                required="true"
               />
             </div><div class="col-span-full">
-              <label class="sr-only" for="company" name="company">Password</label>
+              Contraseña
+              <label class="sr-only" for="company">Password</label>
               <input
-               id="company"
-                name="company"
+                id="password"
+                name="password"
                 class="w-full focus:outline-none border py-3 appearance-none h-12 bg-gray-50 block border-gray-200 focus:bg-white focus:border-accent-500 focus:ring-accent-500 placeholder-gray-400 px-3 rounded-xl sm:text-sm text-accent-500"
-                placeholder="Type password here..."
+                placeholder="Mayusculas, Minusculas, Numeros y Caracteres Especiales..."
                 type="password"
+                required="true"
               />
             </div><div class="flex">
               <div class="flex items-start">
@@ -108,34 +111,37 @@
                 <label
                   class="font-medium text-xs block leading-tight ml-2 text-gray-500"
                   for="remember-me"
-                  >Creating an account means you’re okay with our <a
+                  >Crear una cuenta significa que aceptas <a
                     class="text-accent-500 hover:text-accent-400"
                     href="/terms"
-                    >Terms of Service,
+                    >Nuestros Términos de Servicio,
                   </a><a
                     class="text-accent-500 hover:text-accent-400"
                     href="/privacy"
-                    >Privacy Policy
-                  </a>, and our default <a
+                    >Política de Privacidad,
+                  </a>y nuestra <a
                     class="text-accent-500 hover:text-accent-400"
-                    href="/notifications">Notification Settings.</a
+                    href="/notifications">Configuración de Notificaciones.</a
                   >
                 </label>
               </div>
             </div><div class="col-span-full">
               <button
                 class="items-center justify-center h-12 rounded-xl focus-visible:outline-black focus:outline-none inline-flex bg-black border-2 border-black duration-200 focus-visible:ring-black hover:bg-transparent hover:border-black hover:text-black px-6 py-3 text-center text-white w-full"
-                type="submit">Create an account</button
+                type="submit">Crear una cuenta</button
               >
             </div><div class="space-y-4">
               <p class="font-medium text-sm leading-tight text-black">
-                Already a member? <a
+                Ya eres miembro? <a
                   class="text-accent-500 hover:text-accent-400 ml-3"
-                  href="/login">Sign in</a
+                  href="/login">Iniciar Sesión</a
                 >
               </p><p class="font-medium text-xs leading-tight text-gray-500">
-                This site is protected by reCAPTCHA and the Google Privacy
-                Policy and Terms of Service apply.
+                Esta página está protegida por reCAPTCHA y está sujeta a la <a
+                  class="text-accent-500 hover:text-accent-400"
+                  href="https://policies.google.com/privacy"
+                  >Política de Privacidad</a
+                >
               </p>
             </div>
           </div>
