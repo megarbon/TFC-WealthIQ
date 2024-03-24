@@ -1,36 +1,54 @@
+---
+const isAuthorized = Astro.cookies.get('auth_token').value ?? false;
+
+---
+
 <astro>
-  <script>
-    import { checkAuth } from "../utils/authentication";
-    // Get the cookies
-
-    document.onload = function () {
-      function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(";").shift();
-      }
-      const cookies = getCookie("auth_token");
-      // Check if the user is authorized
-      const isAuthorized = checkAuth(cookies);
-
-      // If the user is not authorized, redirect to the login page
-      if (!isAuthorized) {
-        redirectToLogin();
-      }
-
-      // Function to redirect to the login page
-      function redirectToLogin() {
-        console.log("Redirecting to the login page...");
-      }
-    };
-  </script>
-
   <section>
-    <div class="container">
-      <h1>Private Page</h1>
-      <p>
-        This is a private page that can only be accessed by authenticated users.
-      </p>
-    </div>
+    <script>
+      import { checkAuth } from "../utils/authentication";
+
+      export const load = async (params) => {
+        const cookies = params.cookies;
+        const accessToken = cookies.get("auth_token");
+
+        // Check if the user is authorized
+        const isAuthorized = await checkAuth(accessToken);
+
+        if (!isAuthorized) {
+          // Redirect to the login page
+          return {
+            status: 302,
+            headers: {
+              location: "/login",
+            },
+          };
+        }
+
+        // Return data to render the page
+        return {
+          isAuthorized: true,
+        };
+      };
+    </script>
+    {
+      !isAuthorized && (
+        <>
+          <h1>Unauthorized</h1>
+          <p>
+            You are not authorized to view this page. Please log in to view this
+            page.
+          </p>
+        </>
+      )
+    }
+    {
+      isAuthorized && (
+        <>
+          <h1>Authorized</h1>
+          <p>You are authorized to view this page.</p>
+        </>
+      )
+    }
   </section>
 </astro>
