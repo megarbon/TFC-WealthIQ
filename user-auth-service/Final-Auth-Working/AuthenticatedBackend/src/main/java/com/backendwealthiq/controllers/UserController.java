@@ -18,7 +18,7 @@ public class UserController {
 
     @GetMapping("/secret")
     public String privateEndpoint() {
-        // Redirect to a static HTML page located in src/main/resources/static/private.html
+        // Redirect to a static HTML page
         return "redirect:http://localhost:4321/private.html";
     }
     
