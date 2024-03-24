@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TokenService {
 
-    private static final long EXPIRATION_TIME_SECONDS = 3600; // 1 hour
+    private static final long EXPIRATION_TIME_SECONDS = 24*3600; // 1 hour
 
     @Autowired
     private JwtEncoder jwtEncoder;
