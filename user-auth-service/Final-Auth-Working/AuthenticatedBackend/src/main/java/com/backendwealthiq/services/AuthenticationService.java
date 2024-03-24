@@ -1,4 +1,4 @@
-package com.unkownkoder.services;
+package com.backendwealthiq.services;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,11 +12,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.unkownkoder.models.ApplicationUser;
-import com.unkownkoder.models.LoginResponseDTO;
-import com.unkownkoder.models.Role;
-import com.unkownkoder.repository.RoleRepository;
-import com.unkownkoder.repository.UserRepository;
+import com.backendwealthiq.models.ApplicationUser;
+import com.backendwealthiq.models.LoginResponseDTO;
+import com.backendwealthiq.models.Role;
+import com.backendwealthiq.repository.RoleRepository;
+import com.backendwealthiq.repository.UserRepository;
 
 @Service
 @Transactional

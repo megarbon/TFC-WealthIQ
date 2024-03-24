@@ -1,4 +1,4 @@
-package com.unkownkoder.controllers;
+package com.backendwealthiq.controllers;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/admin")
 @CrossOrigin("*")
-public class UserController {
-
-    @GetMapping("/")
-    public String helloUserController(){
-        return "User access level";
-    }
+public class AdminController {
     
+    @GetMapping("/")
+    public String helloAdmineController(){
+        return "Admin level access";
+    }
+
 }
