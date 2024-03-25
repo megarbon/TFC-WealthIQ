@@ -1,0 +1,27 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "StockporfolioApplication",
+            "request": "launch",
+            "mainClass": "com.wealthiq.stockportfolio.StockporfolioApplication",
+            "projectName": "stockPortfolio"
+        },
+        {
+            "type": "java",
+            "name": "StockporfolioApplication",
+            "request": "launch",
+            "mainClass": "com.wealthiq.stockporfolio.StockporfolioApplication"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-StockPortfolioApplication<stockPortfolio>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.wealthiq.stockPortfolio.StockPortfolioApplication",
+            "projectName": "stockPortfolio",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
