@@ -30,11 +30,8 @@ const Screener = () => {
     };
   }, []);
 
-  return (
-    <div className="tradingview-widget-container">
+  return ( 
       <div className="tradingview-widget-container__widget"></div>
-      <div className="tradingview-widget-copyright"></div>
-    </div>
   );
 };
 
