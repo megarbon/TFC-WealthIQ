@@ -1,0 +1,51 @@
+---
+import Skeleton from "../../components/utils/Skeleton.astro";
+
+const isAuthorized = Astro.cookies.get("auth_token").value ?? false;
+---
+<astro>
+  <section>
+    <script>
+      import { checkAuth } from "../../utils/authentication";
+      export const load = async (params) => {
+        const accessToken = Astro.cookies.get("auth_token");
+
+        // Check if the user is authorized
+        const isAuthorized = accessToken ? await checkAuth(accessToken.value) : false;
+
+        // Return data to render the page
+        return {
+          isAuthorized: true,
+        };
+      };
+    </script>
+
+    {!isAuthorized && (
+      <>
+        <h1>Unauthorized</h1>
+        <p>
+          You are not authorized to view this page. Please log in to view this
+          page.
+        </p>
+        <script>
+          setTimeout(() => {
+            window.location.href = "./login";
+          }, 2000);
+        </script>
+      </>
+    )}
+
+    {isAuthorized && (
+      <>
+        <script>
+          setTimeout(() => {
+            // This is the first redirection that will be made to the user when accessing as an authorized user for the first time
+            // It should redirect to the dashboard page with their data
+            window.location.href = "../dashboard";
+          }, 4000);
+        </script>
+        <Skeleton />
+      </>
+    )}
+  </section>
+</astro>
