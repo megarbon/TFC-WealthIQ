@@ -14,8 +14,8 @@ function TradingViewWidget() {
         {
           "symbols": [
             [
-              "Google",
-              "GOOGL|1D"
+              "Apple",
+              "AAPL|1D"
             ],
             [
               "Google",
@@ -63,8 +63,10 @@ function TradingViewWidget() {
   }, []);
 
   return (
-    <div className="tradingview-widget-container" ref={container}>
-      <div className="tradingview-widget-container__widget"></div>
+    <div className="col-span-12 rounded-sm border border-stroke bg-white px-7.5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-7">
+      <div className="h-70">
+        <div className="tradingview-widget-container__widget"></div>
+      </div>
     </div>
   );
 }
