@@ -4,6 +4,13 @@
             "type": "java",
             "name": "AuthenticatedBackendApplication",
             "request": "launch",
+            "mainClass": "com.backendwealthiq.AuthenticatedBackendApplication",
+            "projectName": "AuthenticatedBackend"
+        },
+        {
+            "type": "java",
+            "name": "AuthenticatedBackendApplication",
+            "request": "launch",
             "mainClass": "AuthenticatedBackendApplication",
             "projectName": "AuthenticatedBackend"
         },
@@ -15,7 +22,8 @@
             "mainClass": "com.unkownkoder.AuthenticatedBackendApplication",
             "projectName": "AuthenticatedBackend",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=53978 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=AuthenticatedBackend"
         }
     ]
 }
