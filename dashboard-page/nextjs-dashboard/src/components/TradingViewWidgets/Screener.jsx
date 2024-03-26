@@ -53,6 +53,7 @@ const Screener = () => {
     </div>
     </div>
     
+
   );
 };
 
