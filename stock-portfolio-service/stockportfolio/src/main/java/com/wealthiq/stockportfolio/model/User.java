@@ -1,31 +1,102 @@
 package com.wealthiq.stockportfolio.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
-@Table(name = "users") // Make sure this matches your existing table name
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private Integer userId;
+    private Long userId;
 
-    @Column(unique = true)
+    @Column(nullable = false)
     private String username;
 
+    @Column(nullable = true)
+    private String password;
+
+    @Column(nullable = true)
+    private String email;
+
+    @Column(nullable = true)
+    private String profilePicUrl;
+
+    @Column(nullable = true)
+    private String bio;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Portfolio portfolio;
+    private InvestmentPortfolio investmentPortfolio;
 
     public User() {
     }
 
-    public Portfolio getPortfolio() {
-        return this.portfolio;
+    public User(String username, String password, String email, String profilePicUrl, String bio) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.profilePicUrl = profilePicUrl;
+        this.bio = bio;
     }
 
-    public void setPortfolio(Portfolio portfolio2) {
-        this.portfolio = portfolio2;
+    public Long getUserId() {
+        return userId;
     }
 
-    // Getters and setters
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getProfilePicUrl() {
+        return profilePicUrl;
+    }
+
+    public void setProfilePicUrl(String profilePicUrl) {
+        this.profilePicUrl = profilePicUrl;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public InvestmentPortfolio getPortfolio() {
+        return investmentPortfolio;
+    }
+
+    public void setPortfolio(InvestmentPortfolio investmentPortfolio) {
+        this.investmentPortfolio = investmentPortfolio;
+    }
 }

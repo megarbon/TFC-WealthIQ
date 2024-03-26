@@ -3,8 +3,8 @@ package com.wealthiq.stockportfolio.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.wealthiq.stockportfolio.model.Stock;
+import com.wealthiq.stockportfolio.model.Asset;
 
 @Repository
-public interface StockRepository extends JpaRepository<Stock, Long> {
+public interface AssetRepository extends JpaRepository<Asset, Long> {
 }
