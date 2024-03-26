@@ -3,29 +3,29 @@ package com.wealthiq.stockportfolio.service;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
-import com.wealthiq.stockportfolio.model.PortfolioDetail;
-import com.wealthiq.stockportfolio.repository.PortfolioDetailRepository;
+import com.wealthiq.stockportfolio.model.Investment;
+import com.wealthiq.stockportfolio.repository.InvestmentRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
-public class PortfolioDetailService {
-    private final PortfolioDetailRepository portfolioDetailRepository;
+public class InvestmentService {
+    private final InvestmentRepository portfolioDetailRepository;
 
-    public PortfolioDetailService(PortfolioDetailRepository portfolioDetailRepository) {
+    public InvestmentService(InvestmentRepository portfolioDetailRepository) {
         this.portfolioDetailRepository = portfolioDetailRepository;
     }
 
-    public List<PortfolioDetail> getAllPortfolioDetails() {
+    public List<Investment> getAllPortfolioDetails() {
         return portfolioDetailRepository.findAll();
     }
 
-    public PortfolioDetail getPortfolioDetailById(Long id) {
+    public Investment getPortfolioDetailById(Long id) {
         return portfolioDetailRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Portfolio detail not found with id: " + id));
     }
 
-    public PortfolioDetail createPortfolioDetail(PortfolioDetail portfolioDetail) {
+    public Investment createPortfolioDetail(Investment portfolioDetail) {
         return portfolioDetailRepository.save(portfolioDetail);
     }
 

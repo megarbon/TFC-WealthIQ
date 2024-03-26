@@ -6,29 +6,29 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.wealthiq.stockportfolio.model.PortfolioDetail;
-import com.wealthiq.stockportfolio.service.PortfolioDetailService;
+import com.wealthiq.stockportfolio.model.Investment;
+import com.wealthiq.stockportfolio.service.InvestmentService;
 
 @RestController
 @RequestMapping("/portfolioDetails")
-public class PortfolioDetailController {
+public class InvestmentController {
 
-    private final PortfolioDetailService portfolioDetailService;
+    private final InvestmentService portfolioDetailService;
 
-    public PortfolioDetailController(PortfolioDetailService portfolioDetailService) {
+    public InvestmentController(InvestmentService portfolioDetailService) {
         this.portfolioDetailService = portfolioDetailService;
     }
 
     @PostMapping("/add")
-    public ResponseEntity<PortfolioDetail> addPortfolioDetail(@RequestBody PortfolioDetail portfolioDetail) {
-        PortfolioDetail createdPortfolioDetail = portfolioDetailService.createPortfolioDetail(portfolioDetail);
+    public ResponseEntity<Investment> addPortfolioDetail(@RequestBody Investment portfolioDetail) {
+        Investment createdPortfolioDetail = portfolioDetailService.createPortfolioDetail(portfolioDetail);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPortfolioDetail);
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<PortfolioDetail>> getAllPortfolioDetails() {
+    public ResponseEntity<List<Investment>> getAllPortfolioDetails() {
         try {
-            List<PortfolioDetail> portfolioDetails = portfolioDetailService.getAllPortfolioDetails();
+            List<Investment> portfolioDetails = portfolioDetailService.getAllPortfolioDetails();
             return new ResponseEntity<>(portfolioDetails, HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
@@ -36,12 +36,12 @@ public class PortfolioDetailController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PortfolioDetail> getPortfolioDetailById(@PathVariable("id") Long id) {
-        PortfolioDetail portfolioDetail = portfolioDetailService.getPortfolioDetailById(id);
+    public ResponseEntity<Investment> getPortfolioDetailById(@PathVariable("id") Long id) {
+        Investment portfolioDetail = portfolioDetailService.getPortfolioDetailById(id);
         if (portfolioDetail == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(portfolioDetail, HttpStatus.OK);
     }
-    
+
 }

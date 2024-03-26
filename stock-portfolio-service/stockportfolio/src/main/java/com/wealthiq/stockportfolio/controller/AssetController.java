@@ -3,25 +3,25 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.wealthiq.stockportfolio.model.Stock;
-import com.wealthiq.stockportfolio.service.StockService;
+import com.wealthiq.stockportfolio.model.Asset;
+import com.wealthiq.stockportfolio.service.AssetService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/stocks")
-public class StockController {
+public class AssetController {
 
-    private final StockService stockService;
+    private final AssetService stockService;
 
-    public StockController(StockService stockService) {
+    public AssetController(AssetService stockService) {
         this.stockService = stockService;
     }
 
     @GetMapping("/getAll") // ✅
-    public ResponseEntity<List<Stock>> getAllStocks() {
+    public ResponseEntity<List<Asset>> getAllStocks() {
         try {
-            List<Stock> stocks = stockService.getAllStocks();
+            List<Asset> stocks = stockService.getAllStocks();
             return new ResponseEntity<>(stocks, HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
@@ -29,8 +29,8 @@ public class StockController {
     }
 
     @GetMapping("/{id}") // ✅
-    public ResponseEntity<Stock> getStock(@PathVariable("id") Long id) {
-        Stock stock = stockService.getStockById(id);
+    public ResponseEntity<Asset> getStock(@PathVariable("id") Long id) {
+        Asset stock = stockService.getStockById(id);
         if (stock == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -38,9 +38,9 @@ public class StockController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createStock(@RequestBody Stock stock) {
+    public ResponseEntity<?> createStock(@RequestBody Asset stock) {
         try {
-            Stock createdStock = stockService.saveStock(stock);
+            Asset createdStock = stockService.saveStock(stock);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdStock);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error");

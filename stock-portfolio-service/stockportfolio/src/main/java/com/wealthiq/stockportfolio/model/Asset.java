@@ -4,28 +4,26 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "stock")
-public class Stock {
+public class Asset {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "stock_id")
     private Long id;
 
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "stock_name", nullable = false, unique = true)
     private String name;
 
-    @Column(name = "symbol", nullable = false, unique = true)
+    @Column(name = "stock_symbol", nullable = false, unique = true)
     private String symbol;
 
-    @Column(name = "market", nullable = false)
+    @Column(name = "stock_market", nullable = false)
     private String market;
 
-    // Other attributes as needed...
-
-    public Stock() {
+    public Asset() {
     }
 
-    public Stock(Long id, String name, String symbol, String market) {
+    public Asset(Long id, String name, String symbol, String market) {
         this.id = id;
         this.name = name;
         this.symbol = symbol;

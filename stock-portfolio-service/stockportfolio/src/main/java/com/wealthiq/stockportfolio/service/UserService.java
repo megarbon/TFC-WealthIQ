@@ -1,27 +1,43 @@
 package com.wealthiq.stockportfolio.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.wealthiq.stockportfolio.model.User;
 import com.wealthiq.stockportfolio.repository.UserRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    public User getUserById(Integer id) {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
-    public User saveUser(User user) {
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public User getUserById(Long id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        return optionalUser.orElse(null);
+    }
+
+    public boolean existsById(Long id) {
+        return userRepository.existsById(id);
+    }
+
+    public User updateUser(User user) {
         return userRepository.save(user);
     }
 
-    public void deleteUser(Integer id) {
+    public User createUser(User user) {
+        return userRepository.save(user);
+    }
+
+    public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
 }

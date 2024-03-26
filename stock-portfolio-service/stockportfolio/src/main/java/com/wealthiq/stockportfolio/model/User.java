@@ -1,12 +1,10 @@
 package com.wealthiq.stockportfolio.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -18,7 +16,7 @@ public class User {
     @Column(nullable = false)
     private String username;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String password;
 
     @Column(nullable = true)
@@ -30,8 +28,7 @@ public class User {
     @Column(nullable = true)
     private String bio;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Portfolio portfolio;
+    private InvestmentPortfolio portfolio;
 
     public User() {
     }
@@ -92,11 +89,11 @@ public class User {
         this.bio = bio;
     }
 
-    public Portfolio getPortfolio() {
+    public InvestmentPortfolio getPortfolio() {
         return portfolio;
     }
 
-    public void setPortfolio(Portfolio portfolio) {
+    public void setPortfolio(InvestmentPortfolio portfolio) {
         this.portfolio = portfolio;
     }
 }

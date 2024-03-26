@@ -1,27 +1,28 @@
 package com.wealthiq.stockportfolio.controller;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.wealthiq.stockportfolio.model.Portfolio;
-import com.wealthiq.stockportfolio.service.PortfolioService;
+import com.wealthiq.stockportfolio.model.InvestmentPortfolio;
+import com.wealthiq.stockportfolio.service.InvestmentPortfolioService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/portfolios")
-public class PortfolioController {
+public class InvestmentPortfolioController {
 
-    private final PortfolioService portfolioService;
+    private final InvestmentPortfolioService portfolioService;
 
-    public PortfolioController(PortfolioService portfolioService) {
+    public InvestmentPortfolioController(InvestmentPortfolioService portfolioService) {
         this.portfolioService = portfolioService;
     }
 
     @GetMapping("/getAll") // ✅
-    public ResponseEntity<List<Portfolio>> getAllPortfolios() {
+    public ResponseEntity<List<InvestmentPortfolio>> getAllPortfolios() {
         try {
-            List<Portfolio> portfolios = portfolioService.getAllPortfolios();
+            List<InvestmentPortfolio> portfolios = portfolioService.getAllPortfolios();
             return new ResponseEntity<>(portfolios, HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
@@ -29,8 +30,8 @@ public class PortfolioController {
     }
 
     @GetMapping("/{id}") // ✅
-    public ResponseEntity<Portfolio> getPortfolioById(@PathVariable("id") Long id) {
-        Portfolio portfolio = portfolioService.getPortfolioById(id);
+    public ResponseEntity<InvestmentPortfolio> getPortfolioById(@PathVariable("id") Long id) {
+        InvestmentPortfolio portfolio = portfolioService.getPortfolioById(id);
         if (portfolio == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -38,13 +39,13 @@ public class PortfolioController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Portfolio> updatePortfolio(@PathVariable("id") Long id, @RequestBody Portfolio portfolio) {
+    public ResponseEntity<InvestmentPortfolio> updatePortfolio(@PathVariable("id") Long id, @RequestBody InvestmentPortfolio portfolio) {
         try {
             // Set the ID of the portfolio
             portfolio.setId(id);
 
             // Update the portfolio
-            Portfolio updatedPortfolio = portfolioService.savePortfolio(portfolio);
+            InvestmentPortfolio updatedPortfolio = portfolioService.savePortfolio(portfolio);
 
             // Check if the update was successful
             if (updatedPortfolio != null) {
@@ -58,10 +59,10 @@ public class PortfolioController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createPortfolio(@RequestBody Portfolio portfolio) {
+    public ResponseEntity<?> createPortfolio(@RequestBody InvestmentPortfolio portfolio) {
         try {
             // Create the portfolio
-            Portfolio createdPortfolio = portfolioService.savePortfolio(portfolio);
+            InvestmentPortfolio createdPortfolio = portfolioService.savePortfolio(portfolio);
 
             // Return a response with the created portfolio and status code 201 (CREATED)
             return ResponseEntity.status(HttpStatus.CREATED).body(createdPortfolio);
