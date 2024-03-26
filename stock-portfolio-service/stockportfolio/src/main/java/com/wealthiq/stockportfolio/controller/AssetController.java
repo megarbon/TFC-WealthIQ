@@ -9,7 +9,7 @@ import com.wealthiq.stockportfolio.service.AssetService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/stocks")
+@RequestMapping("/assets")
 public class AssetController {
 
     private final AssetService stockService;
