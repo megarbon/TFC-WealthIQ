@@ -12,6 +12,7 @@ import SymbolOverview from "../TradingViewWidgets/SymbolOverview";
 import Screener from "../TradingViewWidgets/Screener";
 import Heatmap from "../Charts/Heatmap";
 
+
 const ECommerce: React.FC = () => {
   return (
     <>
@@ -105,10 +106,12 @@ const ECommerce: React.FC = () => {
       <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
         <ChartOne />
         <ChartTwo />
+
         {/* <ChartThree /> */}
         <Screener/>
         <SymbolOverview />
         {/* <MapOne /> */}
+
         <div className="col-span-12 xl:col-span-8">
           <TableOne />
         </div>
