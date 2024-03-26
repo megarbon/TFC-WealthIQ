@@ -3,28 +3,33 @@ package com.wealthiq.stockportfolio.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "stocks")
+@Table(name = "stock")
 public class Stock {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "portfolio_id", nullable = false)
-    private Portfolio portfolio;
+    @Column(name = "name", nullable = false, unique = true)
+    private String name;
 
-    private String stockName;
-    private String stockSymbol;
-    private int quantity;
+    @Column(name = "symbol", nullable = false, unique = true)
+    private String symbol;
+
+    @Column(name = "market", nullable = false)
+    private String market;
+
+    // Other attributes as needed...
 
     public Stock() {
     }
 
-    public Stock(Portfolio portfolio, String stockName, String stockSymbol, int quantity) {
-        this.portfolio = portfolio;
-        this.stockName = stockName;
-        this.stockSymbol = stockSymbol;
-        this.quantity = quantity;
+    public Stock(Long id, String name, String symbol, String market) {
+        this.id = id;
+        this.name = name;
+        this.symbol = symbol;
+        this.market = market;
     }
 
     public Long getId() {
@@ -35,36 +40,28 @@ public class Stock {
         this.id = id;
     }
 
-    public Portfolio getPortfolio() {
-        return portfolio;
+    public String getName() {
+        return name;
     }
 
-    public void setPortfolio(Portfolio portfolio) {
-        this.portfolio = portfolio;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getStockName() {
-        return stockName;
+    public String getSymbol() {
+        return symbol;
     }
 
-    public void setStockName(String stockName) {
-        this.stockName = stockName;
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
     }
 
-    public String getStockSymbol() {
-        return stockSymbol;
+    public String getMarket() {
+        return market;
     }
 
-    public void setStockSymbol(String stockSymbol) {
-        this.stockSymbol = stockSymbol;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setMarket(String market) {
+        this.market = market;
     }
 
 }

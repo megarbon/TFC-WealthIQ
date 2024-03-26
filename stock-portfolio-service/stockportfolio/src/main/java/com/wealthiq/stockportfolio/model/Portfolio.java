@@ -1,32 +1,31 @@
 package com.wealthiq.stockportfolio.model;
 
-import java.util.ArrayList;
+import jakarta.persistence.*;
 import java.util.List;
 
-import jakarta.persistence.*;
-
 @Entity
-@Table(name = "portfolios")
+@Table(name = "portfolio")
 public class Portfolio {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private User user;
+    @ManyToOne
+    @JoinColumn(name = "client_id", referencedColumnName = "id_cliente")
+    private User client;
 
-    @OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Stock> stocks = new ArrayList<>();
-
-    public Portfolio(Long id, User user, List<Stock> stocks) {
-        this.id = id;
-        this.user = user;
-        this.stocks = stocks;
-    }
+    @OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL)
+    private List<PortfolioDetail> portfolioDetails;
 
     public Portfolio() {
+    }
 
+    public Portfolio(Long id, User client, List<PortfolioDetail> portfolioDetails) {
+        this.id = id;
+        this.client = client;
+        this.portfolioDetails = portfolioDetails;
     }
 
     public Long getId() {
@@ -37,11 +36,20 @@ public class Portfolio {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public User getClient() {
+        return client;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setClient(User client) {
+        this.client = client;
     }
+
+    public List<PortfolioDetail> getPortfolioDetails() {
+        return portfolioDetails;
+    }
+
+    public void setPortfolioDetails(List<PortfolioDetail> portfolioDetails) {
+        this.portfolioDetails = portfolioDetails;
+    }
+
 }

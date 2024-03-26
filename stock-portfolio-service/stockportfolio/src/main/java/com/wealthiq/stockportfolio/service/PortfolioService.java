@@ -1,5 +1,7 @@
 package com.wealthiq.stockportfolio.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +27,13 @@ public class PortfolioService {
         portfolioRepository.deleteById(id);
     }
 
-    public Portfolio getPortfolioByUserId(Integer userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPortfolioByUserId'");
+    /*
+     * public Portfolio getPortfolioByUserId(Integer userId) {
+     * return portfolioRepository.findByUserId(userId);
+     * }
+     */
+
+    public List<Portfolio> getAllPortfolios() {
+        return portfolioRepository.findAll();
     }
 }
