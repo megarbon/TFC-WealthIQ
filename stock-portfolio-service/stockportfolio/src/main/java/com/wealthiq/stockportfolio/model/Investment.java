@@ -1,5 +1,7 @@
 package com.wealthiq.stockportfolio.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -12,7 +14,8 @@ public class Investment {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "portfolio_id")
+    @JoinColumn(name = "investment_portfolio_id")
+    @JsonIgnore
     private InvestmentPortfolio investmentPortfolio;
 
     @ManyToOne

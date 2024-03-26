@@ -3,6 +3,8 @@ package com.wealthiq.stockportfolio.model;
 import jakarta.persistence.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "investment_portfolio")
 public class InvestmentPortfolio {
@@ -12,9 +14,14 @@ public class InvestmentPortfolio {
     @Column(name = "investment_portfolio_id")
     private Long id;
 
+    // Define the one-to-many relationship with Investment
     @OneToMany(mappedBy = "investmentPortfolio", cascade = CascadeType.ALL)
-    @Column(name = "investments")
     private List<Investment> investments;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
     public InvestmentPortfolio() {
     }
