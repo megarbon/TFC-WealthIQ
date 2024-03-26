@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 const Screener = () => {
+  const containerRef = useRef();
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src =
@@ -8,30 +10,37 @@ const Screener = () => {
     script.type = "text/javascript";
     script.async = true;
     script.innerHTML = JSON.stringify({
-      width: "550",
-      height: "523",
+      width: "100%", 
+      height: "100%", 
       defaultColumn: "overview",
       defaultScreen: "general",
       market: "forex",
       showToolbar: true,
       colorTheme: "dark",
-      locale: "en",
+      locale: "es",
     });
 
-    document
-      .getElementsByClassName("tradingview-widget-container__widget")[0]
-      .appendChild(script);
+    containerRef.current.appendChild(script);
 
     return () => {
-      // Clean up the script when the component unmounts
-      document
-        .getElementsByClassName("tradingview-widget-container__widget")[0]
-        .removeChild(script);
+      // Limpiar el script cuando el componente se desmonta
+      containerRef.current.removeChild(script);
     };
   }, []);
 
-  return ( 
+  return (
+    <div className="col-span-12 rounded-sm  border-stroke bg-white px-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:h-100 md:h-100 sm:px-7.5 xl:col-span-5">
+      <div
+      className="tradingview-widget-container"
+      ref={containerRef} 
+      style={{ width: "100%", height: "100%" }} 
+    >
       <div className="tradingview-widget-container__widget"></div>
+      <div className="tradingview-widget-copyright"></div>
+    </div>
+    </div>
+    
+
   );
 };
 
