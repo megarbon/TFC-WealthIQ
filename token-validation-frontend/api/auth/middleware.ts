@@ -1,6 +1,6 @@
 import { defineMiddleware } from "astro/middleware";
 import { checkAuth } from "./utils/authentication";
-import { TOKEN, PUBLIC_ROUTES } from "./constants/constants";
+import { TOKEN, PUBLIC_ROUTES } from "../../../wealthIQ-landing-page/src/constants/constants";
 
 export const config = {
   // Only run the middleware on the marketing route

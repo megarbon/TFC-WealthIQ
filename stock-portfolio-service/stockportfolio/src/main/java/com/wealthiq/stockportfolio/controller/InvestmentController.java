@@ -10,7 +10,7 @@ import com.wealthiq.stockportfolio.model.Investment;
 import com.wealthiq.stockportfolio.service.InvestmentService;
 
 @RestController
-@RequestMapping("/portfolioDetails")
+@RequestMapping("/investments")
 public class InvestmentController {
 
     private final InvestmentService portfolioDetailService;
