@@ -26,11 +26,23 @@ function TradingViewWidget() {
         width: "100%", 
         height: "100%" 
       });
-      container.current.appendChild(script);
+      /* container.current.appendChild(script);
 
       return () => {
         // Limpiar el script cuando el componente se desmonta
         container.current.removeChild(script);
+      }; */
+
+      if (container.current) {
+        container.current.appendChild(script);
+      }
+    
+      // Devolver una función de limpieza
+      return () => {
+        // Verificar que container.current y script existan antes de intentar eliminar el script
+        if (container.current && script) {
+          container.current.removeChild(script);
+        }
       };
 
     },
