@@ -69,7 +69,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5 m-2">
       <Link href="/">
           <Image
-            width={176}
+            width={500}
             height={32}
             src={"/images/logo/2.png"}
             alt="Logo"
