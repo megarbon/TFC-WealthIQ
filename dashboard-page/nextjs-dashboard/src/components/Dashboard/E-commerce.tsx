@@ -39,9 +39,7 @@ const ECommerce: React.FC = () => {
         <div className="col-span-12 xl:col-span-8">
           <TableOne />
         </div>
-        <div className="mt-4  md:mt-6 2xl:mt-7.5 col-span-12">
         <StockNews />
-        </div>
         
       </div>
       <div className="mt-4  md:mt-6 2xl:mt-7.5 col-span-12">
