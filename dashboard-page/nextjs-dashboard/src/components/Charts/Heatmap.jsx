@@ -18,7 +18,7 @@ function TradingViewWidget() {
         blockColor: "change",
         locale: "es",
         symbolUrl: "",
-        colorTheme: "dark",
+        colorTheme: "light",
         hasTopBar: true,
         isDataSetEnabled: true,
         isZoomEnabled: true,
