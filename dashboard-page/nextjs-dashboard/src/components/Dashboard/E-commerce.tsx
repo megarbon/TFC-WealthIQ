@@ -38,14 +38,9 @@ const ECommerce: React.FC = () => {
         <SymbolOverview />
         {/* <MapOne /> */}
 
-        <div className="col-span-12 xl:col-span-8">
-          <TableOne />
-        </div>
+        <Heatmap/>
         <StockNews />
         
-      </div>
-      <div className=" mt-4  md:mt-6 2xl:mt-7.5 col-span-12">
-        <Heatmap/>
       </div>
       
     </>
