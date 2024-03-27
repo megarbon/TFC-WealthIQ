@@ -57,28 +57,12 @@ const Header = (props: {
           {/* <!-- Hamburger Toggle BTN --> */}
 
           <Link className="block flex-shrink-0 lg:hidden" href="/">
-          <a href="/" className="text-black inline-flex items-center gap-3">
-            <svg
-              className="h-4"
-              viewBox="0 0 78 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M55.5 0H77.5L58.5 32H36.5L55.5 0Z"
-                className="ccustom"
-                fill="#283CFF"></path>
-              <path
-                d="M35.5 0H51.5L32.5 32H16.5L35.5 0Z"
-                className="ccompli1"
-                fill="#5263FF"></path>
-              <path
-                d="M19.5 0H31.5L12.5 32H0.5L19.5 0Z"
-                className="ccompli2"
-                fill="#808CFF"></path>
-            </svg>
-            <span className="font-bold font-display">WealthIQ</span>
-          </a>
+            <Image
+              width={32}
+              height={32}
+              src={"/images/logo/logo-icon.svg"}
+              alt="Logo"
+            />
           </Link>
         </div>
 
