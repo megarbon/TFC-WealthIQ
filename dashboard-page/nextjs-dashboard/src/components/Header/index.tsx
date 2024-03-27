@@ -57,17 +57,33 @@ const Header = (props: {
           {/* <!-- Hamburger Toggle BTN --> */}
 
           <Link className="block flex-shrink-0 lg:hidden" href="/">
-            <Image
-              width={32}
-              height={32}
-              src={"/images/logo/logo-icon.svg"}
-              alt="Logo"
-            />
+          <a href="/" className="text-black inline-flex items-center gap-3">
+            <svg
+              className="h-4"
+              viewBox="0 0 78 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M55.5 0H77.5L58.5 32H36.5L55.5 0Z"
+                className="ccustom"
+                fill="#283CFF"></path>
+              <path
+                d="M35.5 0H51.5L32.5 32H16.5L35.5 0Z"
+                className="ccompli1"
+                fill="#5263FF"></path>
+              <path
+                d="M19.5 0H31.5L12.5 32H0.5L19.5 0Z"
+                className="ccompli2"
+                fill="#808CFF"></path>
+            </svg>
+            <span className="font-bold font-display">WealthIQ</span>
+          </a>
           </Link>
         </div>
 
         <div className="hidden sm:block">
-          <form action="https://formbold.com/s/unique_form_id" method="POST">
+          {/* <form action="https://formbold.com/s/unique_form_id" method="POST">
             <div className="relative">
               <button className="absolute left-0 top-1/2 -translate-y-1/2">
                 <svg
@@ -99,7 +115,7 @@ const Header = (props: {
                 className="w-full bg-transparent pl-9 pr-4 font-medium focus:outline-none xl:w-125"
               />
             </div>
-          </form>
+          </form> */}
         </div>
 
         <div className="flex items-center gap-3 2xsm:gap-7">
@@ -109,11 +125,11 @@ const Header = (props: {
             {/* <!-- Dark Mode Toggler --> */}
 
             {/* <!-- Notification Menu Area --> */}
-            <DropdownNotification />
+            {/* <DropdownNotification /> */}
             {/* <!-- Notification Menu Area --> */}
 
             {/* <!-- Chat Notification Area --> */}
-            <DropdownMessage />
+            {/* <DropdownMessage /> */}
             {/* <!-- Chat Notification Area --> */}
           </ul>
 
