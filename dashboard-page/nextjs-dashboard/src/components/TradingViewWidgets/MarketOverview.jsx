@@ -19,7 +19,7 @@ const TradingViewWidget = () => {
       showSymbolLogo: false,
       showFloatingTooltip: false,
       width: "100%",
-      height: "100%",
+      height: "400",
       plotLineColorGrowing: "rgba(41, 98, 255, 1)",
       colorTheme: "light",
       dateRange: "12M",
@@ -33,34 +33,8 @@ const TradingViewWidget = () => {
       belowLineFillColorFallingBottom: "rgba(41, 98, 255, 0)",
       symbolActiveColor: "rgba(41, 98, 255, 0.12)",
       title: "Indices",
-      symbols: [
-      {
-        "s": "FOREXCOM:SPXUSD",
-        "d": "S&P 500 Index"
-      },
-      {
-        "s": "FOREXCOM:NSXUSD",
-        "d": "US 100 Cash CFD"
-      },
-      {
-        "s": "FOREXCOM:DJI",
-        "d": "Dow Jones Industrial Average Index"
-      },
-      {
-        "s": "INDEX:NKY",
-        "d": "Nikkei 225"
-      },
-      {
-        "s": "INDEX:DEU40",
-        "d": "DAX Index"
-      },
-      {
-        "s": "FOREXCOM:UKXGBP",
-        "d": "FTSE 100 Index"
-      }
-          ],
-        },
-    )
+        
+    })
 
    
     if (container.current) {
@@ -79,9 +53,13 @@ const TradingViewWidget = () => {
   }, []);
 
   return (
-    <div>
-      <div className="tradingview-widget-container" ref={container}></div>
+    <div className="col-span-12 rounded-sm border border-stroke bg-white p-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4">
+      <div className="sm:h-100"><div>
+      <div className="" ref={container}></div>
+      </div>
     </div>
+    </div>
+    
   );
 };
 

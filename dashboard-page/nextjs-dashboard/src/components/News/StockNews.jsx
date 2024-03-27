@@ -11,7 +11,7 @@ const StockNews = () => {
       script.async = true;
       script.innerHTML = JSON.stringify({
         width: "100%", 
-        height: "100%",
+        height: "520",
         market: "stock",
         colorTheme: "light",
         locale: "es",

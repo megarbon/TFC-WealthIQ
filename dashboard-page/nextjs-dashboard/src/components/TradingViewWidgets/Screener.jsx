@@ -11,7 +11,7 @@ const Screener = () => {
     script.async = true;
     script.innerHTML = JSON.stringify({
       width: "100%", 
-      height: "100%", 
+      height: "370", 
       defaultColumn: "overview",
       defaultScreen: "general",
       market: "stock",
@@ -42,7 +42,7 @@ const Screener = () => {
   }, []);
 
   return (
-    <div className="col-span-12 rounded-sm  border-stroke bg-white px-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:h-100 md:h-100 sm:px-7.5 xl:col-span-5">
+    <div className=" col-span-12 rounded-sm  border-stroke bg-white px-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:h-100 md:h-100 sm:px-7.5 xl:col-span-5">
       <div
       className="tradingview-widget-container"
       ref={container} 

@@ -19,7 +19,7 @@ function TradingViewWidget() {
           ],
           chartOnly: false,
           width: "100%", 
-          height: "100%", 
+          height: "350", 
           locale: "es",
           colorTheme: "light",
           autosize: false,
