@@ -1,0 +1,39 @@
+version: "3"
+services:
+  landing-page:
+    build: ./ruta-a-landing-page
+    ports:
+      - "3000:3000"
+  dashboard:
+    build: ./ruta-a-dashboard
+    ports:
+      - "4000:4000"
+  auth-api:
+    build: ./ruta-a-api-autenticacion
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql-auth
+  portfolio-api:
+    build: ./ruta-a-api-portfolio
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql-portfolio
+  mysql-auth:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: nombre-base-datos-auth
+    volumes:
+      - auth-db-data:/var/lib/mysql
+  mysql-portfolio:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: nombre-base-datos-portfolio
+    volumes:
+      - portfolio-db-data:/var/lib/mysql
+volumes:
+  auth-db-data:
+  portfolio-db-data:
