@@ -14,10 +14,5 @@ import Footer from "../components/global/Footer.astro";
     <Navigation />
     <main class="grow"><slot /></main>
     <Footer />
-
-    <script>
-      import { middleware } from "../pages/api/auth/tokenValidation";
-      export const middlewareStack = [middleware];
-    </script>
   </body>
 </html>

@@ -5,7 +5,6 @@ import type { APIRoute } from "astro";
 export const POST: APIRoute = async ({ request, cookies }) => {
   try {
     // Recibe los datos del formulario
-
     const data = await request.formData();
     const username = data.get("username");
     const password = data.get("password");
@@ -65,6 +64,29 @@ export const POST: APIRoute = async ({ request, cookies }) => {
   } catch (error) {
     console.error("There was an error!", error);
     // Retorna una respuesta de error
+    return new Response(
+      JSON.stringify({
+        message: "There was an error processing your request",
+      }),
+      { status: 500 }
+    );
+  }
+};
+
+// Define la ruta del endpoint GET
+export const GET: APIRoute = async ({ request }) => {
+  try {
+    // Aquí podrías manejar las solicitudes GET si es necesario
+    // Por ejemplo, podrías devolver una página de inicio de sesión en caso de una solicitud GET
+    return new Response(
+      JSON.stringify({
+        message: "Please use POST method to login",
+      }),
+      { status: 405 } // Método no permitido
+    );
+  } catch (error) {
+    console.error("There was an error!", error);
+    // Retorna una respuesta de error si ocurre algún problema
     return new Response(
       JSON.stringify({
         message: "There was an error processing your request",
