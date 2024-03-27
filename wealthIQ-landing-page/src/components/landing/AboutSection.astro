@@ -1,0 +1,52 @@
+---
+import Image from "astro/components/Image.astro";
+import businessPic from "../../assets/img/stock/business.jpg";
+---
+
+<section>
+  <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-7xl">
+    <div class="grid items-center grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-24">
+      <div class="md:order-first">
+        <h1
+          class="text-4xl font-semibold tracking-tighter text-gray-900 text-balance"
+        >
+          Forjando el Futuro de las Soluciones SaaS con Pasión y Precisión
+        </h1>
+        <p class="mt-6 text-base font-medium text-gray-500">
+          En WealthIQ, no somos solo dos jóvenes desarrolladores; somos
+          visionarios impulsados por una pasión implacable por las soluciones
+          SaaS de vanguardia. Con una combinación única de experiencia técnica y
+          habilidades empresariales, nos hemos embarcado en una misión para
+          construir la plataforma más segura e innovadora para la gestión de
+          carteras de inversión.
+        </p>
+        <p class="mt-6 text-base font-medium text-gray-500">
+          Nuestro viaje comenzó con un sueño compartido de revolucionar la
+          industria de servicios financieros. Basándonos en nuestros
+          antecedentes en desarrollo de software y gestión empresarial, hemos
+          aprovechado el poder de la tecnología para crear algoritmos que no
+          solo optimizan el rendimiento, sino que también priorizan la seguridad
+          y la confiabilidad.
+        </p>
+        <p class="mt-6 text-base font-medium text-gray-500">
+          Juntos, creemos en desafiar los límites, cuestionar el status quo y
+          capacitar a las personas para tomar el control de su futuro
+          financiero. Con WealthIQ, no solo estás invirtiendo en una plataforma;
+          estás invirtiendo en una visión, una que se basa en la pasión, la
+          innovación y un compromiso implacable con la excelencia.
+        </p>
+      </div>
+      <div class="order-first block w-full mt-12 aspect-square lg:mt-0">
+        <div
+          class="h-full overflow-hidden border-2 border-gray-200 shadow-lg bg-gray-50 rounded-3xl p-1"
+        >
+          <Image
+            src={businessPic}
+            alt="Ilustración de dos desarrolladores trabajando en una computadora portátil"
+            class="object-cover w-full h-full rounded-2xl"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
