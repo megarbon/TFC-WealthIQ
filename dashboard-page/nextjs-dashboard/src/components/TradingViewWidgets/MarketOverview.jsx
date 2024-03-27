@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from "react";
+import useColorMode from "../../hooks/useColorMode";
 
 const TradingViewWidget = () => {
-    const container = useRef();
+  const container = useRef();
+  const [colorMode] = useColorMode();
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -10,18 +12,17 @@ const TradingViewWidget = () => {
     script.type = "text/javascript";
     script.async = true;
     script.innerHTML = JSON.stringify({
-      colorTheme: "light",
       dateRange: "12M",
       showChart: true,
       locale: "es",
       largeChartURL: "",
       isTransparent: false,
-      showSymbolLogo: false,
+      showSymbolLogo: true,
       showFloatingTooltip: false,
       width: "100%",
       height: "400",
       plotLineColorGrowing: "rgba(41, 98, 255, 1)",
-      colorTheme: "light",
+      colorTheme: colorMode === "dark" ? "dark" : "light", // Update colorTheme based on colorMode
       dateRange: "12M",
       showChart: true,
       plotLineColorFalling: "rgba(41, 98, 255, 1)",
@@ -33,33 +34,27 @@ const TradingViewWidget = () => {
       belowLineFillColorFallingBottom: "rgba(41, 98, 255, 0)",
       symbolActiveColor: "rgba(41, 98, 255, 0.12)",
       title: "Indices",
-        
-    })
+    });
 
-   
-    if (container.current) {
-      container.current.appendChild(script);
-    }
-  
-    // Devolver una función de limpieza
+    container.current.innerHTML = ""; // Clear container
+    container.current.appendChild(script);
+
+    // Clean up
     return () => {
-      // Verificar que container.current y script existan antes de intentar eliminar el script
       if (container.current && script) {
         container.current.removeChild(script);
       }
-    }; 
-
-
-  }, []);
+    };
+  }, [colorMode]);
 
   return (
     <div className="col-span-12 rounded-sm border border-stroke bg-white p-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4">
-      <div className="sm:h-100"><div>
-      <div className="" ref={container}></div>
+      <div className="sm:h-100">
+        <div>
+          <div className="" ref={container}></div>
+        </div>
       </div>
     </div>
-    </div>
-    
   );
 };
 
