@@ -1,6 +1,6 @@
 ---
-import { Image } from 'astro:assets'
-import mockupImage from '../../assets/img/mocks/mock-stock-data-page.png'
+import { Image } from "astro:assets";
+import mockupImage from "../../assets/img/mocks/dashboard-nice.png";
 ---
 
 <section id="features">
@@ -13,9 +13,8 @@ import mockupImage from '../../assets/img/mocks/mock-stock-data-page.png'
           <div
             class="relative rounded-full py-1 px-3 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20"
           >
-          <!-- diria de quitar este boton, no le veo mucha utilidad -->
             <a
-              href="https://lexingtonthemes.com/free-templates/"
+              href="https://github.com/megarbon"
               class="font-semibold text-accent-600"
               ><span class="absolute inset-0" aria-hidden="true"></span>
               <span class="block lg:inline">
@@ -40,12 +39,11 @@ import mockupImage from '../../assets/img/mocks/mock-stock-data-page.png'
       <div class="flex justify-center gap-3 mt-10 mb-4 flex-col sm:flex-row">
         <a
           class="items-center justify-center h-12 font-medium rounded-xl focus-visible:outline-black focus:outline-none inline-flex bg-black border-2 border-black duration-200 focus-visible:ring-black hover:bg-transparent hover:border-black hover:text-black lg:w-auto px-6 py-3 text-center text-white w-full"
-          href="/login" 
-          >Finanzas Personales &rarr;</a
+          href="/login">Finanzas Personales &rarr;</a
         >
         <a
           class="items-center justify-center h-12 font-medium rounded-xl focus-visible:outline-black focus:outline-none inline-flex bg-black border-2 border-black duration-200 focus-visible:ring-black hover:bg-transparent hover:border-black hover:text-black lg:w-auto px-6 py-3 text-center text-white w-full"
-          href="/login" 
+          href="/login"
           >Gestión de Carteras &rarr;
         </a>
       </div>
@@ -54,34 +52,41 @@ import mockupImage from '../../assets/img/mocks/mock-stock-data-page.png'
       >
         <div class="text-gray-500">
           <strong class="text-gray-700">Control Total de tus Finanzas</strong
-          ><br /><br /> ━ Te permite rastrear el origen de tus ingresos
-          y controlar en qué se va tu dinero. Obtén métricas detalladas para mejorar
-          tu situación financiera de manera efectiva.
+          ><br /><br /> ━ Te permite rastrear el origen de tus ingresos y controlar
+          en qué se va tu dinero. Obtén métricas detalladas para mejorar tu situación
+          financiera de manera efectiva.
         </div>
 
         <div class="text-gray-500">
           <strong class="text-gray-700">Cumple tus Metas</strong><br /><br /> ━ Ofrecemos
-          herramientas visuales y métricas precisas para seguir
-          tus objetivos de ahorro. Con gráficas intuitivas y análisis detallados,
-          estarás en el camino correcto hacia una mejor salud financiera.
+          herramientas visuales y métricas precisas para seguir tus objetivos de
+          ahorro. Con gráficas intuitivas y análisis detallados, estarás en el camino
+          correcto hacia una mejor salud financiera.
         </div>
 
         <div class="text-gray-500">
-          <strong class="text-gray-700">Inversiones Inteligentes</strong><br /> <br />━
-          Algoritmos predictivos te ofrecen recomendaciones precisas para
-          potenciar tus inversiones y optimizar tus finanzas personales.
+          <strong class="text-gray-700">Inversiones Inteligentes</strong><br />
+          <br />━ Algoritmos predictivos te ofrecen recomendaciones precisas
+          para potenciar tus inversiones y optimizar tus finanzas personales.
         </div>
 
         <div class="text-gray-500">
           <strong class="text-gray-700">Optimización de Portafolios</strong><br
-          /> <br />━ Equipo de expertos que analiza constantemente el mercado financiero
-          utilizando datos precisos y algoritmos avanzados.
+          />
+          <br />━ Equipo de expertos que analiza constantemente el mercado
+          financiero utilizando datos precisos y algoritmos avanzados.
         </div>
       </dl>
     </div>
-    <div class="relative w-full mx-auto max-w-7xl items-center py-12 pb-12 mt-8">
+    <div
+      class="relative w-full mx-auto max-w-7xl items-center py-12 pb-12 mt-8"
+    >
       <div class="bg-gray-100 p-8 rounded-3xl">
-        <Image src={mockupImage} alt="Un Mockup de la página de WealthIQ donde se muestra la interfaz de usuario de la plataforma." class="relative w-full border lg:rounded-2xl object-cover shadow-2xl"/>
+        <Image
+          src={mockupImage}
+          alt="Un Mockup de la página de WealthIQ donde se muestra la interfaz de usuario de la plataforma."
+          class="relative w-full border lg:rounded-2xl object-cover shadow-2xl"
+        />
       </div>
     </div>
   </div>

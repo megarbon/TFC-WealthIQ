@@ -1,374 +1,134 @@
-<section
-  class="relative overflow-hidden"
-  style="
-background-image: repeating-linear-gradient(
-    90deg,
-    hsla(78, 0%, 63%, 0.05) 0,
-    hsla(78, 0%, 63%, 0.05) 1px,
-    transparent 1px,
-    transparent 104px
-  ),
-  repeating-linear-gradient(
-    0deg,
-    hsla(78, 0%, 63%, 0.05) 0,
-    hsla(78, 0%, 63%, 0.05) 1px,
-    transparent 1px,
-    transparent 104px
-  ),
-  repeating-linear-gradient(
-    0deg,
-    hsla(78, 0%, 63%, 0.08) 0,
-    hsla(78, 0%, 63%, 0.08) 1px,
-    transparent 1px,
-    transparent 26px
-  ),
-  repeating-linear-gradient(
-    90deg,
-    hsla(78, 0%, 63%, 0.08) 0,
-    hsla(78, 0%, 63%, 0.08) 1px,
-    transparent 1px,
-    transparent 26px
-  ),
-  linear-gradient(45deg, #fff, #fff);
-"
->
-  <svg
-    class="absolute blur-3xl -right-96 -top-80"
-    fill="none"
-    viewBox="0 0 400 400"
-    height="80%"
-    width="80%"
-    xmlns="http://www.w3.org/2000/svg"
+---
+import Image from "astro/components/Image.astro";
+import mockupImage from "../../assets/img/mocks/dashboard-nice.png";
+---
+
+<section class="relative flex items-center justify-center">
+  <div
+    class="relative items-center w-full px-5 py-12 mx-auto max-w-7xl lg:px-16 lg:py-32 md:px-12"
   >
-    <g clip-path="url(#clip0_10_20)">
-      <g filter="url(#filter0_f_10_20)">
-        <path d="M128.6 0H0V322.2L106.2 134.75L128.6 0Z" fill="#03FFE0"></path>
-        <path d="M0 322.2V400H240H320L106.2 134.75L0 322.2Z" fill="#7C87F8"
-        ></path>
-        <path d="M320 400H400V78.75L106.2 134.75L320 400Z" fill="#4C65E4"
-        ></path>
-        <path d="M400 0H128.6L106.2 134.75L400 78.75V0Z" fill="#6551f3"></path>
-      </g>
-    </g>
-    <defs>
-      <filter
-        color-interpolation-filters="sRGB"
-        filterUnits="userSpaceOnUse"
-        height="720.666"
-        id="filter0_f_10_20"
-        width="720.666"
-        x="-160.333"
-        y="-160.333"
-      >
-        <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
-        <feBlend
-          in="SourceGraphic"
-          in2="BackgroundImageFix"
-          mode="normal"
-          result="shape"></feBlend>
-        <feGaussianBlur
-          result="effect1_foregroundBlur_10_20"
-          stdDeviation="80.1666"></feGaussianBlur>
-      </filter>
-    </defs>
-  </svg>
-  <svg
-    class="absolute blur-3xl -bottom-64 left-[-30rem]"
-    fill="none"
-    viewBox="0 0 400 400"
-    height="60%"
-    width="60%"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <g clip-path="url(#clip0_10_20)">
-      <g filter="url(#filter0_f_10_20)">
-        <path d="M128.6 0H0V322.2L106.2 134.75L128.6 0Z" fill="#03FFE0"></path>
-        <path d="M0 322.2V400H240H320L106.2 134.75L0 322.2Z" fill="#7C87F8"
-        ></path>
-        <path d="M320 400H400V78.75L106.2 134.75L320 400Z" fill="#4C65E4"
-        ></path>
-        <path d="M400 0H128.6L106.2 134.75L400 78.75V0Z" fill="#6551f3"></path>
-      </g>
-    </g>
-    <defs>
-      <filter
-        color-interpolation-filters="sRGB"
-        filterUnits="userSpaceOnUse"
-        height="720.666"
-        id="filter0_f_10_20"
-        width="720.666"
-        x="-160.333"
-        y="-160.333"
-      >
-        <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
-        <feBlend
-          in="SourceGraphic"
-          in2="BackgroundImageFix"
-          mode="normal"
-          result="shape"></feBlend>
-        <feGaussianBlur
-          result="effect1_foregroundBlur_10_20"
-          stdDeviation="80.1666"></feGaussianBlur>
-      </filter>
-    </defs>
-  </svg>
-  <section class="relative">
-    <div class="relative w-full mx-auto max-w-7xl">
-      <div
-        class="relative flex flex-col w-full p-5 mx-auto lg:px-16 md:flex-row md:items-center md:justify-between md:px-6"
-        x-data="{ open: false }"
-      >
-        <div
-          class="flex flex-row items-center justify-between text-sm text-black lg:justify-start"
-        >
-          <a href="/"
-            ><div>
-              <p class="italic font-semibold tracking-tighter uppercase">
-                Windstatic
-              </p>
-            </div></a
-          ><button
-            @click="open = !open"
-            class="inline-flex items-center justify-center p-2 text-black focus:outline-none focus:text-black hover:text-indigo-500 md:hidden"
-          >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+    <div class="relative items-center w-full pb-12 mx-auto max-w-7xl">
+      <div>
+        <div class="text-center max-w-4xl mx-auto">
+          <div class="sm:flex sm:justify-center">
+            <div
+              class="relative rounded-full py-2 px-4 text-lg leading-7 text-gray-600 ring-2 ring-gray-900/10 hover:ring-gray-900/50"
             >
-              <path
-                d="M4 6h16M4 12h16M4 18h16"
-                :class="{'hidden': open, 'inline-flex': !open }"
-                class="inline-flex"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"></path>
-              <path
-                d="M6 18L18 6M6 6l12 12"
-                :class="{'hidden': !open, 'inline-flex': open }"
-                class="hidden"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"></path>
-            </svg>
-          </button>
-        </div>
-        <nav
-          :class="{'flex': open, 'hidden': !open}"
-          class="flex-col items-center flex-grow hidden md:flex md:flex-row md:justify-end md:pb-0 md:space-x-6"
-        >
-          <a
-            class="py-2 text-base font-medium text-white hover:text-black/50"
-            href="#_">Home</a
-          >
-          <a
-            class="py-2 mr-auto text-base font-medium text-white hover:text-black/50"
-            href="#_">Overview</a
-          >
-          <a
-            class="justify-center px-6 py-1 ml-auto text-sm font-medium text-white active:bg-fuchsia-50 active:text-black bg-white/5 focus-visible:outline-2 focus-visible:outline-fuchsia-50 focus-visible:outline-offset-2 focus:outline-none group hover:bg-indigo-500/5 hover:text-indigo-500 rounded-xl"
-            >Pricing</a
-          >
-        </nav>
-      </div>
-    </div>
-  </section>
-  <section class="relative flex items-center justify-center overflow-hidden">
-    <div
-      class="relative items-center w-full px-5 py-12 mx-auto lg:px-16 lg:py-24 max-w-7xl md:px-12"
-    >
-      <div class="mx-auto text-center">
-        <div>
-          <p
-            class="text-3xl font-extrabold tracking-tighter text-black lg::text-8xl md:text-5xl"
-          >
-            Find the clients for
-            <span class="md:block">your startup on Twitter</span>
-          </p>
-          <p
-            class="mx-auto max-w-md lg:text-2xl mt-4 text-[#141521]/80 text-base"
-          >
-            Targeting your customers on Twitter has never been easier
-          </p>
-          <div class="flex flex-col justify-center gap-3 mt-10 sm:flex-row">
-            <a
-              class="inline-flex items-center justify-center w-full px-6 py-3 font-medium text-center text-white duration-200 bg-indigo-600 focus:outline-none custom-blur focus-visible:outline-black focus-visible:ring-black hover:bg-indigo-100 hover:border-white hover:text-indigo-600 lg:w-auto md:w-auto rounded-xl"
-              href="#_">Find your clients now &nbsp; &nbsp; →</a
-            >
-          </div>
-        </div>
-        <div class="pb-24 mx-auto mt-12">
-          <div
-            class="grid w-full grid-cols-2 gap-6 mx-auto lg:grid-cols-6 md:grid-cols-3"
-          >
-            <div>
-              <figure class="relative max-w-md mx-auto lg:mx-0">
-                <div>
-                  <figcaption class="mt-2 text-sm">
-                    <div class="flex flex-col items-center">
-                      <div>
-                        <img
-                          alt=""
-                          class="inline-block w-16 h-16 rounded-full"
-                          src="https://pbs.twimg.com/profile_images/1605606433722081282/r4ECyqWZ_400x400.jpg"
-                        />
-                      </div>
-                      <div class="mt-3">
-                        <p class="font-semibold text-[#141521]">
-                          Dagobert Renouf
-                        </p>
-                        <p class="mt-6">
-                          <span
-                            class="px-4 py-2 text-pink-500 rounded-full bg-pink-50"
-                            >Startups</span
-                          >
-                        </p>
-                      </div>
-                    </div>
-                  </figcaption>
-                </div>
-              </figure>
-            </div>
-            <div>
-              <figure class="relative max-w-md mx-auto lg:mx-0">
-                <div>
-                  <figcaption class="mt-2 text-sm">
-                    <div class="flex flex-col items-center">
-                      <div>
-                        <img
-                          alt=""
-                          class="inline-block w-16 h-16 border-2 border-black rounded-full"
-                          src="https://pbs.twimg.com/profile_images/1484538965109907461/VaQu5_PI_400x400.jpg"
-                        />
-                      </div>
-                      <div class="mt-3">
-                        <p class="font-semibold text-[#141521]">Easlo</p>
-                        <p class="mt-6">
-                          <span
-                            class="px-4 py-2 text-indigo-600 rounded-full bg-indigo-50"
-                            >Notion</span
-                          >
-                        </p>
-                      </div>
-                    </div>
-                  </figcaption>
-                </div>
-              </figure>
-            </div>
-            <div>
-              <figure class="relative max-w-md mx-auto lg:mx-0">
-                <div>
-                  <figcaption class="mt-2 text-sm">
-                    <div class="flex flex-col items-center">
-                      <div>
-                        <img
-                          alt=""
-                          class="inline-block w-16 h-16 border-2 border-black rounded-full"
-                          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
-                        />
-                      </div>
-                      <div class="mt-3">
-                        <p class="font-semibold text-[#141521]">Mike</p>
-                        <p class="mt-6">
-                          <span
-                            class="px-4 py-2 text-indigo-600 rounded-full bg-indigo-50"
-                            >Astro</span
-                          >
-                        </p>
-                      </div>
-                    </div>
-                  </figcaption>
-                </div>
-              </figure>
-            </div>
-            <div>
-              <figure class="relative max-w-md mx-auto lg:mx-0">
-                <div>
-                  <figcaption class="mt-2 text-sm">
-                    <div class="flex flex-col items-center">
-                      <div>
-                        <img
-                          alt=""
-                          class="inline-block w-16 h-16 border-2 border-black rounded-full"
-                          src="https://pbs.twimg.com/profile_images/1476118697970483201/aUu84NTv_400x400.jpg"
-                        />
-                      </div>
-                      <div class="mt-3">
-                        <p class="font-semibold text-[#141521]">
-                          Luca Restagnano
-                        </p>
-                        <p class="mt-6">
-                          <span
-                            class="px-4 py-2 text-blue-500 rounded-full bg-blue-50"
-                            >Indie hacking</span
-                          >
-                        </p>
-                      </div>
-                    </div>
-                  </figcaption>
-                </div>
-              </figure>
-            </div>
-            <div>
-              <figure class="relative max-w-md mx-auto lg:mx-0">
-                <div>
-                  <figcaption class="mt-2 text-sm">
-                    <div class="flex flex-col items-center">
-                      <div>
-                        <img
-                          alt=""
-                          class="inline-block w-16 h-16 border-2 border-black rounded-full"
-                          src="https://pbs.twimg.com/profile_images/1543202856559321088/zAA7wfm9_400x400.jpg"
-                        />
-                      </div>
-                      <div class="mt-3">
-                        <p class="font-semibold text-[#141521]">
-                          Ivan Karabadzhak
-                        </p>
-                        <p class="mt-6">
-                          <span
-                            class="px-4 py-2 text-orange-600 rounded-full bg-orange-50"
-                            >Freelancer</span
-                          >
-                        </p>
-                      </div>
-                    </div>
-                  </figcaption>
-                </div>
-              </figure>
-            </div>
-            <div>
-              <figure class="relative max-w-md mx-auto lg:mx-0">
-                <div>
-                  <figcaption class="mt-2 text-sm">
-                    <div class="flex flex-col items-center">
-                      <div>
-                        <img
-                          alt=""
-                          class="inline-block w-16 h-16 border-2 border-black rounded-full"
-                          src="https://pbs.twimg.com/profile_images/1382124861862998016/BiLzL4HY_400x400.jpg"
-                        />
-                      </div>
-                      <div class="mt-3">
-                        <p class="font-semibold text-[#141521]">
-                          Christine Trac
-                        </p>
-                        <p class="mt-6">
-                          <span
-                            class="px-4 py-2 text-teal-500 rounded-full bg-teal-50"
-                            >Writing</span
-                          >
-                        </p>
-                      </div>
-                    </div>
-                  </figcaption>
-                </div>
-              </figure>
+              <a
+                href="https://github.com/megarbon"
+                class="font-semibold text-accent-600"
+              >
+                <span class="absolute inset-0" aria-hidden="true"></span>
+                <span class="block lg:inline"
+                  >Conoce WealthIQ <span aria-hidden="true">&rarr;</span></span
+                >
+              </a>
             </div>
           </div>
+          <p
+            class="text-4xl tracking-tight font-medium text-black md:text-5xl font-display mt-8"
+          >
+            WealthIQ es una plataforma de gestión de carteras de inversión y
+            finanzas personales.
+          </p>
+          <p class="text-gray-500 lg:text-xl max-w-2xl mt-4 mx-auto text-base">
+            Unimos la gestión de carteras de inversión con la gestión de
+            finanzas personales en una sola plataforma. La plataforma es ideal
+            para inversores que buscan una solución integral para la gestión de
+            su patrimonio.
+          </p>
         </div>
+        <div class="flex justify-center gap-3 mt-10 mb-4 flex-col sm:flex-row">
+          <a
+            class="items-center justify-center h-12 font-medium rounded-xl focus-visible:outline-black focus:outline-none inline-flex bg-black border-2 border-black duration-200 focus-visible:ring-black hover:bg-transparent hover:border-black hover:text-black lg:w-auto px-6 py-3 text-center text-white w-full"
+            href="/login">Finanzas Personales &rarr;</a
+          >
+          <a
+            class="items-center justify-center h-12 font-medium rounded-xl focus-visible:outline-black focus:outline-none inline-flex bg-black border-2 border-black duration-200 focus-visible:ring-black hover:bg-transparent hover:border-black hover:text-black lg:w-auto px-6 py-3 text-center text-white w-full"
+            href="/login"
+            >Gestión de Carteras &rarr;
+          </a>
+        </div>
+        <dl
+          class="lg:gap-x-8 lg:grid-cols-4 max-w-5xl mt-8 mx-auto sm:gap-x-6 sm:gap-y-12 sm:grid sm:grid-cols-2 sm:space-y-0 space-y-6 text-center text-lg items-start z-10"
+        >
+          <div class="text-gray-900">
+            <strong class="text-gray-900">Control Financiero Integral</strong
+            ><br /><br /> Proporciona un seguimiento completo de las fuentes de ingresos
+            y destinos de gastos, junto con métricas detalladas para mejorar la eficacia
+            financiera.
+          </div>
+
+          <div class="text-gray-900">
+            <strong class="text-gray-900"
+              >Optimización de Logros de Objetivos</strong
+            ><br /><br /> Te brinda herramientas visuales y métricas precisas para
+            perseguir tus objetivos de ahorro. Gráficos intuitivos y análisis detallados
+            aseguran que mantengas el rumbo hacia una mejor salud financiera.
+          </div>
+
+          <div class="text-gray-900">
+            <strong class="text-gray-900"
+              >Estrategias de Inversión Inteligentes</strong
+            ><br /><br /> Ofrece recomendaciones precisas a través de algoritmos
+            predictivos para fortalecer inversiones y optimizar finanzas personales.
+          </div>
+
+          <div class="text-gray-900">
+            <strong class="text-gray-900"
+              >Soluciones de Mejora de Portafolio</strong
+            ><br /><br /> Cuenta con un equipo de expertos que analiza continuamente
+            el mercado financiero utilizando datos precisos y algoritmos avanzados.
+          </div>
+        </dl>
       </div>
+      <svg
+        class="absolute -mt-24 blur-3xl"
+        fill="none"
+        viewBox="0 0 400 400"
+        height="100%"
+        width="100%"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g clip-path="url(#clip0_10_20)">
+          <g filter="url(#filter0_f_10_20)">
+            <path d="M128.6 0H0V322.2L106.2 134.75L128.6 0Z" fill="#03FFE0"
+            ></path>
+            <path d="M0 322.2V400H240H320L106.2 134.75L0 322.2Z" fill="#7C87F8"
+            ></path>
+            <path d="M320 400H400V78.75L106.2 134.75L320 400Z" fill="#4C65E4"
+            ></path>
+            <path d="M400 0H128.6L106.2 134.75L400 78.75V0Z" fill="#043AFF"
+            ></path>
+          </g>
+        </g>
+        <defs>
+          <filter
+            color-interpolation-filters="sRGB"
+            filterUnits="userSpaceOnUse"
+            height="720.666"
+            id="filter0_f_10_20"
+            width="720.666"
+            x="-160.333"
+            y="-160.333"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+            <feBlend
+              in="SourceGraphic"
+              in2="BackgroundImageFix"
+              mode="normal"
+              result="shape"></feBlend>
+            <feGaussianBlur
+              result="effect1_foregroundBlur_10_20"
+              stdDeviation="80.1666"></feGaussianBlur>
+          </filter>
+        </defs>
+      </svg>
+      <Image
+        src={mockupImage}
+        alt=""
+        class="relative object-cover w-full border rounded shadow-2xl lg:rounded-2xl mt-12"
+      />
     </div>
-  </section>
+  </div>
 </section>
