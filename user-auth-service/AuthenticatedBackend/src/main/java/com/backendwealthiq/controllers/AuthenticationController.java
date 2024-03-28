@@ -27,12 +27,12 @@ public class AuthenticationController {
     private AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    public ApplicationUser registerUser(@RequestBody RegistrationDTO body){
+    public ApplicationUser registerUser(@RequestBody RegistrationDTO body) {
         return authenticationService.registerUser(body.getUsername(), body.getPassword());
     }
-    
+
     @PostMapping("/login")
-    public LoginResponseDTO loginUser(@RequestBody RegistrationDTO body){
+    public LoginResponseDTO loginUser(@RequestBody RegistrationDTO body) {
         return authenticationService.loginUser(body.getUsername(), body.getPassword());
     }
 
@@ -49,7 +49,9 @@ public class AuthenticationController {
     @Autowired
     private TokenBlacklistRepository tokenBlacklistRepository;
 
-    /* Endpoint de logout que añade los token expirados a una lista negra en la bd */
+    /*
+     * Endpoint de logout que añade los token expirados a una lista negra en la bd
+     */
     @PostMapping("/logout")
     public void logout(@RequestBody LogoutRequestDTO logoutRequest) {
         // Agregar el token a la lista negra en la base de datos
@@ -58,4 +60,4 @@ public class AuthenticationController {
         tokenBlacklistRepository.save(tokenBlacklist);
     }
 
-}   
+}
