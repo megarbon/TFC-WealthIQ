@@ -1,99 +1,59 @@
-import React from "react";
-import Image from "next/image";
+// components/TableTwo.tsx
+"use client";
+import React, { useEffect, useState } from "react";
 import { Portfolio } from "@/types/portfolio";
-import { investment } from "@/types/investment";
-import { asset } from "@/types/asset";
+import { fetchPortfolioData } from "@/data/portfolios";
 
-const portfolioData: Portfolio[] = [
-  {
-    id: 1,
-    investments: [
-      {
-        id: 1,
-        asset: {
-          id: 1,
-          name: "Bitcoin",
-          symbol: "BTC",
-          market: "Crypto",
-        },
-        amount: 1000,
-      },
-    ],
-  },
-  {
-    id: 2,
-    investments: [
-      {
-        id: 2,
-        asset: {
-          id: 2,
-          name: "Microsoft",
-          symbol: "MSFT",
-          market: "NASDAQ",
-        },
-        amount: 5,
-      },
-    ],
-  },
-];
+const PortfolioTable = () => {
+  const [portfolioData, setPortfolioData] = useState<Portfolio[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
-const TableTwo = () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetchPortfolioData();
+        setPortfolioData(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching portfolio data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      // Cleanup function if needed
+    };
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-      <div className="px-4 py-6 md:px-6 xl:px-7.5">
-        <h4 className="text-xl font-semibold text-black dark:text-white">
-          Portfolio
-        </h4>
-      </div>
-
-      <div className="grid grid-cols-6 border-t border-stroke px-4 py-4.5 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
-        <div className="col-span-3 flex items-center">
-          <p className="font-medium">Asset Name</p>
-        </div>
-        <div className="col-span-2 hidden items-center sm:flex">
-          <p className="font-medium">Symbol</p>
-        </div>
-        <div className="col-span-1 flex items-center">
-          <p className="font-medium">Market</p>
-        </div>
-        <div className="col-span-1 flex items-center">
-          <p className="font-medium">Amount</p>
-        </div>
-      </div>
-
-      {portfolioData.map((portfolio, key) => (
-        <div
-          className="grid grid-cols-6 border-t border-stroke px-4 py-4.5 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
-          key={key}
-        >
-          {portfolio.investments.map((investment, index) => (
-            <React.Fragment key={index}>
-              <div className="col-span-3 flex items-center">
-                <p className="text-sm text-black dark:text-white">
-                  {investment.asset.name}
-                </p>
-              </div>
-              <div className="col-span-2 hidden items-center sm:flex">
-                <p className="text-sm text-black dark:text-white">
-                  {investment.asset.symbol}
-                </p>
-              </div>
-              <div className="col-span-1 flex items-center">
-                <p className="text-sm text-black dark:text-white">
-                  {investment.asset.market}
-                </p>
-              </div>
-              <div className="col-span-1 flex items-center">
-                <p className="text-sm text-black dark:text-white">
-                  {investment.amount}
-                </p>
-              </div>
-            </React.Fragment>
+    <div>
+      <h2>Portfolio</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Symbol</th>
+            <th>Market</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          {portfolioData.map((portfolio) => (
+            <tr key={portfolio.id}>
+              <td>{portfolio.id}</td>
+            </tr>
           ))}
-        </div>
-      ))}
+        </tbody>
+      </table>
     </div>
   );
 };
 
-export default TableTwo;
+export default PortfolioTable;
