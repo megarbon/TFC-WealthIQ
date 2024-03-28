@@ -12,8 +12,7 @@ public class CorsConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.setAllowCredentials(true);
-        corsConfig.addAllowedOrigin("*"); // Allow all origins
+        corsConfig.addAllowedOrigin("*");
         corsConfig.addAllowedHeader("*");
         corsConfig.addAllowedMethod("*");
 

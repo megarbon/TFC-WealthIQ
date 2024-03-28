@@ -1,8 +1,8 @@
-import { investment } from "./investment";
+import { Investment } from "./investment";
 
 export type Portfolio = {
   id: number;
-  investments: investment[];
+  investments: Investment[];
 };
 
 
