@@ -1,7 +1,7 @@
-import { asset } from "./asset";
+import { Asset } from "./asset";
 
-export type investment = {
+export type Investment = {
     id:     number;
-    asset:  asset;
+    asset:  Asset;
     amount: number;
 }

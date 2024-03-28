@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import useColorMode from "../../hooks/useColorMode";
 
-function TradingViewWidget() {
+function TradingViewWidget({APPL, MSF}) {
   const containerRef = useRef(null);
   const [colorMode] = useColorMode();
   const [widgetConfig, setWidgetConfig] = useState(null);
