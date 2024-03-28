@@ -13,6 +13,7 @@ export const fetchPortfolioData = async () => {
       throw new Error("Failed to fetch portfolio data");
     }
     const data = await response.json();
+    console.log("Portfolio data:", data);
     return data;
   } catch (error) {
     console.error("Error fetching portfolio data:", error);
