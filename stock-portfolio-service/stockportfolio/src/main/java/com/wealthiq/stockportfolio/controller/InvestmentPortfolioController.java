@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.wealthiq.stockportfolio.model.InvestmentPortfolio;
 import com.wealthiq.stockportfolio.service.InvestmentPortfolioService;
+import com.wealthiq.stockportfolio.controller.InvestmentController;
 
 import java.util.List;
 

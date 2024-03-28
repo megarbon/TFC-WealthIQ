@@ -3,7 +3,7 @@ import TableOne from "@/components/Tables/TableOne";
 import AllPortfoliosTable from "@/components/Tables/AllPortfoliosTable";
 import TableThree from "@/components/Tables/TableThree";
 import SinglePortfolioTable from "@/components/Tables/SinglePortfolioTable";
-import AllTable from "@/components/Tables/AllTable";
+import NewInvestmentForm from "@/components/Tables/NewInvestmentForm";
 
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
@@ -22,7 +22,7 @@ const TablesPage = () => {
       <div className="flex flex-col gap-10">
         <AllPortfoliosTable />
         <SinglePortfolioTable />
-        <AllTable />
+        <NewInvestmentForm portfolioId={2}/>
         <TableOne />
         <TableThree />
       </div>

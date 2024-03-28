@@ -139,3 +139,13 @@ export const deleteInvestment = async (id: number): Promise<void> => {
     throw new Error("Failed to delete investment");
   }
 };
+
+// Function to fetch all assets
+// Function to fetch all investments
+export const getAllAssets = async (): Promise<Asset[]> => {
+  const response = await fetch(`${API_BASE_URL}/assets/getAll`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch investments");
+  }
+  return response.json();
+};
