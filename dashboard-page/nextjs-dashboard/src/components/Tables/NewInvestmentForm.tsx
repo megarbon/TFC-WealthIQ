@@ -6,8 +6,11 @@ const NewInvestmentForm = ({ portfolioId }) => {
   const [assets, setAssets] = useState([]);
   const [selectedAssetId, setSelectedAssetId] = useState("");
   const [investmentAmount, setInvestmentAmount] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    // Fetch all assets when the component mounts ✅ tested and working
     const fetchAssets = async () => {
       try {
         const assetsData = await getAllAssets();
@@ -17,6 +20,7 @@ const NewInvestmentForm = ({ portfolioId }) => {
         }
       } catch (error) {
         console.error("Error fetching assets:", error);
+        setError("Failed to fetch assets");
       }
     };
 
@@ -26,38 +30,43 @@ const NewInvestmentForm = ({ portfolioId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setIsLoading(true);
       const investment = {
-        asset: {
-          id: parseInt(selectedAssetId),
-        },
-        amount: parseInt(investmentAmount),
         portfolioId: portfolioId, // Include the portfolio ID in the investment object
+        investment: {
+          asset: {
+            id: parseInt(selectedAssetId),
+          },
+          amount: parseInt(investmentAmount),
+        },
       };
       await createInvestment(investment);
+      // Call a function to update the investments table
+
       // Clear form fields
       setSelectedAssetId("");
       setInvestmentAmount("");
       // Optionally, you can show a success message or redirect the user
     } catch (error) {
       console.error("Error creating investment:", error);
-      // Optionally, you can show an error message to the user
+      setError("Failed to create investment");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="relative z-50">
-      <form
-        onSubmit={handleSubmit}
-        className="dark:bg-gray-800 rounded-md border-stroke bg-white p-6 px-5 pb-2.5 pt-6 shadow-default shadow-md dark:border-strokedark dark:bg-boxdark"
-      >
-        <label className="mb-2 block font-semibold text-black dark:text-white">
-          Select Asset:
-        </label>
-        <div className="relative">
+    <div className="mx-auto max-w-lg">
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="asset" className="block font-semibold">
+            Select Asset:
+          </label>
           <select
+            id="asset"
             value={selectedAssetId}
             onChange={(e) => setSelectedAssetId(e.target.value)}
-            className="border-gray-300 w-full appearance-none rounded-md border px-3 py-2 focus:border-blue-500 focus:outline-none"
+            className="block w-full rounded-md border px-4 py-2 focus:border-blue-500 focus:outline-none"
             required
           >
             {assets.map((asset) => (
@@ -66,40 +75,28 @@ const NewInvestmentForm = ({ portfolioId }) => {
               </option>
             ))}
           </select>
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
-            <svg
-              className="text-gray-400 h-5 w-5"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 12a1 1 0 01-.707-.293l-4-4a1 1 0 111.414-1.414L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-.707.293z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
         </div>
-        <div className="mb-4">
-          <label className="mb-2 mt-4 block font-semibold text-black dark:text-white">
+        <div>
+          <label htmlFor="amount" className="block font-semibold">
             Investment Amount:
           </label>
           <input
             type="number"
+            id="amount"
             value={investmentAmount}
             onChange={(e) => setInvestmentAmount(e.target.value)}
-            className="border-gray-300 w-full rounded-md border px-3 py-2 focus:border-blue-500 focus:outline-none"
+            className="block w-full rounded-md border px-4 py-2 focus:border-blue-500 focus:outline-none"
             required
           />
         </div>
         <button
           type="submit"
           className="w-full rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:bg-blue-600 focus:outline-none"
+          disabled={isLoading}
         >
-          Create Investment
+          {isLoading ? "Adding Investment..." : "Add Investment"}
         </button>
+        {error && <p className="text-red-500">{error}</p>}
       </form>
     </div>
   );

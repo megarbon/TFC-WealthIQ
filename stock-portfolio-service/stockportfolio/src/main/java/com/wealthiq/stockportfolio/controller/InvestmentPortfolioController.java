@@ -4,9 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.wealthiq.stockportfolio.model.Investment;
 import com.wealthiq.stockportfolio.model.InvestmentPortfolio;
 import com.wealthiq.stockportfolio.service.InvestmentPortfolioService;
-import com.wealthiq.stockportfolio.controller.InvestmentController;
 
 import java.util.List;
 
@@ -40,7 +40,8 @@ public class InvestmentPortfolioController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<InvestmentPortfolio> updatePortfolio(@PathVariable("id") Long id, @RequestBody InvestmentPortfolio portfolio) {
+    public ResponseEntity<InvestmentPortfolio> updatePortfolio(@PathVariable("id") Long id,
+            @RequestBody InvestmentPortfolio portfolio) {
         try {
             // Set the ID of the portfolio
             portfolio.setId(id);
@@ -79,6 +80,34 @@ public class InvestmentPortfolioController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @PutMapping("/addInvestment")
+    public ResponseEntity<InvestmentPortfolio> addInvestmentToPortfolio(@RequestBody InvestmentRequest investmentRequest) {
+        InvestmentPortfolio createdInvestment = portfolioService.addInvestmentToPortfolio(investmentRequest.getPortfolioId(),
+                investmentRequest.getInvestment());
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdInvestment);
+    }
+
+    public static class InvestmentRequest {
+        private Long portfolioId;
+        private Investment investment;
+
+        public Long getPortfolioId() {
+            return portfolioId;
+        }
+
+        public void setPortfolioId(Long portfolioId) {
+            this.portfolioId = portfolioId;
+        }
+
+        public Investment getInvestment() {
+            return investment;
+        }
+
+        public void setInvestment(Investment investment) {
+            this.investment = investment;
         }
     }
 }
