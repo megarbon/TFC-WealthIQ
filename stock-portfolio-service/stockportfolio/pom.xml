@@ -10,12 +10,12 @@
 		<!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.wealthiq</groupId>
-	<artifactId>stockporfolio</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>stockporfolio</name>
+	<artifactId>StockPortfolioAPI</artifactId>
+	<version>0.0.1</version>
+	<name>StockPortfolioAPI</name>
 	<description>Stock portfolio service for wealthiq project</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -41,6 +41,21 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<!-- Replace com.example.YourMainClass with the actual main class -->
+							<mainClass>com.wealthiq.stockportfolio.StockporfolioApplication</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
