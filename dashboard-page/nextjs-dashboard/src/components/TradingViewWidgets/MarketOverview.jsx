@@ -6,6 +6,7 @@ const TradingViewWidget = () => {
   const [colorMode] = useColorMode();
 
   useEffect(() => {
+    if (!container.current.querySelector("script")) {
     const script = document.createElement("script");
     script.src =
       "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js";
@@ -36,15 +37,16 @@ const TradingViewWidget = () => {
       title: "Indices",
     });
 
-    container.current.innerHTML = ""; // Clear container
+    //container.current.innerHTML = ""; // Clear container
     container.current.appendChild(script);
+  }
 
     // Clean up
-    return () => {
+    /* return () => {
       if (container.current && script) {
         container.current.removeChild(script);
       }
-    };
+    }; */
   }, [colorMode]);
 
   return (

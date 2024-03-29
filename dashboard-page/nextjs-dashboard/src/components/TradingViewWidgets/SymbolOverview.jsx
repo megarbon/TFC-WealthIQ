@@ -7,6 +7,7 @@ function TradingViewWidget() {
   const [widgetConfig, setWidgetConfig] = useState(null);
 
   useEffect(() => {
+    if (!containerRef.current.querySelector("script")) {
     const script = document.createElement("script");
     script.src =
       "https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js";
@@ -47,10 +48,11 @@ function TradingViewWidget() {
       dateRanges: ["1d|1", "1m|30", "3m|60", "12m|1D", "60m|1W", "all|1M"],
     });
 
-    containerRef.current.innerHTML = ""; // Clear container
+    //containerRef.current.innerHTML = ""; // Clear container
     containerRef.current.appendChild(script);
+  }
 
-    setWidgetConfig(script.innerHTML);
+    //setWidgetConfig(script.innerHTML);
   }, [colorMode]);
 
   useEffect(() => {
