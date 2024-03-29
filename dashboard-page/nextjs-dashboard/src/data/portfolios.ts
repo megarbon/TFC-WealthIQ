@@ -113,12 +113,12 @@ export const updateInvestment = async (
   return response.json();
 };
 
-// Function to create a new investment
+// Function to create a new investment for a portfolio
 export const createInvestment = async (
   investment: Investment,
 ): Promise<Investment | null> => {
-  const response = await fetch(`${API_BASE_URL}/investments/add`, {
-    method: "POST",
+  const response = await fetch(`${API_BASE_URL}/portfolios/addInvestment`, {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },

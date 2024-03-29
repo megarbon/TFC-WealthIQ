@@ -22,7 +22,7 @@ const TablesPage = () => {
       <div className="flex flex-col gap-10">
         <AllPortfoliosTable />
         <SinglePortfolioTable />
-        <NewInvestmentForm portfolioId={2}/>
+        <NewInvestmentForm portfolioId={1}/>
         <TableOne />
         <TableThree />
       </div>

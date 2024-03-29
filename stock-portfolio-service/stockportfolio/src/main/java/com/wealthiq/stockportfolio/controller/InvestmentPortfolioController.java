@@ -84,18 +84,10 @@ public class InvestmentPortfolioController {
     }
 
     @PutMapping("/addInvestment")
-    public ResponseEntity<?> addInvestmentToPortfolio(@RequestBody InvestmentRequest request) {
-        try {
-            Long portfolioId = request.getPortfolioId();
-            Investment investment = request.getInvestment();
-
-            InvestmentPortfolio updatedInvestmentPortfolio = portfolioService.addInvestmentToPortfolio(portfolioId,
-                    investment);
-            // Return a response with the saved investment and status code 201 (CREATED)
-            return ResponseEntity.status(HttpStatus.CREATED).body(updatedInvestmentPortfolio);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error");
-        }
+    public ResponseEntity<InvestmentPortfolio> addInvestmentToPortfolio(@RequestBody InvestmentRequest investmentRequest) {
+        InvestmentPortfolio createdInvestment = portfolioService.addInvestmentToPortfolio(investmentRequest.getPortfolioId(),
+                investmentRequest.getInvestment());
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdInvestment);
     }
 
     public static class InvestmentRequest {
