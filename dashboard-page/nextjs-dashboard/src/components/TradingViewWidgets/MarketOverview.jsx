@@ -6,6 +6,7 @@ const TradingViewWidget = () => {
   const [colorMode] = useColorMode();
 
   useEffect(() => {
+    if (!container.current.querySelector("script")) {
     const script = document.createElement("script");
     script.src =
       "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js";
@@ -20,7 +21,7 @@ const TradingViewWidget = () => {
       showSymbolLogo: true,
       showFloatingTooltip: false,
       width: "100%",
-      height: "400",
+      height: "500",
       plotLineColorGrowing: "rgba(41, 98, 255, 1)",
       colorTheme: colorMode === "dark" ? "dark" : "light", // Update colorTheme based on colorMode
       dateRange: "12M",
@@ -36,20 +37,21 @@ const TradingViewWidget = () => {
       title: "Indices",
     });
 
-    container.current.innerHTML = ""; // Clear container
+    //container.current.innerHTML = ""; // Clear container
     container.current.appendChild(script);
+  }
 
     // Clean up
-    return () => {
+    /* return () => {
       if (container.current && script) {
         container.current.removeChild(script);
       }
-    };
+    }; */
   }, [colorMode]);
 
   return (
     <div className="col-span-12 rounded-sm border border-stroke bg-white p-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4">
-      <div className="sm:h-100">
+      <div className="">
         <div>
           <div className="" ref={container}></div>
         </div>

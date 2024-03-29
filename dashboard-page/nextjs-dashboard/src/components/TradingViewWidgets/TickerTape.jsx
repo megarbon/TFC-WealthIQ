@@ -6,6 +6,7 @@ const TickerTape = () => {
   const [colorMode] = useColorMode();
 
   useEffect(() => {
+    if (!container.current.querySelector("script")) {
     const script = document.createElement("script");
     script.src =
       "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
@@ -71,15 +72,17 @@ const TickerTape = () => {
       width: "100%",
     });
 
-    container.current.innerHTML = ""; // Clear container
+    //container.current.innerHTML = ""; // Clear container
     container.current.appendChild(script);
+    }
+
 
     // Clean up
-    return () => {
+    /* return () => {
       if (container.current && script) {
         container.current.removeChild(script);
       }
-    };
+    }; */
   }, [colorMode]);
 
   return (

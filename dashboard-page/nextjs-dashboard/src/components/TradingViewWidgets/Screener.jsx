@@ -7,6 +7,7 @@ const Screener = () => {
   const [widgetConfig, setWidgetConfig] = useState(null);
 
   useEffect(() => {
+    if (!containerRef.current.querySelector("script")) {
     const script = document.createElement("script");
     script.src =
       "https://s3.tradingview.com/external-embedding/embed-widget-screener.js";
@@ -14,7 +15,7 @@ const Screener = () => {
     script.async = true;
     script.innerHTML = JSON.stringify({
       width: "100%",
-      height: "370",
+      height: "350",
       defaultColumn: "overview",
       defaultScreen: "general",
       market: "stock",
@@ -23,10 +24,11 @@ const Screener = () => {
       locale: "es",
     });
 
-    containerRef.current.innerHTML = ""; // Clear container
+    //containerRef.current.innerHTML = ""; // Clear container
     containerRef.current.appendChild(script);
+  }
 
-    setWidgetConfig(script.innerHTML);
+    //setWidgetConfig(script.innerHTML);
   }, [colorMode]);
 
   useEffect(() => {

@@ -6,6 +6,7 @@ const StockNews = () => {
   const [colorMode] = useColorMode();
 
   useEffect(() => {
+    if (!containerRef.current.querySelector("script")) {
     const script = document.createElement("script");
     script.src =
       "https://s3.tradingview.com/external-embedding/embed-widget-timeline.js";
@@ -22,15 +23,16 @@ const StockNews = () => {
       displayMode: "regular",
     });
 
-    containerRef.current.innerHTML = ""; // Clear container
+    //containerRef.current.innerHTML = ""; // Clear container
     containerRef.current.appendChild(script);
+  }
 
     // Clean up
-    return () => {
+    /* return () => {
       if (containerRef.current && script) {
         containerRef.current.removeChild(script);
       }
-    };
+    }; */
   }, [colorMode]);
 
   return (

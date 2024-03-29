@@ -6,6 +6,7 @@ function TradingViewWidget() {
   const [colorMode] = useColorMode();
 
   useEffect(() => {
+    if (!container.current.querySelector("script")) {
     const script = document.createElement("script");
     script.src =
       "https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js";
@@ -28,15 +29,15 @@ function TradingViewWidget() {
       height: "500",
     });
 
-    container.current.innerHTML = ""; // Clear container
+    //container.current.innerHTML = ""; // Clear container
     container.current.appendChild(script);
-
+  }
     // Clean up
-    return () => {
+    /* return () => {
       if (container.current && script) {
         container.current.removeChild(script);
       }
-    };
+    }; */
   }, [colorMode]);
 
   return (
