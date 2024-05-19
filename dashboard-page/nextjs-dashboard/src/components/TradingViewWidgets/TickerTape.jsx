@@ -86,7 +86,7 @@ const TickerTape = () => {
   }, [colorMode]);
 
   return (
-    <div className="col-span-12 mb-7.5 rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
+    <div className="col-span-12 mb-7.5 rounded-sm border border-stroke bg-white px-5 pb-5 pt-5 shadow-default dark:border-strokedark dark:bg-boxdark">
       <div className="tradingview-widget-container" ref={container}></div>
     </div>
   );
