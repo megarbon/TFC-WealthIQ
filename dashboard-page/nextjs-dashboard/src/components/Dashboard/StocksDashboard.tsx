@@ -11,7 +11,7 @@ import MarketOverview from "../TradingViewWidgets/MarketOverview";
 const StocksDashboard: React.FC = () => {
   return (
     <>
-      <div className="col-span-12 mb-4 md:mt-6">
+      <div className="col-span-12 mb-4 ">
         <TickerTape />
       </div>
 
