@@ -5,7 +5,7 @@ export const TOKEN = "auth_token";
 
 export const PUBLIC_ROUTES = [
   "/",
-  "/api/login",
-  "/api/logout",
-  "/api/register",
+  "/login",
+  "/logout",
+  "/register",
 ];

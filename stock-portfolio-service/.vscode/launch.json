@@ -5,6 +5,13 @@
             "name": "StockporfolioApplication",
             "request": "launch",
             "mainClass": "com.wealthiq.stockportfolio.StockporfolioApplication",
+            "projectName": "StockPortfolioAPI"
+        },
+        {
+            "type": "java",
+            "name": "StockporfolioApplication",
+            "request": "launch",
+            "mainClass": "com.wealthiq.stockportfolio.StockporfolioApplication",
             "projectName": "stockPortfolio"
         },
         {

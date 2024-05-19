@@ -2,7 +2,7 @@ import { Portfolio } from "../types/portfolio";
 import { Investment } from "../types/investment";
 import { Asset } from "../types/asset";
 
-const API_BASE_URL = "http://localhost:8085"; // Change this to your API base URL
+const API_BASE_URL = "http://localhost:8888"; // Change this to your API base URL
 
 // Function to fetch all portfolios
 export const getAllPortfolios = async (): Promise<Portfolio[]> => {
@@ -141,7 +141,6 @@ export const deleteInvestment = async (id: number): Promise<void> => {
 };
 
 // Function to fetch all assets
-// Function to fetch all investments
 export const getAllAssets = async (): Promise<Asset[]> => {
   const response = await fetch(`${API_BASE_URL}/assets/getAll`);
   if (!response.ok) {

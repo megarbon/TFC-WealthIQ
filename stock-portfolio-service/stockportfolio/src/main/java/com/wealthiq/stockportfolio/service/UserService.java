@@ -40,4 +40,15 @@ public class UserService {
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
+
+    public User updateUser(Long id, User userDetails) {
+        return userRepository.findById(id).map(user -> {
+            user.setBio(userDetails.getBio());
+            user.setEmail(userDetails.getEmail());
+            user.setPassword(userDetails.getPassword());
+            user.setProfilePicUrl(userDetails.getProfilePicUrl());
+            user.setUsername(userDetails.getUsername());
+            return userRepository.save(user);
+        }).orElseThrow(() -> new RuntimeException("User not encontradooooouuu"));
+    }
 }
