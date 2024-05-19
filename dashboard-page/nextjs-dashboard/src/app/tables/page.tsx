@@ -4,6 +4,7 @@ import AllPortfoliosTable from "@/components/Tables/AllPortfoliosTable";
 import TableThree from "@/components/Tables/TableThree";
 import SinglePortfolioTable from "@/components/Tables/SinglePortfolioTable";
 import NewInvestmentForm from "@/components/Tables/NewInvestmentForm";
+import AnalizeButton from "@/components/Analize/analize";
 
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
@@ -23,8 +24,8 @@ const TablesPage = () => {
         <AllPortfoliosTable />
         <SinglePortfolioTable />
         <NewInvestmentForm portfolioId={1}/>
+        <AnalizeButton />
         <TableOne />
-        <TableThree />
       </div>
     </DefaultLayout>
   );
