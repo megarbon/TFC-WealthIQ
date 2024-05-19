@@ -50,7 +50,7 @@ const TradingViewWidget = () => {
   }, [colorMode]);
 
   return (
-    <div className="col-span-12 rounded-sm border border-stroke bg-white p-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4">
+    <div className="col-span-12 rounded-sm border border-stroke bg-white p-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-8">
       <div className="">
         <div>
           <div className="" ref={container}></div>
