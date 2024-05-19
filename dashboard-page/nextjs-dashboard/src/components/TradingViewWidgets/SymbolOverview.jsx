@@ -52,7 +52,7 @@ function TradingViewWidget({APPL, MSF}) {
     containerRef.current.appendChild(script);
   }
 
-    //setWidgetConfig(script.innerHTML);
+    //  setWidgetConfig(script.innerHTML);
   }, [colorMode]);
 
   useEffect(() => {
