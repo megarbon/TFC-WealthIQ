@@ -15,8 +15,5 @@
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.10",
     "astro": "^4.4.0"
-  },
-  "dependencies": {
-    "@astrojs/vercel": "^7.4.0"
   }
 }

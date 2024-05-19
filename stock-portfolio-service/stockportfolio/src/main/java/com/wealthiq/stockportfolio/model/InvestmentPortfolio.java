@@ -47,4 +47,9 @@ public class InvestmentPortfolio {
         this.investments = investments;
     }
 
+    public void addInvestmentToPortfolio(Long id, Investment investment) {
+        investments.add(investment);
+        investment.setInvestmentPortfolio(this);
+    }
+
 }
