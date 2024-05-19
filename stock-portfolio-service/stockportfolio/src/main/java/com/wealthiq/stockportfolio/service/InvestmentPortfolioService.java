@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wealthiq.stockportfolio.model.Investment;
 import com.wealthiq.stockportfolio.model.InvestmentPortfolio;
 import com.wealthiq.stockportfolio.repository.InvestmentPortfolioRepository;
 
@@ -36,4 +37,17 @@ public class InvestmentPortfolioService {
     public List<InvestmentPortfolio> getAllPortfolios() {
         return portfolioRepository.findAll();
     }
+
+    public InvestmentPortfolio updatePortfolio(Long id, InvestmentPortfolio portfolio) {
+        portfolio.setId(id);
+        return portfolioRepository.save(portfolio);
+    }
+
+    public InvestmentPortfolio addInvestmentToPortfolio(Long id, Investment investment) {
+        InvestmentPortfolio portfolio = portfolioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Portfolio not found"));
+        portfolio.addInvestmentToPortfolio(id, investment);
+        return portfolioRepository.save(portfolio);
+    }
+
 }

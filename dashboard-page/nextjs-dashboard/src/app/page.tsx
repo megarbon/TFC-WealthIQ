@@ -4,8 +4,9 @@ import StocksDashboard from "@/components/Dashboard/StocksDashboard";
 
 export const metadata: Metadata = {
   title:
-    "WealthIQ - Stocks Dashboard",
-  description: "Dashboard personal donde controlar las cuentas personales",
+    "WealthIQ - Dashboard Personal",
+  description: "Dashboard donde controlar las cuentas personales",
+
 };
 
 export default function Home() {
