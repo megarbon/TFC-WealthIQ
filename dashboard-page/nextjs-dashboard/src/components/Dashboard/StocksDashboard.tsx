@@ -20,7 +20,7 @@ const StocksDashboard: React.FC = () => {
         {/* <ChartOne /> */}
         <StockNews />
         <Screener />
-        <SymbolOverview />
+        <SymbolOverview/>
 
         <Heatmap />
         {/* <MarketOverview /> */}

@@ -1,0 +1,94 @@
+
+<div class="bg-gray-300 w-full">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a
+        href="/"
+        class="text-black inline-flex items-center gap-3 text-lg font-bold mr-4"
+      >     
+        <span style="font-family: 'Open Sauce', Arial, sans-serif; font-size: 2rem;">WealthIQ</span>
+
+      </a>
+  
+    <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+      <a
+      href="mailto:yosmarpc@gmail.com"
+      target="_blank"
+      class="lg:visible xl:visible md:invisible sm:invisible xs:invisible bg-yellow-300 text-black focus:ring-4 focus:outline-none focus:ring-blue-100 font-medium rounded-lg text-sm px-4 py-2 text-center focus:ring-while-800"
+      >yosmarpc@gmail.com</a
+    >
+    <a
+    id="menu-button"
+      data-collapse-toggle="navbar-sticky"
+      data-nav-toggle="#navbar-sticky"
+      href="#"
+      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+      aria-controls="navbar-sticky"
+      aria-expanded="false"
+    >
+      <span class="sr-only">Open main menu</span>
+      <svg
+        class="w-5 h-5"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 17 14"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M1 1h15M1 7h15M1 13h15"></path>
+      </svg>
+    </a>
+    </div>
+    <div 
+      id="menu-open"  
+    class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 navbar"  id="navbar-sticky">
+      <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <a
+          class="px-4 lg:px-6 py-3 md:px-4 text-lg font-medium text-black hover:text-accent-400"
+          href="/#_">Inicio</a
+        >
+        <a
+          class="px-4 lg:px-6 py-3 md:px-4 text-lg font-medium text-black hover:text-accent-400"
+          href="/#features">Funcionalidades</a
+        >
+        <a
+          class="px-4 lg:px-6 py-3 md:px-4 text-lg font-medium text-black hover:text-accent-400"
+          href="/#pricing">Precios</a
+        >
+        <a
+          class="px-4 lg:px-6 py-3 md:px-4 text-lg font-medium text-black hover:text-accent-400"
+          href="/about">About</a
+        >
+        <a
+          class="px-4 lg:px-6 py-3 md:px-4 text-lg font-medium text-black hover:text-accent-400"
+          href="/faq">Faq</a
+        >
+        <div class="inline-flex items-center gap-2 list-none lg:ml-auto">
+          <a
+            href="/signup"
+            class="inline-flex items-center h-10 justify-center px-6 py-3 text-lg font-medium text-black bg-gray-300 border-zinc-800 hover:border-zinc-900 hover:bg-gray-900 rounded-lg group focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 active:bg-gray-200 hover:text-white focus-visible:outline-black mx-2 md:mx-8"
+            >Regístrate</a
+          >
+          <a
+            href="/login"
+            class="inline-flex items-center h-10 justify-center px-6 py-3 text-lg font-medium text-black bg-gray-300 border-zinc-800 hover:border-zinc-900 hover:bg-gray-900 rounded-lg group focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 active:bg-gray-200 hover:text-white focus-visible:outline-black"
+            >Acceder</a
+          >
+        </div>
+      
+      </ul>
+    </div>
+    </div>
+</div>
+
+<script>
+  const button = document.querySelector('#menu-button') as Element;
+  const menuOpen = document.querySelector("#menu-open") as Element;
+
+button?.addEventListener("click", () => {
+  menuOpen.classList.toggle("hidden");
+});
+</script>
