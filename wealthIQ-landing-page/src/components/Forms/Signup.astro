@@ -1,3 +1,43 @@
+---
+import type { APIRoute } from "astro";
+
+export const POST: APIRoute = async ({ request }) => {
+  try {
+    const formData = await request.formData();
+    const username = formData.get("first_name");
+    const password = formData.get("password");
+
+    console.log("Form data received:", { username, password });
+
+    const response = await fetch("http://localhost:8000/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    console.log("Response status:", response.status);
+    const responseBody = await response.json();
+    console.log("Response body:", responseBody);
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    return new Response(JSON.stringify({ message: "Registro exitoso" }), {
+      status: 200,
+    });
+  } catch (error) {
+    console.error("There was an error!", error);
+    return new Response(
+      JSON.stringify({ message: "Hubo un error en el registro" }),
+      { status: 500 },
+    );
+  }
+};
+---
+
 <main
   class="flex overflow-hidden"
   x-data="{ servicesItems: ['Mobile development', 'UI/UX Design', 'web development', 'SEO'] }"
@@ -39,7 +79,7 @@
                 <h1
                   class="text-3xl font-semibold tracking-tighter text-gray-900"
                 >
-                  Colaborando en proyectos de una sola página,
+                  Garygayooooo,
                   <span class="text-gray-600">desde cualquier lugar</span>
                 </h1>
                 <p class="mt-4 text-base font-medium text-gray-500">

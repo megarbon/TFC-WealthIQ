@@ -1,15 +1,16 @@
 ---
-// Import the necessary Astro module
+// Importa el módulo necesario de Astro
 import type { APIRoute } from "astro";
 
-// Define the POST endpoint route
+// Define la ruta del endpoint POST
 export const POST: APIRoute = async ({ request }) => {
   try {
-    // Receive form data
-    const password = "holakase";
-    const username = "Melaku";
+    // Obtén los datos del formulario
+    const formData = await request.formData();
+    const username = formData.get("username");
+    const password = formData.get("password");
 
-    // Send data to your authentication API endpoint
+    // Envía los datos al endpoint de autenticación API
     const response = await fetch("http://localhost:8000/auth/login", {
       method: "POST",
       headers: {
@@ -27,26 +28,27 @@ export const POST: APIRoute = async ({ request }) => {
 
     const responseData = await response.json();
 
-    // Return a successful response
-    return new Response(
-      JSON.stringify({
-        message: "Success!",
-        responseData,
-      }),
-      { status: 200 }
+    // Obtén el token JWT de la respuesta
+    const token = responseData.jwt;
+
+    // Redirige al usuario a la segunda aplicación con el token
+    /*return new Response(
+      `<script>window.location.href = 'http://localhost:3000/?token=${token}';</script>`,
+      { status: 200, headers: { "Content-Type": "text/html" } },
     );
+    */
+   console.log(token)
   } catch (error) {
     console.error("There was an error!", error);
-    // Return an error response
+    // Maneja el error, muestra un mensaje al usuario, etc.
     return new Response(
       JSON.stringify({
         message: "There was an error processing your request",
       }),
-      { status: 500 }
+      { status: 500 },
     );
   }
 };
-
 ---
 
 <section>
@@ -93,7 +95,11 @@ export const POST: APIRoute = async ({ request }) => {
               </div>
             </div>
           </div>
-          <form id="login-form" action="http://localhost:8000/auth/login" method="post">
+          <form
+            id="login-form"
+            action="http://localhost:8000/auth/login"
+            method="post"
+          >
             <div class="space-y-3">
               <div>
                 <label
