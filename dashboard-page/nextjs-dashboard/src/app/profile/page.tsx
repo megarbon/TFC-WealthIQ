@@ -16,7 +16,7 @@ const Profile = () => {
       <div className="mx-auto max-w-242.5">
         <Breadcrumb pageName="Perfil" />
 
-        <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="overflow-hidden rounded-sm border border-stroke bg-gray shadow-default dark:border-strokedark dark:bg-boxdark">
           <div className="relative z-20 h-35 md:h-65">
             <Image
               src={"/images/cover/cover-01.png"}
@@ -76,7 +76,7 @@ const Profile = () => {
               
 
               <div className="mx-auto max-w-180">
-                <h4 className="font-semibold text-black dark:text-white">
+                <h4 className="font-bold text-black dark:text-white">
                   Bio
                 </h4>
                 <p className="mt-4.5">

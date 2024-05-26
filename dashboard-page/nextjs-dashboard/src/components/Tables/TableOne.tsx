@@ -51,13 +51,13 @@ const stockData = [
 
 const TableOne = () => {
   return (
-    <div className="rounded-sm border border-stroke bg-white p-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+    <div className="rounded-sm border border-stroke bg-gray p-6 shadow-default dark:border-strokedark dark:bg-boxdark">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
         Top Stocks
       </h4>
 
       <div className="flex flex-col">
-        <div className="grid grid-cols-3 rounded-sm bg-gray-2 dark:bg-meta-4 sm:grid-cols-6">
+        <div className="grid grid-cols-3 rounded-sm bg-white dark:bg-meta-4 sm:grid-cols-6">
           <div className="p-2.5 xl:p-5">
             <h5 className="text-sm font-medium uppercase xsm:text-base">
               Company

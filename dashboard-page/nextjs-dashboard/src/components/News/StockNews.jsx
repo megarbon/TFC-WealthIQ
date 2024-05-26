@@ -36,7 +36,7 @@ const StockNews = () => {
   }, [colorMode]);
 
   return (
-    <div className="s:h-100 col-span-12 border border-stroke bg-white px-5 py-6 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4">
+    <div className="s:h-100 col-span-12 border border-stroke bg-gray px-5 py-6 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4">
       <div
         className="tradingview-widget-container"
         ref={containerRef}

@@ -41,7 +41,7 @@ const Screener = () => {
   }, [widgetConfig, colorMode]);
 
   return (
-    <div className="col-span-12 rounded-sm border-stroke bg-white px-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:h-100 sm:px-7.5 md:h-100 xl:col-span-5">
+    <div className="col-span-12 rounded-sm border border-stroke bg-gray px-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:h-100 sm:px-7.5 md:h-100 xl:col-span-5">
       <div
         className="tradingview-widget-container"
         ref={containerRef}

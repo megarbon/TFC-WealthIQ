@@ -65,7 +65,7 @@ function TradingViewWidget() {
   }, [widgetConfig, colorMode]);
 
   return (
-    <div className=" xs:h-100 col-span-12 rounded-sm border border-stroke bg-white px-7.5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:h-100 md:h-100 xl:col-span-7">
+    <div className=" xs:h-100 col-span-12 rounded-sm border border-stroke bg-gray px-7.5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:h-100 md:h-100 xl:col-span-7">
       <div ref={containerRef} style={{ width: "100%", height: "100%" }}></div>
     </div>
   );
