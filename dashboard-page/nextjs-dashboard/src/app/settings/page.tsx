@@ -185,13 +185,13 @@ const Settings = () => {
                     profile_pic_url: "",
                   })
                 }
-                className="flex justify-center rounded border border-stroke px-6 py-2 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white"
+                className="bg-gray flex justify-center rounded border border-stroke px-6 py-2 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90"
+                className="flex justify-center rounded bg-blue-700 px-6 py-2 font-medium text-gray hover:bg-opacity-90"
               >
                 {isLoading ? "Saving..." : "Save"}
               </button>

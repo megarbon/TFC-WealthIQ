@@ -38,7 +38,7 @@ const AnalizeButton = () => {
   };
 
   return (
-    <div className="rounded-md border border-stroke bg-white p-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+    <div className="rounded-md bg-white p-6  dark:border-strokedark dark:bg-boxdark">
       <div className="max-w-full overflow-x-auto">
         <div className="flex flex-col items-center space-y-4">
           <button

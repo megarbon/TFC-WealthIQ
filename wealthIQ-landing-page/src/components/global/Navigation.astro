@@ -1,4 +1,4 @@
-<section class="bg-gray-300 bg-opacity-30 border-b border-black/5">
+<section class="bg-black bg-opacity-10 border-b border-black/5">
   <div class="w-full mx-auto md:px-12 px-8 max-w-7xl lg:px-16">
     <div
       x-data="{ open: false }"
@@ -7,32 +7,15 @@
       <div class="flex flex-row items-center justify-between lg:justify-start">
         <a
           href="/"
-          class="text-black inline-flex items-center gap-3 text-lg font-bold"
-        >
-          <svg
-            class="h-6"
-            viewBox="0 0 78 32"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M55.5 0H77.5L58.5 32H36.5L55.5 0Z"
-              class="ccustom"
-              fill="#283CFF"></path>
-            <path
-              d="M35.5 0H51.5L32.5 32H16.5L35.5 0Z"
-              class="ccompli1"
-              fill="#5263FF"></path>
-            <path
-              d="M19.5 0H31.5L12.5 32H0.5L19.5 0Z"
-              class="ccompli2"
-              fill="#808CFF"></path>
-          </svg>
-          <span class="font-display">WealthIQ</span>
+          class="text-black inline-flex items-center gap-3 text-lg font-bold mr-4"
+        >     
+          <span style="font-family: 'Open Sauce', Arial, sans-serif; font-size: 2rem;">WealthIQ</span>
+
         </a>
+        
         <button
           @click="open = !open"
-          class="inline-flex items-center justify-center p-2 text-gray-400 hover:text-black focus:outline-none focus:text-black lg:hidden"
+          class="inline-flex items-center justify-center p-2 text-gray-400 hover:text-black focus:outline-none focus:text-black md:hidden"
         >
           <svg
             class="w-6 h-6"
@@ -59,10 +42,10 @@
       </div>
       <nav
         :class="{'flex': open, 'hidden': !open}"
-        class="flex-col items-center flex-grow hidden md:pb-0 md:flex md:justify-end md:flex-row"
+        class="flex-col items-center flex-grow md:flex md:justify-end md:flex-row"
       >
         <a
-          class="px-4 lg:px-6 py-3 md:px-4 text-lg font-medium text-black hover:text-accent-400 lg:ml-auto"
+          class="px-4 lg:px-6 py-3 md:px-4 text-lg font-medium text-black hover:text-accent-400"
           href="/#_">Inicio</a
         >
         <a
@@ -84,7 +67,7 @@
         <div class="inline-flex items-center gap-2 list-none lg:ml-auto">
           <a
             href="/signup"
-            class="inline-flex items-center h-10 justify-center px-6 py-3 text-lg font-medium text-black bg-gray-300 border-zinc-800 hover:border-zinc-900 hover:bg-gray-900 rounded-lg group focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 active:bg-gray-200 hover:text-white focus-visible:outline-black mx-8"
+            class="inline-flex items-center h-10 justify-center px-6 py-3 text-lg font-medium text-black bg-gray-300 border-zinc-800 hover:border-zinc-900 hover:bg-gray-900 rounded-lg group focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 active:bg-gray-200 hover:text-white focus-visible:outline-black mx-2 md:mx-8"
             >Regístrate</a
           >
           <a

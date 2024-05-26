@@ -12,15 +12,15 @@
   "ss08" 1, /* Square quotes */
   "zero" 1, /* Slashed zero */
   "tnum" 1, /* Tabular numbers */
-    "cv03", /* Open six */
-    "cv04" 1, /* Open nine */
-    "cv01" 1, /* Alternate one */
-    "cv09", /* Flat-top three */
-    "cv02" 1; /* Open 4 */
+  "cv03", /* Open six */
+  "cv04" 1, /* Open nine */
+  "cv01" 1, /* Alternate one */
+  "cv09", /* Flat-top three */
+  "cv02" 1; /* Open 4 */
 }
 @supports (font-variation-settings: normal) {
   /* Use variable font if supported */
   :root {
-    font-family: InterVariable, sans-serif;
+     font-family: InterVariable, sans-serif; 
   }
 }
