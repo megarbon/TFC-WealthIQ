@@ -32,14 +32,13 @@ const Settings = () => {
         setUserData(userData);
       } catch (error) {
         console.error("Error fetching user data:", error);
-        setError("Failed to fetch user data");
       }
     };
 
     fetchUserData();
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     const { name, value } = e.target;
     setUserData((prevUserData) => ({
       ...prevUserData,
@@ -47,7 +46,7 @@ const Settings = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
     try {
       setIsLoading(true);
@@ -70,7 +69,6 @@ const Settings = () => {
       // Optionally, show a success message or redirect the user
     } catch (error) {
       console.error("Error updating user:", error);
-      setError("Failed to update user");
     } finally {
       setIsLoading(false);
     }
@@ -150,7 +148,6 @@ const Settings = () => {
                 value={userData.bio}
                 onChange={handleChange}
                 className="w-full rounded border border-stroke bg-gray px-4.5 py-3 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-                rows="6"
                 placeholder="Tell us something about yourself..."
               />
             </div>

@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import { createInvestment, getAllAssets } from "@/data/portfolios";
 
@@ -10,13 +11,12 @@ const NewInvestmentForm = ({ portfolioId }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch all assets when the component mounts ✅ tested and working
     const fetchAssets = async () => {
       try {
         const assetsData = await getAllAssets();
         setAssets(assetsData);
         if (assetsData.length > 0) {
-          setSelectedAssetId(assetsData[0].id); // Set the default selected asset
+          setSelectedAssetId(assetsData[0].id.toString()); // Set the default selected asset
         }
       } catch (error) {
         console.error("Error fetching assets:", error);
@@ -32,21 +32,14 @@ const NewInvestmentForm = ({ portfolioId }) => {
     try {
       setIsLoading(true);
       const investment = {
-        portfolioId: portfolioId, // Include the portfolio ID in the investment object
-        investment: {
-          asset: {
-            id: parseInt(selectedAssetId),
-          },
-          amount: parseInt(investmentAmount),
+        asset: {
+          id: parseInt(selectedAssetId),
         },
+        amount: parseInt(investmentAmount),
       };
-      await createInvestment(investment);
-      // Call a function to update the investments table
-
-      // Clear form fields
+      await createInvestment({ ...investment, portfolioId });
       setSelectedAssetId("");
       setInvestmentAmount("");
-      // Optionally, you can show a success message or redirect the user
     } catch (error) {
       console.error("Error creating investment:", error);
       setError("Failed to create investment");
