@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router"; // Import useRouter from Next.js
 import useLocalStorage from "@/hooks/useLocalStorage";
 
 export const useAuth = () => {
-  const router = useRouter(); // Initialize useRouter
-
-  const [token, setToken] = useLocalStorage("jwtToken", "");
+  const [token, setToken] = useLocalStorage("jwtToken", ""); // Manage token with useLocalStorage
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  // Trim leading and trailing double quotes from token
   useEffect(() => {
     const trimmedToken = token.trim();
     if (trimmedToken !== token) {
-      setToken(trimmedToken);
+      setToken(trimmedToken); // Update token in local storage only if needed
     }
   }, [token, setToken]);
 
@@ -43,12 +41,10 @@ export const useAuth = () => {
         } else {
           setIsAuthenticated(false);
           console.error("Invalid access token");
-          router.push("/login"); // Redirect to login page on 401 error
         }
       } catch (error) {
         setIsAuthenticated(false);
         console.error("Error validating token:", error);
-        router.push("/login"); // Redirect to login page on error
       } finally {
         setLoading(false);
       }
@@ -57,7 +53,7 @@ export const useAuth = () => {
     if (token !== "" && loading) {
       validateToken();
     }
-  }, [token, loading, router]); // Include router in dependencies
+  }, [token, loading]);
 
-  return { isAuthenticated, loading, setToken };
+  return { isAuthenticated, loading, setToken }; // Include setToken in return value
 };
