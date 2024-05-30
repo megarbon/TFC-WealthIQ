@@ -2,12 +2,16 @@
 import React, { useState, ReactNode } from "react";
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
+import { useAuth } from "@/hooks/useAuth";
+
+
 
 export default function DefaultLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <>

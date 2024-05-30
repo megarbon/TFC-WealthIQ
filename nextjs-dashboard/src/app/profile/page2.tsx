@@ -1,34 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { Portfolio } from "@/types/portfolio";
 import { getAllPortfolios } from "@/data/portfolios";
+import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
+import Image from "next/image";
+import { Metadata } from "next";
+import DefaultLayout from "@/components/Layouts/DefaultLayout";
+import Link from "next/link";
 
 const PortfolioTable = () => {
   const [portfolioData, setPortfolioData] = useState<Portfolio[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getAllPortfolios();
         setPortfolioData(data);
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching portfolio data:", error);
+      } finally {
         setLoading(false);
       }
     };
 
     fetchData();
 
-    return () => {
-      // Cleanup function if needed
-    };
   }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return (
         <DefaultLayout>
       <div className="mx-auto max-w-242.5">
