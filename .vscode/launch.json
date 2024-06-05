@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "BackendWealthIQ",
+            "request": "launch",
+            "mainClass": "com.backendwealthiq.BackendWealthIQ",
+            "projectName": "AuthenticatedBackend"
+        },
+        {
+            "type": "java",
             "name": "StockPortfolioApplication",
             "request": "launch",
             "mainClass": "com.wealthiq.stockPortfolio.StockPortfolioApplication",
