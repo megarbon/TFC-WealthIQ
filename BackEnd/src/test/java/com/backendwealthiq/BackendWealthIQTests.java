@@ -1,4 +1,4 @@
-package com.wealthiq;
+package com.backendwealthiq;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
