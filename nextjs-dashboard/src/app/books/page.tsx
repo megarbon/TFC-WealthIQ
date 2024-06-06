@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Library from './library';
-import booksData from './library.json';
+import booksData from './library2.json';
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
