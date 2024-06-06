@@ -1,3 +1,8 @@
+---
+import logo from "../../assets/img/mocks/logoblack.png";
+import Image from "astro/components/Image.astro";
+---
+
 <section class="bg-black bg-opacity-10 border-b border-black/5">
   <div class="w-full mx-auto md:px-12 px-8 max-w-7xl lg:px-16">
     <div
@@ -8,8 +13,9 @@
         <a
           href="/"
           class="text-black inline-flex items-center gap-3 text-lg font-bold mr-4"
-        >     
-          <span style="font-family: 'Open Sauce', Arial, sans-serif; font-size: 2rem;">WealthIQ</span>
+        >
+        
+        <img src={logo.src} alt="logo de la empresa" width="100" height="100">     
 
         </a>
         
