@@ -6,7 +6,6 @@ export const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // Trim leading and trailing double quotes from token
   useEffect(() => {
     const trimmedToken = token.trim();
     if (trimmedToken !== token) {
@@ -19,21 +18,25 @@ export const useAuth = () => {
       if (!token) {
         setIsAuthenticated(false);
         setLoading(false);
+        console.log("No token found, redirecting to login page");
+        window.location.href = "http://localhost:4321/login"; // Redirect to login page
         return;
       }
 
       try {
         const accessToken = token;
 
-        const response = await fetch("http://localhost:8000/auth/validate-token", {
+        const response = await fetch("http://localhost:8080/auth/validate-token", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`,
           },
           body: JSON.stringify({ token: accessToken }),
-          mode: "no-cors",
         });
+
+        const data = await response.text(); // Log the response text for debugging
+        console.log("Response data:", data);
 
         if (response.ok) {
           setIsAuthenticated(true);
@@ -41,10 +44,12 @@ export const useAuth = () => {
         } else {
           setIsAuthenticated(false);
           console.error("Invalid access token");
+          window.location.href = "http://localhost:4321/login"; // Redirect to login page
         }
       } catch (error) {
         setIsAuthenticated(false);
         console.error("Error validating token:", error);
+        window.location.href = "http://localhost:4321/login"; // Redirect to login page
       } finally {
         setLoading(false);
       }
@@ -52,8 +57,11 @@ export const useAuth = () => {
 
     if (token !== "" && loading) {
       validateToken();
+    } else if (!loading && !isAuthenticated) {
+      console.log("Not authenticated, redirecting to login page");
+      window.location.href = "http://localhost:4321/login"; // Redirect to login page
     }
-  }, [token, loading]);
+  }, [token, loading, isAuthenticated]);
 
   return { isAuthenticated, loading, setToken }; // Include setToken in return value
 };
