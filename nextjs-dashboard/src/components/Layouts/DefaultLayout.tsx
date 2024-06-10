@@ -1,10 +1,11 @@
 "use client"
-import React, { useEffect, useState } from "react";
+// DefaultLayout.tsx
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import Loader from "../common/Loader";
 import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "next/router";
 
 export default function DefaultLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -17,8 +18,16 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
       const urlParams = new URLSearchParams(window.location.search);
       const token = urlParams.get("token");
 
+      // Get the userId from the query parameters
+      const userId = urlParams.get("userId");
+
       if (token) {
+        // Store the token in local storage
         setToken(token);
+
+        // Store the userId in local storage
+        localStorage.setItem("userId", userId || "");
+
         // Remove the token from the URL after storing it
         router.replace(window.location.pathname);
       }
