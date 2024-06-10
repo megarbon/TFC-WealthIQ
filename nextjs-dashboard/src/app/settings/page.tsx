@@ -22,7 +22,7 @@ const Settings = () => {
         const userId = localStorage.getItem("userid");
         // Fetch user data using the retrieved user ID
         const response = await fetch(
-          `http://localhost:8888/users/update/${userId}`,
+          `http://localhost:8080/users/${userId}`,
         );
         if (!response.ok) {
           throw new Error("Failed to fetch user data");
