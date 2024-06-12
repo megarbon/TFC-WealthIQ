@@ -1,98 +1,65 @@
 version: '3.8'
 
 services:
-  # MySQL Database 1 Service
-  db1:
+  # MySQL Database Service
+  wealthiq_db:
     image: mysql:8.0
-    container_name: mysql_db1
+    container_name: wealthiq_db
     environment:
-      MYSQL_ROOT_PASSWORD: rootpass1
-      MYSQL_DATABASE: securitydb
-      MYSQL_USER: exampleuser1
-      MYSQL_PASSWORD: examplepass1
-    volumes:
-      - db1_data:/var/lib/mysql
-      - ./securitydb.sql:/docker-entrypoint-initdb.d/securitydb.sql
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wealthiq_db
+      MYSQL_USER: wealthiq_user
+      MYSQL_PASSWORD: pass
+    # volumes:
+    #   - db1_data:/var/lib/mysql
+    #   - ./securitydb.sql:/docker-entrypoint-initdb.d/securitydb.sql
     ports:
       - "3306:3306"
 
-  # MySQL Database 2 Service
-  db2:
-    image: mysql:8.0
-    container_name: mysql_db2
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpass2
-      MYSQL_DATABASE: portfoliosdb
-      MYSQL_USER: exampleuser2
-      MYSQL_PASSWORD: examplepass2
-    volumes:
-      - db2_data:/var/lib/mysql
-      - ./portfoliosdb.sql:/docker-entrypoint-initdb.d/portfoliosdb.sql
-    ports:
-      - "3307:3306"
-
-  # phpMyAdmin for Database 1
-  phpmyadmin1:
+  # phpMyAdmin for Database
+  phpmyadmindbwiq:
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin1
+    container_name: phpmyadmindbwiq
     environment:
-      PMA_HOST: db1
+      PMA_HOST: wealthiq_db
       PMA_PORT: 3306
-      PMA_USER: exampleuser1
-      PMA_PASSWORD: examplepass1
+      PMA_USER: wealthiq_user
+      PMA_PASSWORD: pass
     ports:
-      - "9000:80"
+      - "3333:80"
     depends_on:
-      - db1
+      - wealthiq_db
 
-  # phpMyAdmin for Database 2
-  phpmyadmin2:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin2
+  # Spring Application
+  spring_app:
+    build:
+      context: ./BackEnd
+    container_name: spring_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - wealthiq_db
     environment:
-      PMA_HOST: db2
-      PMA_PORT: 3306
-      PMA_USER: exampleuser2
-      PMA_PASSWORD: examplepass2
-    ports:
-      - "9005:80"
-    depends_on:
-      - db2
+      SPRING_DATASOURCE_URL: jdbc:mysql://wealthiq_db:3306/wealthiq_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
 
-  # Stock Portfolio API Service
-  stock_portfolio_api:
+  # Next.js Dashboard Service
+  nextjs_dashboard:
     build:
-      context: ./stock-portfolio-service/stockportfolio/  # Adjust to your project path
-    container_name: stock_portfolio_api
+      context: ./nextjs-dashboard
+      dockerfile: Dockerfile
+    container_name: nextjs_dashboard
     ports:
-      - "8085:8085"  # Mapping internal port 8085 to external port 8085
-    depends_on:
-      - db1  # Depends on Database 1
+      - "3000:3000"
+    restart: unless-stopped
 
-  # Authentication API Service
-  authentication_api:
+  # Astro App Service
+  astro_app:
     build:
-      context: ./user-auth-service/AuthenticatedBackend/  # Adjust to your project path
-    container_name: authentication_api
+      context: ./wealthIQ-landing-page
+      dockerfile: Dockerfile
+    container_name: astro_app
     ports:
-      - "8080:8080"  # Mapping internal port 8080 to external port 8080
-    depends_on:
-      - db2  # Depends on Database 2
-
-  # Frontend Landing Page Service
-  landing-page:
-    build: ./wealthIQ-landing-page/  # Adjust to your project path
-    container_name: landing_page
-    ports:
-      - "4321:4321"  # Mapping internal port 4321 to external port 4321
-
-  # Frontend Dashboard Service
-  dashboard:
-    build: ./nextjs-dashboard/  # Adjust to your project path
-    container_name: dashboard
-    ports:
-      - "3000:3000"  # Mapping internal port 3000 to external port 3000
-
-volumes:
-  db1_data:
-  db2_data:
+      - "4321:4321"
+    restart: unless-stopped
