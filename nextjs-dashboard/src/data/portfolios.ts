@@ -2,10 +2,16 @@ import { Portfolio } from "../types/portfolio";
 import { Investment } from "../types/investment";
 import { Asset } from "../types/asset";
 
-const API_BASE_URL = "http://localhost:8080"; // Change this to your API base URL
+const API_BASE_URL = "http://localhost:8080";
+
 const getTokenFromLocalStorage = () => localStorage.getItem("jwtToken");
 const token1 = getTokenFromLocalStorage();
-const trimmedTokenOut = token1.trim().replace("", );
+
+// Verificar si token1 no es null antes de usar trim()
+const trimmedTokenOut = token1 ? token1.trim() : "";
+
+console.log(token1);
+console.log(trimmedTokenOut);
 
 console.log(token1)
 console.log(trimmedTokenOut)
@@ -15,7 +21,7 @@ export const getAllPortfolios = async (): Promise<Portfolio[]> => {
   if (!token) {
     throw new Error("No token found in local storage");
   }
-  const trimmedToken = token1.trim().replace("", );
+  const trimmedToken = trimmedTokenOut;
   
   const response = await fetch(`${API_BASE_URL}/portfolios/getAll`, {
     method: "GET",

@@ -7,13 +7,6 @@ import React, { useEffect, useState } from "react";
 import Loader from "@/components/common/Loader";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "WealthIQ - Dashboard de Gestión de Carteras de Inversión",
-  description:
-    "WealthIQ es el mejor dashboard de gestión de carteras de inversión. ¡Optimiza tus inversiones con nuestras herramientas inteligentes!",
-};
-
-
 export default function RootLayout({
   children,
 }: Readonly<{

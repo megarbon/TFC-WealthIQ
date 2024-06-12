@@ -3,14 +3,6 @@ import React, { useEffect, useState } from 'react';
 import booksData from './library.json';
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: "WealthIQ - Dashboard de Gestión de Carteras de Inversión",
-  description:
-    "WealthIQ es el mejor dashboard de gestión de carteras de inversión. ¡Optimiza tus inversiones con nuestras herramientas inteligentes!",
-};
-
 
 interface Book {
   title: string;
