@@ -2,9 +2,9 @@ version: '3.8'
 
 services:
   # MySQL Database Service
-  wealthiq_db:
+  wealthiq_database:
     image: mysql:8.0
-    container_name: wealthiq_db
+    container_name: wealthiq_database
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: wealthiq_db
@@ -28,7 +28,7 @@ services:
     ports:
       - "3333:80"
     depends_on:
-      - wealthiq_db
+      - wealthiq_database
 
   # Spring Application
   spring_app:
@@ -38,7 +38,7 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - wealthiq_db
+      - wealthiq_database
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://wealthiq_db:3306/wealthiq_db
       SPRING_DATASOURCE_USERNAME: root

@@ -104,44 +104,49 @@
 </section>
 
 <script>
-document.getElementById("login-form").addEventListener("submit", async function(event) {
-    
-
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-
-    try {
-      const response = await fetch("http://localhost:8080/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-          password,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+  document.getElementById("login-form").addEventListener("submit", async function(event) {
+      // Prevent default form submission behavior
+      event.preventDefault();
+  
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+  
+      try {
+        const response = await fetch("http://localhost:8080/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            password,
+          }),
+        });
+  
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+  
+        const responseData = await response.json();
+  
+        // Get the JWT token and userId from the response
+        const token = responseData.jwt;
+        const userId = responseData.user.userId;
+  
+        // Store the token and userId in local storage
+        localStorage.setItem("jwtToken", token);
+        localStorage.setItem("userId", userId);
+  
+        // Redirect the user to the next site with token and userId in the URL
+        window.location.href = `http://localhost:3000/?token=${token}&userId=${userId}`;
+      } catch (error) {
+        console.error("There was an error!", error);
+        // Handle the error, display a message to the user, etc.
+  
+        // Reset the form fields
+        document.getElementById("username").value = "";
+        document.getElementById("password").value = "";
       }
-
-      const responseData = await response.json();
-
-      // Get the JWT token and userId from the response
-      const token = responseData.jwt;
-      const userId = responseData.user.userId;
-
-      // Store the token and userId in local storage
-      localStorage.setItem("jwtToken", token);
-      localStorage.setItem("userId", userId);
-
-      // Redirect the user to the next site with token and userId in the URL
-      window.location.href = `http://localhost:3000/?token=${token}&userId=${userId}`;
-    } catch (error) {
-      console.error("There was an error!", error);
-      // Handle the error, display a message to the user, etc.
-    }
-});
-
-</script>
+  });
+  </script>
+  
