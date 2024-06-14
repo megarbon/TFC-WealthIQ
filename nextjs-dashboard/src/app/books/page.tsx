@@ -31,8 +31,7 @@ const Books: React.FC = () => {
     const filtered = booksData.library.filter(item => {
       return (
         (filter.genre === '' || item.book.genre.toLowerCase().includes(filter.genre.toLowerCase())) &&
-        (filter.author === '' || item.book.author.name.toLowerCase().includes(filter.author.toLowerCase())) &&
-        (filter.year === '' || item.book.year.toString() === filter.year)
+        (filter.author === '' || item.book.author.name.toLowerCase().includes(filter.author.toLowerCase()))
       );
     });
 
@@ -73,14 +72,6 @@ const Books: React.FC = () => {
               name="author"
               placeholder="Autor"
               value={filter.author}
-              onChange={handleFilterChange}
-              className="border p-2 rounded "
-            />
-            <input
-              type="text"
-              name="year"
-              placeholder="Año"
-              value={filter.year}
               onChange={handleFilterChange}
               className="border p-2 rounded "
             />
