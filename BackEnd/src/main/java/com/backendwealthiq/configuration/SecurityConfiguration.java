@@ -51,22 +51,20 @@ public class SecurityConfiguration {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
-        .csrf(csrf -> csrf.disable())
-        .authorizeHttpRequests(auth -> {
-          auth.requestMatchers("/auth/**").permitAll();
-          auth.requestMatchers("/admin/**").hasRole("ADMIN");
-          auth.requestMatchers("/user/**").hasAnyRole("ADMIN", "USER");
-          auth.requestMatchers("/assets/**").hasAnyRole("ADMIN", "USER");
-          auth.requestMatchers("/investments/**").hasAnyRole("ADMIN", "USER");
-          auth.requestMatchers("/users/**").hasAnyRole("ADMIN", "USER");
-          auth.anyRequest().authenticated();
-        });
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(auth -> {
+              auth.requestMatchers("/auth/**").permitAll();
+              auth.requestMatchers("/admin/**").hasRole("ADMIN");
+              auth.requestMatchers("/user/**").hasAnyRole("ADMIN", "USER");
+              auth.requestMatchers("/assets/**", "/portfolios/**", "/investments/**").permitAll();
+              auth.anyRequest().authenticated();
+            });
 
     http.oauth2ResourceServer(server -> server
-        .jwt()
-        .jwtAuthenticationConverter(jwtAuthenticationConverter()));
+            .jwt()
+            .jwtAuthenticationConverter(jwtAuthenticationConverter()));
     http.sessionManagement(
-        session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+            session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
     return http.build();
   }

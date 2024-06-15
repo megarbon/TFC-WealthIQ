@@ -12,7 +12,7 @@ const PortfolioTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getPortfolioById(1); // Assuming portfolio ID 1
+        const data = await getPortfolioById(1);
         setPortfolioData(data);
         setLoading(false);
       } catch (error) {

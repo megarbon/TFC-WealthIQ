@@ -217,10 +217,11 @@ export const updateInvestment = async (
   return response.json();
 };
 
-// Function to create a new investment for a portfolio
 export const createInvestment = async (
   investment: Investment,
 ): Promise<Investment | null> => {
+  const trimmedToken = localStorage.getItem("token");
+
   if (!trimmedToken) {
     throw new Error("No token found in local storage");
   }
@@ -231,7 +232,6 @@ export const createInvestment = async (
       Authorization: `Bearer ${trimmedToken}`,
       "Content-Type": "application/json",
     },
-    mode: "no-cors",
     body: JSON.stringify(investment),
   });
 
@@ -239,7 +239,7 @@ export const createInvestment = async (
     throw new Error("Failed to create investment");
   }
 
-  return response.json();
+  return response.json(); // Devuelve el cuerpo de la respuesta como JSON
 };
 
 // Function to delete an investment

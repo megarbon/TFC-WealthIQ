@@ -1,22 +1,31 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import { createInvestment, getAllAssets } from "@/data/portfolios";
 
-const NewInvestmentForm = ({ portfolioId }) => {
+const NewInvestmentForm = () => {
   const [assets, setAssets] = useState([]);
   const [selectedAssetId, setSelectedAssetId] = useState("");
   const [investmentAmount, setInvestmentAmount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [portfolioId, setPortfolioId] = useState("");
 
   useEffect(() => {
+    // Fetch portfolioId from localStorage
+    const storedPortfolioId = localStorage.getItem("userId");
+    if (storedPortfolioId) {
+      setPortfolioId(storedPortfolioId);
+    } else {
+      console.error("No portfolioId found in localStorage");
+      setError("No portfolioId found");
+    }
+
     const fetchAssets = async () => {
       try {
         const assetsData = await getAllAssets();
         setAssets(assetsData);
         if (assetsData.length > 0) {
-          setSelectedAssetId(assetsData[0].id.toString()); // Set the default selected asset
+          setSelectedAssetId(assetsData[0].id.toString());
         }
       } catch (error) {
         console.error("Error fetching assets:", error);

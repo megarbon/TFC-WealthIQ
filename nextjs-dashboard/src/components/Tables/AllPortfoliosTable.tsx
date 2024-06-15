@@ -23,7 +23,6 @@ const PortfolioTable = () => {
     fetchData();
 
     return () => {
-      // Cleanup function if needed
     };
   }, []);
 

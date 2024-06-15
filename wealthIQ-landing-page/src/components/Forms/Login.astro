@@ -131,13 +131,15 @@
       // Get the JWT token and userId from the response
       const token = responseData.jwt;
       const userId = responseData.user.userId;
+      const unameResponse = username;
   
       // Store the token and userId in local storage
       localStorage.setItem("jwtToken", token);
       localStorage.setItem("userId", userId);
+      localStorage.setItem("username", unameResponse);
   
-      // Redirect the user to the next site with token and userId in the URL
-      window.location.href = `http://localhost:3000/?token=${token}&userId=${userId}`;
+      // Redirect the user to the next site with token, userId, and username in the URL
+      window.location.href = `http://localhost:3000/?token=${token}&userId=${userId}&username=${username}`;
     } catch (error) {
       console.error("There was an error!", error);
   
@@ -147,3 +149,4 @@
     }
   });
 </script>
+
