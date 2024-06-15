@@ -136,6 +136,9 @@ document.getElementById("login-form").addEventListener("submit", async function(
       localStorage.setItem("jwtToken", token);
       localStorage.setItem("userId", userId);
 
+      // Reset the form
+      document.getElementById("login-form").reset();
+
       // Redirect the user to the next site with token and userId in the URL
       window.location.href = `http://localhost:3000/?token=${token}&userId=${userId}`;
     } catch (error) {

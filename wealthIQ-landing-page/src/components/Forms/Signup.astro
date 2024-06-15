@@ -126,7 +126,7 @@
                             type="submit"
                             class="inline-flex items-center justify-center mt-4 w-full h-12 gap-3 px-5 py-3 font-medium text-white duration-200 bg-gray-900 rounded-xl hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-black"
                           >
-                            Iniciar Sesión
+                            Registrarse
                           </button>
                         </div>
                       </div>
@@ -147,3 +147,50 @@
     </div>
   </div>
 </main>
+
+
+<script>
+  document.getElementById("resgister-form").addEventListener("submit", async function(event) {
+      
+  
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const email = document.getElementById("email").value;
+  
+      try {
+        const response = await fetch("http://localhost:8080/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            password,
+            email,
+          }),
+        });
+  
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+  
+        const responseData = await response.json();
+  
+        // Get the JWT token and userId from the response
+        //const token = responseData.jwt;
+        //const userId = responseData.user.userId;
+  
+        // Store the token and userId in local storage
+        //localStorage.setItem("jwtToken", token);
+        //localStorage.setItem("userId", userId);
+  
+        // Redirect the user to the next site with token and userId in the URL
+        window.location.href = `http://localhost:4321/login`;
+      } catch (error) {
+        console.error("There was an error!", error);
+        // Handle the error, display a message to the user, etc.
+      }
+  });
+  
+  </script>
+  
