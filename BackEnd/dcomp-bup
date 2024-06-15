@@ -30,5 +30,18 @@ services:
     depends_on:
       - wealthiq_db
 
+  # Spring Application
+  spring_app:
+    build: .
+    container_name: spring_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - wealthiq_db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://wealthiq_db:3306/wealthiq_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
 # volumes:
 #   db1_data:

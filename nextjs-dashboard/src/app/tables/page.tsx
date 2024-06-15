@@ -1,7 +1,6 @@
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import TableOne from "@/components/Tables/TableOne";
 import AllPortfoliosTable from "@/components/Tables/AllPortfoliosTable";
-import TableThree from "@/components/Tables/TableThree";
 import SinglePortfolioTable from "@/components/Tables/SinglePortfolioTable";
 import NewInvestmentForm from "@/components/Tables/NewInvestmentForm";
 import AnalizeButton from "@/components/Analize/analize";

@@ -20,19 +20,18 @@ export const getAllPortfolios = async (): Promise<Portfolio[]> => {
   
   const myHeaders = new Headers();
   myHeaders.append("Authorization", `Bearer ${trimmedToken}`);
+  myHeaders.append("Acces-Control-Allow-Origin");
 
   const requestOptions: RequestInit = {
     method: "GET",
     headers: myHeaders,
-    mode: "cors",
+    mode: "no-cors",
     redirect: "follow"
   };
   
   try {
     const response = await fetch(`${API_BASE_URL}/portfolios/getAll`, requestOptions);
 
-    // Since we're using "no-cors" mode, we can't access the response body directly.
-    // You might need to handle this according to your requirements.
     if (!response.ok) {
       throw new Error("Failed to fetch portfolios");
     }
