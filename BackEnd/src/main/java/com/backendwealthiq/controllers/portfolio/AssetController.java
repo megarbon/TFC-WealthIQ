@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/assets")
+@CrossOrigin("*")
 public class AssetController {
 
     private final AssetService stockService;

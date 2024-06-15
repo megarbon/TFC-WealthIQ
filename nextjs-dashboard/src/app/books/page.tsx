@@ -1,7 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import booksData from './library.json';
-
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 

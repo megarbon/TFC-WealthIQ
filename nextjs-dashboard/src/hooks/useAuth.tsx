@@ -19,7 +19,7 @@ export const useAuth = () => {
         setIsAuthenticated(false);
         setLoading(false);
         console.log("No token found, redirecting to login page");
-        window.location.href = "http://localhost:4321/login"; // Redirect to login page
+        //window.location.href = "http://localhost:4321/login"; // Redirect to login page
         return;
       }
 
@@ -44,12 +44,12 @@ export const useAuth = () => {
         } else {
           setIsAuthenticated(false);
           console.error("Invalid access token");
-          window.location.href = "http://localhost:4321/login"; // Redirect to login page
+          //window.location.href = "http://localhost:4321/login"; // Redirect to login page
         }
       } catch (error) {
         setIsAuthenticated(false);
         console.error("Error validating token:", error);
-        window.location.href = "http://localhost:4321/login"; // Redirect to login page
+        //window.location.href = "http://localhost:4321/login"; // Redirect to login page
       } finally {
         setLoading(false);
       }
@@ -59,7 +59,7 @@ export const useAuth = () => {
       validateToken();
     } else if (!loading && !isAuthenticated) {
       console.log("Not authenticated, redirecting to login page");
-      window.location.href = "http://localhost:4321/login"; // Redirect to login page
+      //window.location.href = "http://localhost:4321/login"; // Redirect to login page
     }
   }, [token, loading, isAuthenticated]);
 

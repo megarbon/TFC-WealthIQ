@@ -11,6 +11,7 @@ import com.backendwealthiq.services.portfolio.InvestmentService;
 
 @RestController
 @RequestMapping("/investments")
+@CrossOrigin("*")
 public class InvestmentController {
 
     private final InvestmentService portfolioDetailService;
