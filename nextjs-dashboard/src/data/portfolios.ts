@@ -13,22 +13,23 @@ const trimmedToken = token1 ? token1.trim() : "";
 
 // Function to fetch all portfolios
 export const getAllPortfolios = async (): Promise<Portfolio[]> => {
-  
+  const trimmedToken = localStorage.getItem('jwtToken')?.trim();
+
   if (!trimmedToken) {
     throw new Error("No token found in local storage");
   }
-  
+
   const myHeaders = new Headers();
   myHeaders.append("Authorization", `Bearer ${trimmedToken}`);
-  myHeaders.append("Acces-Control-Allow-Origin");
+  myHeaders.append("Content-Type", "application/json");
 
   const requestOptions: RequestInit = {
     method: "GET",
     headers: myHeaders,
     mode: "no-cors",
-    redirect: "follow"
+    redirect: "follow",
   };
-  
+
   try {
     const response = await fetch(`${API_BASE_URL}/portfolios/getAll`, requestOptions);
 
@@ -38,25 +39,26 @@ export const getAllPortfolios = async (): Promise<Portfolio[]> => {
 
     return response.json();
   } catch (error) {
-    throw new Error(`Error fetching portfolios: ERRRROOOOOOR >>>>>>>>>`);
+    throw new Error(`Error fetching portfolios: ${error.message}`);
   }
 };
 
 
 
-// Function to fetch a portfolio by its ID
-export const getPortfolioById = async (
-  id: number
-): Promise<Portfolio | null> => {
+export const getPortfolioById = async (id: number): Promise<Portfolio | null> => {
+  const trimmedToken = localStorage.getItem('jwtToken')?.trim();
+
   if (!trimmedToken) {
     throw new Error("No token found in local storage");
   }
 
+  const headers = new Headers();
+  headers.append("Authorization", `Bearer ${trimmedToken}`);
+  headers.append("Content-Type", "application/json");
+
   const response = await fetch(`${API_BASE_URL}/portfolios/${id}`, {
-    headers: {
-      Authorization: `Bearer ${trimmedToken}`,
-      "Content-Type": "application/json",
-    },
+    method: "GET",
+    headers: headers,
     mode: "no-cors",
   });
 
@@ -69,6 +71,7 @@ export const getPortfolioById = async (
 
   return response.json();
 };
+
 
 // Function to update a portfolio
 export const updatePortfolio = async (
