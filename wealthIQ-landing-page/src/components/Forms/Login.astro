@@ -87,7 +87,7 @@
               <p
                 class="flex mx-auto text-sm font-medium leading-tight text-center text-black"
               >
-                No tienes una cuenta?
+                ¿No tienes una cuenta?
                 <a
                   class="ml-auto text-blue-500 hover:text-black"
                   href="/forms/signup"
@@ -147,6 +147,28 @@
         document.getElementById("username").value = "";
         document.getElementById("password").value = "";
       }
-  });
-  </script>
-  
+
+
+      const responseData = await response.json();
+
+      // Get the JWT token and userId from the response
+      const token = responseData.jwt;
+      const userId = responseData.user.userId;
+
+      // Store the token and userId in local storage
+      localStorage.setItem("jwtToken", token);
+      localStorage.setItem("userId", userId);
+
+      // Reset the form
+      document.getElementById("login-form").reset();
+
+      // Redirect the user to the next site with token and userId in the URL
+      window.location.href = `http://localhost:3000/?token=${token}&userId=${userId}`;
+    } catch (error) {
+      console.error("There was an error!", error);
+      // Handle the error, display a message to the user, etc.
+    }
+});
+
+</script>
+
