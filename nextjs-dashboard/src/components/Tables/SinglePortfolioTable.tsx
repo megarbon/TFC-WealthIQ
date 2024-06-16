@@ -2,22 +2,32 @@
 import React, { useEffect, useState } from "react";
 import { Portfolio } from "@/types/portfolio";
 import { Investment } from "@/types/investment";
-import { getPortfolioById, createInvestment } from "@/data/portfolios";
+
+import { getPortfolioById, createPortfolio, createInvestment } from "@/data/portfolios";
 
 const PortfolioTable = () => {
   const [portfolioData, setPortfolioData] = useState<Portfolio | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [newInvestment, setNewInvestment] = useState<Investment>({
+    asset: { id: 0, name: "", symbol: "", market: "" },
+    amount: 0,
+    investmentPortfolio: {
+      id: 0, user: { userId: 0, username: "", password: "", firstname: "", surname: "", description: "" },
+      investments: []
+    }
+  });
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getPortfolioById(1); // Replace with dynamic ID if needed
         setPortfolioData(data);
-        setLoading(false);
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching portfolio data:", error);
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
@@ -27,6 +37,7 @@ const PortfolioTable = () => {
       // Cleanup function if needed
     };
   }, []);
+
 
   const handleAddInvestment = async (investment: Investment) => {
     try {
@@ -40,7 +51,7 @@ const PortfolioTable = () => {
     }
   };
 
-  if (loading) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -76,19 +87,18 @@ const PortfolioTable = () => {
           {/* Table Body */}
           {portfolioData?.investments.map((investment, idx) => (
             <div
-              className={`grid grid-cols-3 sm:grid-cols-5 ${
-                idx === portfolioData.investments.length - 1
+              className={`grid grid-cols-3 sm:grid-cols-5 ${idx === portfolioData.investments.length - 1
                   ? ""
                   : "border-b border-stroke dark:border-strokedark"
-              }`}
-              key={investment.id}
+                }`}
+              key={investment.investmentPortfolio.id}
             >
               {/* Investment Details */}
               <div className="flex items-center justify-center p-2.5">
                 <p className="text-black dark:text-white">{portfolioData.id}</p>
               </div>
               <div className="flex items-center justify-center p-2.5">
-                <p className="text-black dark:text-white">{investment.id}</p>
+                <p className="text-black dark:text-white">{investment.investmentPortfolio.id}</p>
               </div>
               <div className="flex items-center justify-center p-2.5">
                 <p className="text-black dark:text-white">

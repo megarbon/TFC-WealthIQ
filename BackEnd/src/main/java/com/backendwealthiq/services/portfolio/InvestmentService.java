@@ -12,7 +12,6 @@ import jakarta.persistence.EntityNotFoundException;
 public class InvestmentService {
     private final InvestmentRepository portfolioDetailRepository;
 
-
     public InvestmentService(InvestmentRepository portfolioDetailRepository) {
         this.portfolioDetailRepository = portfolioDetailRepository;
     }
@@ -37,4 +36,5 @@ public class InvestmentService {
             throw new EntityNotFoundException("Portfolio detail not found with id: " + id);
         }
     }
+
 }

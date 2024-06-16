@@ -5,8 +5,8 @@ const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [username, setUsername] = useState("");
 
-  const trigger = useRef(null);
-  const dropdown = useRef(null);
+  const trigger = useRef<HTMLAnchorElement | null>(null);
+  const dropdown = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const savedUsername = localStorage.getItem("username");
@@ -20,9 +20,10 @@ const DropdownUser = () => {
   const closeDropdown = () => setDropdownOpen(false);
 
   useEffect(() => {
-    const clickHandler = ({ target }) => {
+    const clickHandler = (event: MouseEvent) => {
+      const target = event.target as Node;
       if (!dropdownOpen || !dropdown.current) return;
-      if (dropdown.current.contains(target) || trigger.current.contains(target)) return;
+      if (dropdown.current.contains(target) || trigger.current?.contains(target)) return;
       closeDropdown();
     };
     document.addEventListener("click", clickHandler);
@@ -30,8 +31,8 @@ const DropdownUser = () => {
   }, [dropdownOpen]);
 
   useEffect(() => {
-    const keyHandler = ({ keyCode }) => {
-      if (dropdownOpen && keyCode === 27) {
+    const keyHandler = (event: KeyboardEvent) => {
+      if (dropdownOpen && event.key === 'Escape') {
         closeDropdown();
       }
     };
@@ -67,10 +68,10 @@ const DropdownUser = () => {
     }
   };
 
-
+  
   return (
     <div className="relative">
-      <Link
+        <Link
         ref={trigger}
         onClick={toggleDropdown}
         className="flex items-center gap-4"
@@ -99,8 +100,7 @@ const DropdownUser = () => {
 
       <div
         ref={dropdown}
-        className={`absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ${dropdownOpen ? "block" : "hidden"
-          }`}
+        className={`absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ${dropdownOpen ? "block" : "hidden"}`}
       >
         <ul className="bg-gray flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark">
           <li>

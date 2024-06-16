@@ -2,38 +2,21 @@
 import React, { useState, useEffect } from "react";
 import { createInvestment, getAllAssets } from "@/data/portfolios";
 
-const NewInvestmentForm = () => {
+const NewInvestmentForm = ({ portfolioId }) => {
   const [assets, setAssets] = useState([]);
   const [selectedAssetId, setSelectedAssetId] = useState("");
   const [investmentAmount, setInvestmentAmount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [portfolioId, setPortfolioId] = useState(null); // Initialize portfolioId state
 
   useEffect(() => {
-    const fetchPortfolioId = async () => {
-      try {
-        const storedPortfolioId = localStorage.getItem("userId");
-        if (storedPortfolioId) {
-          setPortfolioId(parseInt(storedPortfolioId, 10));
-        } else {
-          console.error("No portfolioId found in localStorage");
-          setError("No portfolioId found");
-        }
-      } catch (error) {
-        console.error("Error fetching portfolioId:", error);
-        setError("Failed to fetch portfolioId");
-      }
-    };
-
-    fetchPortfolioId();
-
+    // Fetch all assets when the component mounts ✅ tested and working
     const fetchAssets = async () => {
       try {
         const assetsData = await getAllAssets();
         setAssets(assetsData);
         if (assetsData.length > 0) {
-          setSelectedAssetId(assetsData[0].id.toString());
+          setSelectedAssetId(assetsData[0].id); // Set the default selected asset
         }
       } catch (error) {
         console.error("Error fetching assets:", error);
@@ -49,18 +32,21 @@ const NewInvestmentForm = () => {
     try {
       setIsLoading(true);
       const investment = {
-        asset: {
-          id: parseInt(selectedAssetId),
-        },
-        amount: parseInt(investmentAmount),
-        investmentPortfolio: {
-          id: portfolioId, // Ensure this matches your backend relationship
+        portfolioId: portfolioId, // Include the portfolio ID in the investment object
+        investment: {
+          asset: {
+            id: parseInt(selectedAssetId),
+          },
+          amount: parseInt(investmentAmount),
         },
       };
-      console.log("Investment object:", investment);
       await createInvestment(investment);
+      // Call a function to update the investments table
+
+      // Clear form fields
       setSelectedAssetId("");
       setInvestmentAmount("");
+      // Optionally, you can show a success message or redirect the user
     } catch (error) {
       console.error("Error creating investment:", error);
       setError("Failed to create investment");
@@ -105,7 +91,7 @@ const NewInvestmentForm = () => {
         </div>
         <button
           type="submit"
-          className="w-full rounded-md bg-blue-700 px-4 py-2 text-white hover:bg-blue-600 focus:bg-blue-600 focus:outline-none"
+          className="w-full rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:bg-blue-600 focus:outline-none"
           disabled={isLoading}
         >
           {isLoading ? "Adding Investment..." : "Add Investment"}
@@ -117,4 +103,3 @@ const NewInvestmentForm = () => {
 };
 
 export default NewInvestmentForm;
-

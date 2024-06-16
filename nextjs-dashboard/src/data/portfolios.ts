@@ -10,51 +10,6 @@ const token1 = getTokenFromLocalStorage();
 // Verificar si token1 no es null antes de usar trim()
 const trimmedToken = token1 ? token1.trim() : "";
 
-// Validation functions
-const isInvestment = (obj: any): obj is Investment => {
-  return (
-    typeof obj.id === "number" &&
-    typeof obj.amount === "number" &&
-    isAsset(obj.asset) &&
-    isPortfolioShallow(obj.investmentPortfolio)
-  );
-};
-
-const isUser = (obj: any): obj is User => {
-  return (
-    typeof obj.userId === "number" &&
-    typeof obj.username === "string" &&
-    typeof obj.password === "string" &&
-    typeof obj.firstname === "string" &&
-    typeof obj.surname === "string" &&
-    typeof obj.description === "string"
-  );
-};
-
-const isAsset = (obj: any): obj is Asset => {
-  return (
-    typeof obj.id === "number" &&
-    typeof obj.name === "string" &&
-    typeof obj.symbol === "string" &&
-    typeof obj.market === "string"
-  );
-};
-
-const isPortfolioShallow = (obj: any): obj is Partial<Portfolio> => {
-  return (
-    typeof obj.id === "number"
-  );
-};
-
-const isPortfolio = (obj: any): obj is Portfolio => {
-  return (
-    isPortfolioShallow(obj) &&
-    Array.isArray(obj.investments) &&
-    obj.investments.every(isInvestment) &&
-    isUser(obj.user)
-  );
-};
-
 
 export const getAllPortfolios = async (): Promise<Portfolio[]> => {
   try {
@@ -72,7 +27,7 @@ export const getAllPortfolios = async (): Promise<Portfolio[]> => {
     const data: Portfolio[] = await response.json();
     return data;
   } catch (error) {
-    throw new Error(`Error fetching portfolios: ${error.message}`);
+    throw new Error(`Error fetching portfolios`);
   }
 };
 
@@ -96,7 +51,7 @@ export const getPortfolioById = async (id: number): Promise<Portfolio | null> =>
     const data: Portfolio = await response.json();
     return data;
   } catch (error) {
-    throw new Error(`Error fetching portfolio ${id}: ${error.message}`);
+    throw new Error(`Error fetching portfolio ${id}`);
   }
 };
 
@@ -122,33 +77,51 @@ export const updatePortfolio = async (
 
     return response.json();
   } catch (error) {
-    throw new Error(`Error updating portfolio ${id}: ${error.message}`);
+    throw new Error(`Error updating portfolio ${id}`);
   }
 };
 
 
-// Function to create a new portfolio
 export const createPortfolio = async (
-  portfolio: Portfolio,
+  portfolio: Portfolio
 ): Promise<Portfolio | null> => {
   try {
+    // Fetch userId from localStorage
+    const userId = localStorage.getItem("userId");
+    if (!userId) {
+      throw new Error("No userId found in localStorage");
+    }
+
+    // Check if portfolio already exists for the user
+    const existingPortfolio = await getPortfolioById(parseInt(userId));
+    if (existingPortfolio) {
+      console.log("Portfolio already exists:", existingPortfolio);
+      return existingPortfolio; // Return existing portfolio if found
+    }
+
+    // Set userId as the portfolio id
+    const newPortfolio = { ...portfolio, id: parseInt(userId) };
+
+    // Send POST request to create portfolio
     const response = await fetch(`${API_BASE_URL}/portfolios/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(portfolio),
+      body: JSON.stringify(newPortfolio),
     });
 
     if (!response.ok) {
       throw new Error("Failed to create portfolio");
     }
 
-    return response.json();
+    return response.json(); // Assuming the response body is the created portfolio object
   } catch (error) {
-    throw new Error(`Error creating portfolio: ${error.message}`);
+    throw new Error(`Error creating portfolio`);
   }
 };
+
+
 
 
 // Function to delete a portfolio
@@ -163,7 +136,7 @@ export const deletePortfolio = async (id: number): Promise<void> => {
       throw new Error("Failed to delete portfolio");
     }
   } catch (error) {
-    throw new Error(`Error deleting portfolio ${id}: ${error.message}`);
+    throw new Error(`Error deleting portfolio ${id}`);
   }
 };
 
@@ -182,7 +155,7 @@ export const getAllInvestments = async (): Promise<Investment[]> => {
 
     return response.json();
   } catch (error) {
-    throw new Error(`Error fetching investments: ${error.message}`);
+    throw new Error(`Error fetching investments`);
   }
 };
 
@@ -239,9 +212,14 @@ export const updateInvestment = async (
   return response.json();
 };
 
-// Function to create an investment
 export const createInvestment = async (investment: Investment): Promise<Investment | null> => {
   try {
+    // Fetch userId from localStorage
+    const userId = localStorage.getItem("userId");
+    if (!userId) {
+      throw new Error("No userId found in localStorage");
+    }
+
     const response = await fetch(`${API_BASE_URL}/investments/add`, {
       method: "POST",
       headers: {
@@ -256,7 +234,7 @@ export const createInvestment = async (investment: Investment): Promise<Investme
 
     return response.json(); // Assuming the response body is the created investment object
   } catch (error) {
-    throw new Error(`Error creating investment: ${error.message}`);
+    throw new Error(`Error creating investment`);
   }
 };
 

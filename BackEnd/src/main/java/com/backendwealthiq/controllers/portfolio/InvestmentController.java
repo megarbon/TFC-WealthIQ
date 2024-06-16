@@ -13,7 +13,6 @@ import com.backendwealthiq.services.portfolio.InvestmentService;
 @RequestMapping("/investments")
 @CrossOrigin("*")
 public class InvestmentController {
-
     private final InvestmentService portfolioDetailService;
 
     public InvestmentController(InvestmentService portfolioDetailService) {
@@ -49,5 +48,4 @@ public class InvestmentController {
         }
         return new ResponseEntity<>(portfolioDetail, HttpStatus.OK);
     }
-
 }
