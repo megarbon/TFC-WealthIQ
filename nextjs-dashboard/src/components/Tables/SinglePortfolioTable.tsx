@@ -12,7 +12,7 @@ const PortfolioTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getPortfolioById(1);
+        const data = await getPortfolioById(1); // Replace with dynamic ID if needed
         setPortfolioData(data);
         setLoading(false);
       } catch (error) {
@@ -32,7 +32,7 @@ const PortfolioTable = () => {
     try {
       await createInvestment(investment);
       // Refresh portfolio data after adding investment
-      const updatedPortfolio = await getPortfolioById(1); // Assuming portfolio ID 1
+      const updatedPortfolio = await getPortfolioById(1); // Replace with dynamic ID if needed
       setPortfolioData(updatedPortfolio);
       setShowModal(false); // Close modal after adding investment
     } catch (error) {
@@ -81,7 +81,7 @@ const PortfolioTable = () => {
                   ? ""
                   : "border-b border-stroke dark:border-strokedark"
               }`}
-              key={idx}
+              key={investment.id}
             >
               {/* Investment Details */}
               <div className="flex items-center justify-center p-2.5">

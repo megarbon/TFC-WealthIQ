@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: wealthiq_db:3306
--- Generation Time: Jun 06, 2024 at 04:50 PM
+-- Generation Time: Jun 16, 2024 at 10:12 AM
 -- Server version: 8.0.37
 -- PHP Version: 8.2.8
 
@@ -33,6 +33,16 @@ CREATE TABLE `investment` (
   `asset_id` bigint DEFAULT NULL,
   `investment_portfolio_id` bigint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `investment`
+--
+
+INSERT INTO `investment` (`investment_id`, `amount`, `asset_id`, `investment_portfolio_id`) VALUES
+(1, 22, 1, 1),
+(2, 3, 35, 1),
+(3, 100, 3, 2),
+(4, 144, 40, 2);
 
 -- --------------------------------------------------------
 
@@ -107,36 +117,46 @@ CREATE TABLE `stock` (
 --
 
 INSERT INTO `stock` (`stock_id`, `stock_market`, `stock_name`, `stock_symbol`) VALUES
-(1, 'NYSE', 'Apple Inc.', 'AAPL'),
-(2, 'NASDAQ', 'Microsoft Corp.', 'MSFT'),
-(3, 'NYSE', 'Amazon.com Inc.', 'AMZN'),
-(4, 'NASDAQ', 'Alphabet Inc.', 'GOOGL'),
-(5, 'NASDAQ', 'Facebook Inc.', 'META'),
-(6, 'NASDAQ', 'Intel Corp.', 'INTC'),
-(7, 'NYSE', 'Netflix Inc.', 'NFLX'),
-(8, 'NASDAQ', 'Cisco Systems Inc.', 'CSCO'),
-(9, 'NYSE', 'PepsiCo Inc.', 'PEP'),
-(10, 'NASDAQ', 'Adobe Inc.', 'ADBE'),
-(11, 'NYSE', 'Coca-Cola Co.', 'KO'),
-(12, 'NASDAQ', 'Qualcomm Inc.', 'QCOM'),
-(13, 'NYSE', 'Oracle Corp.', 'ORCL'),
-(14, 'NASDAQ', 'NVIDIA Corp.', 'NVDA'),
-(15, 'NYSE', 'IBM Corp.', 'IBM'),
-(16, 'NASDAQ', 'eBay Inc.', 'EBAY'),
-(17, 'NYSE', 'Procter & Gamble Co.', 'PG'),
-(18, 'NASDAQ', 'Tesla Inc.', 'TSLA'),
-(19, 'NYSE', 'Johnson & Johnson', 'JNJ'),
-(20, 'NASDAQ', 'PayPal Holdings Inc.', 'PYPL'),
-(21, 'NYSE', 'Visa Inc.', 'V'),
-(22, 'NASDAQ', 'Starbucks Corp.', 'SBUX'),
-(23, 'LSE', 'BP plc', 'BP'),
-(24, 'TSE', 'Toyota Motor Corp.', 'TM'),
-(25, 'BSE', 'Reliance Industries', 'RELIANCE'),
-(26, 'LSE', 'HSBC Holdings plc', 'HSBC'),
-(27, 'SSE', 'Alibaba Group', 'BABA'),
-(28, 'DAX', 'Siemens AG', 'SIE'),
-(29, 'IBEX', 'Banco Santander', 'SAN'),
-(30, 'ASX', 'BHP Group', 'BHP');
+(1, 'IBEX', 'Santander', 'SAN'),
+(2, 'NASDAQ', 'Apple', 'APPL'),
+(3, 'NASDAQ', 'Amazon.com Inc.', 'AMZN'),
+(4, 'NASDAQ', 'Alphabet Inc. (Google)', 'GOOGL'),
+(5, 'NASDAQ', 'Tesla Inc.', 'TSLA'),
+(6, 'NASDAQ', 'NVIDIA Corporation', 'NVDA'),
+(7, 'NASDAQ', 'Facebook, Inc.', 'FB'),
+(8, 'NASDAQ', 'Netflix, Inc.', 'NFLX'),
+(9, 'NASDAQ', 'Adobe Inc.', 'ADBE'),
+(10, 'NYSE', 'Salesforce.com Inc.', 'CRM'),
+(11, 'NYSE', 'Johnson & Johnson', 'JNJ'),
+(12, 'NYSE', 'Procter & Gamble Co.', 'PG'),
+(13, 'NYSE', 'Walt Disney Co.', 'DIS'),
+(14, 'NYSE', 'Nike Inc.', 'NKE'),
+(15, 'NYSE', 'The Coca-Cola Company', 'KO'),
+(16, 'NYSE', 'Pfizer Inc.', 'PFE'),
+(17, 'NYSE', 'Berkshire Hathaway Inc.', 'BRK.B'),
+(18, 'NYSE', 'Union Pacific Corporation', 'UNP'),
+(19, 'NYSE', 'McDonald\'s Corporation', 'MCD'),
+(20, 'NYSE', 'Visa Inc.', 'V'),
+(21, 'NYSE', 'Alibaba Group Holding Limited', 'BABA'),
+(22, 'HKSE', 'Tencent Holdings Limited', '0700.HK'),
+(23, 'HKSE', 'China Mobile Limited', '0941.HK'),
+(24, 'HKSE', 'HSBC Holdings plc', '0005.HK'),
+(25, 'LSE', 'BP plc', 'BP'),
+(26, 'LSE', 'Royal Dutch Shell plc', 'RDS.A'),
+(27, 'LSE', 'GlaxoSmithKline plc', 'GSK'),
+(28, 'TSE', 'Toyota Motor Corporation', '7203.T'),
+(29, 'TSE', 'Sony Corporation', '6758.T'),
+(30, 'TSE', 'Nintendo Co., Ltd.', '7974.T'),
+(31, 'Euronext', 'LVMH Moët Hennessy Louis Vuitton SE', 'MC.PA'),
+(32, 'Euronext', 'TotalEnergies SE', 'TOTF.PA'),
+(33, 'SIX Swiss Exchange', 'Nestlé S.A.', 'NESN.SW'),
+(34, 'SIX Swiss Exchange', 'Novartis AG', 'NOVN.SW'),
+(35, 'BM&F Bovespa', 'Ambev S.A.', 'ABEV3.SA'),
+(36, 'BM&F Bovespa', 'Itaú Unibanco Holding S.A.', 'ITUB4.SA'),
+(37, 'Toronto Stock Exchange', 'Royal Bank of Canada', 'RY.TO'),
+(38, 'Toronto Stock Exchange', 'Shopify Inc.', 'SHOP.TO'),
+(39, 'Australian Securities Exchange', 'Commonwealth Bank of Australia', 'CBA.AX'),
+(40, 'Australian Securities Exchange', 'BHP Group Limited', 'BHP.AX');
 
 -- --------------------------------------------------------
 
@@ -168,9 +188,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `description`, `firstname`, `password`, `surname`, `username`) VALUES
-(1, 'Admin Account', 'admin', '$2a$10$eDxlLq0vaBsND8iR0UfL8ufv6yn.D3g0zKOhJkG5GdoJjrj1b9jli', NULL, 'admin'),
-(2, 'Inversor oil and gas', 'Melaku', '$2a$10$nDuzvvGy.JZd1NGSuYF56eevzlXHF1IKHjJe0OcDsIs73eXTcpiTu', 'Garcia', 'melakugb'),
-(3, 'Especialista Forex y Divisas', 'Gary', '$2a$10$AhTvzT62B2kSfOrilcUL/eZ5U8lkGiN5OOxH3nqecmxnwXb8KLmAO', 'vaca', 'gary4vaca');
+(1, NULL, NULL, '$2a$10$WpI3iKGS0YhkKb9ASCwRgOvv1Ng8GGOPUaENSmzlluBdsL5zDq8.W', NULL, 'admin'),
+(2, 'Inversor quant', 'melaku', '$2a$10$s./Gmx0aFLt7UD.OHA9v7OjZaiBSvrjM6KCMLQzmmvD/9CeGM3V62', 'garcia', 'melakugb'),
+(3, 'experto en mercados de valores', 'pedro', '$2a$10$OV41/8qez6JLOFB.nQVHbutH8fbqgjxOVgUdrQWFFji5lIgM74TZu', 'sanchez', 'Pedrosn');
 
 -- --------------------------------------------------------
 
@@ -270,7 +290,7 @@ ALTER TABLE `user_role_junction`
 -- AUTO_INCREMENT for table `investment`
 --
 ALTER TABLE `investment`
-  MODIFY `investment_id` bigint NOT NULL AUTO_INCREMENT;
+  MODIFY `investment_id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `investment_portfolio`
@@ -282,7 +302,7 @@ ALTER TABLE `investment_portfolio`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stock_id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `stock_id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Constraints for dumped tables

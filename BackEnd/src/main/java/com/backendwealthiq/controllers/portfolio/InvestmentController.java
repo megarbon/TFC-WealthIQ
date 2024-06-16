@@ -21,10 +21,15 @@ public class InvestmentController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Investment> addPortfolioDetail(@RequestBody Investment portfolioDetail) {
-        Investment createdPortfolioDetail = portfolioDetailService.createPortfolioDetail(portfolioDetail);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdPortfolioDetail);
+    public ResponseEntity<Investment> addInvestment(@RequestBody Investment investment) {
+        try {
+            Investment createdInvestment = portfolioDetailService.createPortfolioDetail(investment);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdInvestment);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
+
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Investment>> getAllPortfolioDetails() {

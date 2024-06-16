@@ -1,7 +1,6 @@
 package com.backendwealthiq.models.portfolio;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -15,7 +14,6 @@ public class Investment {
 
     @ManyToOne
     @JoinColumn(name = "investment_portfolio_id")
-    @JsonIgnore
     private InvestmentPortfolio investmentPortfolio;
 
     @ManyToOne
@@ -28,8 +26,7 @@ public class Investment {
     public Investment() {
     }
 
-    public Investment(Long id, InvestmentPortfolio investmentPortfolio, Asset asset, int amount) {
-        this.id = id;
+    public Investment(InvestmentPortfolio investmentPortfolio, Asset asset, int amount) {
         this.investmentPortfolio = investmentPortfolio;
         this.asset = asset;
         this.amount = amount;
@@ -66,5 +63,4 @@ public class Investment {
     public void setAmount(int amount) {
         this.amount = amount;
     }
-
 }

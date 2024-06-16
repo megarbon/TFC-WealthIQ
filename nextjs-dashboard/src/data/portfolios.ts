@@ -10,66 +10,94 @@ const token1 = getTokenFromLocalStorage();
 // Verificar si token1 no es null antes de usar trim()
 const trimmedToken = token1 ? token1.trim() : "";
 
+// Validation functions
+const isInvestment = (obj: any): obj is Investment => {
+  return (
+    typeof obj.id === "number" &&
+    typeof obj.amount === "number" &&
+    isAsset(obj.asset) &&
+    isPortfolioShallow(obj.investmentPortfolio)
+  );
+};
 
-// Function to fetch all portfolios
+const isUser = (obj: any): obj is User => {
+  return (
+    typeof obj.userId === "number" &&
+    typeof obj.username === "string" &&
+    typeof obj.password === "string" &&
+    typeof obj.firstname === "string" &&
+    typeof obj.surname === "string" &&
+    typeof obj.description === "string"
+  );
+};
+
+const isAsset = (obj: any): obj is Asset => {
+  return (
+    typeof obj.id === "number" &&
+    typeof obj.name === "string" &&
+    typeof obj.symbol === "string" &&
+    typeof obj.market === "string"
+  );
+};
+
+const isPortfolioShallow = (obj: any): obj is Partial<Portfolio> => {
+  return (
+    typeof obj.id === "number"
+  );
+};
+
+const isPortfolio = (obj: any): obj is Portfolio => {
+  return (
+    isPortfolioShallow(obj) &&
+    Array.isArray(obj.investments) &&
+    obj.investments.every(isInvestment) &&
+    isUser(obj.user)
+  );
+};
+
+
 export const getAllPortfolios = async (): Promise<Portfolio[]> => {
-  const trimmedToken = localStorage.getItem('jwtToken')?.trim();
-
-  if (!trimmedToken) {
-    throw new Error("No token found in local storage");
-  }
-
-  const myHeaders = new Headers();
-  myHeaders.append("Authorization", `Bearer ${trimmedToken}`);
-  myHeaders.append("Content-Type", "application/json");
-
-  const requestOptions: RequestInit = {
-    method: "GET",
-    headers: myHeaders,
-    mode: "no-cors",
-    redirect: "follow",
-  };
-
   try {
-    const response = await fetch(`${API_BASE_URL}/portfolios/getAll`, requestOptions);
+    const response = await fetch(`${API_BASE_URL}/portfolios/getAll`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      },
+    });
 
     if (!response.ok) {
-      throw new Error("Failed to fetch portfolios");
+      throw new Error("Failed to fetch portfolios from the server");
     }
 
-    return response.json();
+    const data: Portfolio[] = await response.json();
+    return data;
   } catch (error) {
     throw new Error(`Error fetching portfolios: ${error.message}`);
   }
 };
 
 
-
 export const getPortfolioById = async (id: number): Promise<Portfolio | null> => {
-  const trimmedToken = localStorage.getItem('jwtToken')?.trim();
+  try {
+    const response = await fetch(`${API_BASE_URL}/portfolios/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      },
+    });
 
-  if (!trimmedToken) {
-    throw new Error("No token found in local storage");
-  }
-
-  const headers = new Headers();
-  headers.append("Authorization", `Bearer ${trimmedToken}`);
-  headers.append("Content-Type", "application/json");
-
-  const response = await fetch(`${API_BASE_URL}/portfolios/${id}`, {
-    method: "GET",
-    headers: headers,
-    mode: "no-cors",
-  });
-
-  if (!response.ok) {
-    if (response.status === 404) {
-      return null; // Portfolio not found
+    if (!response.ok) {
+      if (response.status === 404) {
+        return null; // Portfolio not found
+      }
+      throw new Error("Failed to fetch portfolio");
     }
-    throw new Error("Failed to fetch portfolio");
-  }
 
-  return response.json();
+    const data: Portfolio = await response.json();
+    return data;
+  } catch (error) {
+    throw new Error(`Error fetching portfolio ${id}: ${error.message}`);
+  }
 };
 
 
@@ -78,92 +106,86 @@ export const updatePortfolio = async (
   id: number,
   portfolio: Portfolio,
 ): Promise<Portfolio | null> => {
-  if (!trimmedToken) {
-    throw new Error("No token found in local storage");
+  try {
+    const response = await fetch(`${API_BASE_URL}/portfolios/update/${id}`, {
+      method: "PUT",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(portfolio),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to update portfolio");
+    }
+
+    return response.json();
+  } catch (error) {
+    throw new Error(`Error updating portfolio ${id}: ${error.message}`);
   }
-
-  const response = await fetch(`${API_BASE_URL}/portfolios/update/${id}`, {
-    method: "PUT",
-    headers: {
-      Authorization: `Bearer ${trimmedToken}`,
-      "Content-Type": "application/json",
-    },
-    mode: "no-cors",
-    body: JSON.stringify(portfolio),
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to update portfolio");
-  }
-
-  return response.json();
 };
+
 
 // Function to create a new portfolio
 export const createPortfolio = async (
   portfolio: Portfolio,
 ): Promise<Portfolio | null> => {
-  if (!trimmedToken) {
-    throw new Error("No token found in local storage");
+  try {
+    const response = await fetch(`${API_BASE_URL}/portfolios/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(portfolio),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to create portfolio");
+    }
+
+    return response.json();
+  } catch (error) {
+    throw new Error(`Error creating portfolio: ${error.message}`);
   }
-
-  const response = await fetch(`${API_BASE_URL}/portfolios/create`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${trimmedToken}`,
-      "Content-Type": "application/json",
-    },
-    mode: "no-cors",
-    body: JSON.stringify(portfolio),
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to create portfolio");
-  }
-
-  return response.json();
 };
+
 
 // Function to delete a portfolio
 export const deletePortfolio = async (id: number): Promise<void> => {
-  if (!trimmedToken) {
-    throw new Error("No token found in local storage");
-  }
+  try {
+    const response = await fetch(`${API_BASE_URL}/portfolios/delete/${id}`, {
+      method: "DELETE",
+      mode: "no-cors",
+    });
 
-  const response = await fetch(`${API_BASE_URL}/portfolios/delete/${id}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${trimmedToken}`,
-      "Content-Type": "application/json",
-    },
-    mode: "no-cors",
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to delete portfolio");
+    if (!response.ok) {
+      throw new Error("Failed to delete portfolio");
+    }
+  } catch (error) {
+    throw new Error(`Error deleting portfolio ${id}: ${error.message}`);
   }
 };
+
 
 // Function to fetch all investments
 export const getAllInvestments = async (): Promise<Investment[]> => {
-  if (!trimmedToken) {
-    throw new Error("No token found in local storage");
+  try {
+    const response = await fetch(`${API_BASE_URL}/investments/getAll`, {
+      method: "GET",
+      mode: "no-cors",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch investments");
+    }
+
+    return response.json();
+  } catch (error) {
+    throw new Error(`Error fetching investments: ${error.message}`);
   }
-
-  const response = await fetch(`${API_BASE_URL}/investments/getAll`, {
-    headers: {
-      Authorization: `Bearer ${trimmedToken}`,
-      "Content-Type": "application/json",
-    },
-    mode: "no-cors",
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch investments");
-  }
-
-  return response.json();
 };
+
 
 // Function to fetch an investment by its ID
 export const getInvestmentById = async (
@@ -217,29 +239,25 @@ export const updateInvestment = async (
   return response.json();
 };
 
-export const createInvestment = async (
-  investment: Investment,
-): Promise<Investment | null> => {
-  const trimmedToken = localStorage.getItem("token");
+// Function to create an investment
+export const createInvestment = async (investment: Investment): Promise<Investment | null> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/investments/add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(investment),
+    });
 
-  if (!trimmedToken) {
-    throw new Error("No token found in local storage");
+    if (!response.ok) {
+      throw new Error("Failed to create investment");
+    }
+
+    return response.json(); // Assuming the response body is the created investment object
+  } catch (error) {
+    throw new Error(`Error creating investment: ${error.message}`);
   }
-
-  const response = await fetch(`${API_BASE_URL}/portfolios/addInvestment`, {
-    method: "PUT",
-    headers: {
-      Authorization: `Bearer ${trimmedToken}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(investment),
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to create investment");
-  }
-
-  return response.json(); // Devuelve el cuerpo de la respuesta como JSON
 };
 
 // Function to delete an investment
