@@ -1,0 +1,197 @@
+{
+  "library": [
+    {
+      "book": {
+        "title": "El inversor inteligente",
+        "pages": 640,
+        "genre": "Finanzas",
+        "cover": "https://covers.openlibrary.org/b/id/8060906-L.jpg",
+        "synopsis": "Una guía sobre las estrategias de inversión seguras y probadas.",
+        "year": 1949,
+        "ISBN": "978-0060555665",
+        "author": {
+          "name": "Benjamin Graham",
+          "otherBooks": [
+            "Security Analysis"
+          ]
+        }
+      }
+    },
+    {
+      "book": {
+        "title": "Dinero Crédito bancario y ciclos económicos",
+        "pages": 512,
+        "genre": "Historia de la economía",
+        "cover": "https://covers.openlibrary.org/b/id/14110726-L.jpg",
+        "synopsis": "Dinero, crédito bancario y ciclos económicos es un tratado de teoría monetaria y teoría bancaria publicado en 1998 por el economista español Jesús Huerta de Soto.",
+        "year": 1998,
+        "ISBN": "978-8472094734",
+        "author": {
+          "name": "Jesús Huerta de Soto",
+          "otherBooks": ["Socialismo, cálculo económico y función empresarial", "Nuevos ensayos de economía política", "Estudios de economía política"]
+        }
+      }
+    }
+    ,
+    {
+      "book": {
+        "title": "Un paseo aleatorio por Wall Street",
+        "pages": 480,
+        "genre": "Inversiones",
+        "cover": "https://covers.openlibrary.org/b/id/14051733-L.jpg",
+        "synopsis": "Una guía sobre inversiones que argumenta la eficacia del mercado eficiente.",
+        "year": 1973,
+        "ISBN": "978-0393352245",
+        "author": {
+          "name": "Burton G. Malkiel",
+          "otherBooks": [
+            "The Elements of Investing"
+          ]
+        }
+      }
+    },
+    {
+      "book": {
+        "title": "El pequeño libro que aún vence al mercado",
+        "pages": 208,
+        "genre": "Finanzas",
+        "cover": "https://covers.openlibrary.org/b/id/9574416-L.jpg",
+        "synopsis": "Introducción a una fórmula mágica para invertir con éxito en el mercado.",
+        "year": 2005,
+        "ISBN": "978-0470624159",
+        "author": {
+          "name": "Joel Greenblatt",
+          "otherBooks": [
+            "You Can Be a Stock Market Genius"
+          ]
+        }
+      }
+    },
+    {
+      "book": {
+        "title": "Pensar rápido, pensar despacio",
+        "pages": 512,
+        "genre": "Psicología y finanzas",
+        "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1317793965i/11468377.jpg",
+        "synopsis": "Explora cómo los dos sistemas de pensamiento, rápido e intuitivo y lento y lógico, afectan nuestras decisiones.",
+        "year": 2011,
+        "ISBN": "978-0374533557",
+        "author": {
+          "name": "Daniel Kahneman",
+          "otherBooks": []
+        }
+      }
+    },
+    {
+      "book": {
+        "title": "Acciones ordinarias y beneficios extraordinarios",
+        "pages": 320,
+        "genre": "Inversiones",
+        "cover": "https://covers.openlibrary.org/b/id/8140910-L.jpg",
+        "synopsis": "Una guía sobre cómo identificar y elegir las acciones con potencial de crecimiento significativo.",
+        "year": 1958,
+        "ISBN": "978-0471445500",
+        "author": {
+          "name": "Philip Fisher",
+          "otherBooks": []
+        }
+      }
+    },
+    {
+      "book": {
+        "title": "El hombre más rico de Babilonia",
+        "pages": 144,
+        "genre": "Finanzas personales",
+        "cover": "https://covers.openlibrary.org/b/id/12542319-L.jpg",
+        "synopsis": "Lecciones de finanzas personales presentadas a través de parábolas ambientadas en la antigua Babilonia.",
+        "year": 1926,
+        "ISBN": "978-0451205360",
+        "author": {
+          "name": "George S. Clason",
+          "otherBooks": []
+        }
+      }
+    },
+    {
+      "book": {
+        "title": "El dinero de los demás",
+        "pages": 480,
+        "genre": "Finanzas",
+        "cover": "https://covers.openlibrary.org/b/id/8061026-L.jpg",
+        "synopsis": "Historia y análisis del uso y abuso de los fondos de inversión.",
+        "year": 1991,
+        "ISBN": "978-0671727345",
+        "author": {
+          "name": "John Kay",
+          "otherBooks": [
+            "Obliquity",
+            "Radical Uncertainty"
+          ]
+        }
+      }
+    },
+    {
+      "book": {
+        "title": "La Bolsa o la Vida",
+        "pages": 368,
+        "genre": "Finanzas personales",
+        "cover": "https://covers.openlibrary.org/b/id/2323727-L.jpg",
+        "synopsis": "Un enfoque para alcanzar la independencia financiera y vivir una vida más intencional.",
+        "year": 1992,
+        "ISBN": "978-0143115762",
+        "author": {
+          "name": "Joe Dominguez, Vicki Robin",
+          "otherBooks": []
+        }
+      }
+    },
+    {
+      "book": {
+        "title": "Los Cuatro Pilares de la Inversión",
+        "pages": 400,
+        "genre": "Finanzas",
+        "cover": "https://covers.openlibrary.org/b/id/7428030-L.jpg",
+        "synopsis": "Guía completa para construir una cartera de inversiones sólida y diversificada.",
+        "year": 2002,
+        "ISBN": "978-0071749130",
+        "author": {
+          "name": "William J. Bernstein",
+          "otherBooks": [
+            "The Intelligent Asset Allocator",
+            "The Investor's Manifesto"
+          ]
+        }
+      }
+    },
+    {
+      "book": {
+        "title": "El Pequeño Libro de los Grandes Inversores",
+        "pages": 208,
+        "genre": "Inversiones",
+        "cover": "https://covers.openlibrary.org/b/id/8056110-L.jpg",
+        "synopsis": "Lecciones y estrategias de los inversores más exitosos del mundo.",
+        "year": 2011,
+        "ISBN": "978-0470919033",
+        "author": {
+          "name": "John Heins, Whitney Tilson",
+          "otherBooks": []
+        }
+      }
+    },
+    {
+      "book": {
+        "title": "Invertir en Valor",
+        "pages": 288,
+        "genre": "Inversiones",
+        "cover": "https://covers.openlibrary.org/b/id/12677056-L.jpg",
+        "synopsis": "Estrategias para identificar y aprovechar las oportunidades de inversión en valor.",
+        "year": 2014,
+        "ISBN": "978-1118952362",
+        "author": {
+          "name": "Bruce C. Greenwald",
+          "otherBooks": []
+        }
+      }
+    }
+  ]
+}

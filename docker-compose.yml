@@ -1,39 +1,73 @@
-version: "3"
+version: '3.8'
+
 services:
-  landing-page:
-    build: ./ruta-a-landing-page
+  # MySQL Database Service
+  wealthiq_db:
+    image: mysql:8.0
+    container_name: wealthiq_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wealthiq_db
+      MYSQL_USER: wealthiq_user
+      MYSQL_PASSWORD: root
+    volumes:
+      - db1_data:/var/lib/mysql
     ports:
-      - "3000:3000"
-  dashboard:
-    build: ./ruta-a-dashboard
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # phpMyAdmin for Database
+  phpmyadmindbwiq:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmindbwiq
+    environment:
+      PMA_HOST: wealthiq_db
+      PMA_PORT: 3306
+      PMA_USER: wealthiq_user
+      PMA_PASSWORD: root
     ports:
-      - "4000:4000"
-  auth-api:
-    build: ./ruta-a-api-autenticacion
+      - "3333:80"
+    depends_on:
+      wealthiq_db:
+        condition: service_healthy
+
+  # Spring Application
+  spring_app:
+    build:
+      context: ./BackEnd
+    container_name: spring_app
     ports:
       - "8080:8080"
     depends_on:
-      - mysql-auth
-  portfolio-api:
-    build: ./ruta-a-api-portfolio
+      - wealthiq_db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://wealthiq_db:3306/wealthiq_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  # Next.js Dashboard Service
+  nextjs_dashboard:
+    build:
+      context: ./nextjs-dashboard
+      dockerfile: Dockerfile
+    container_name: nextjs_dashboard
     ports:
-      - "8081:8081"
-    depends_on:
-      - mysql-portfolio
-  mysql-auth:
-    image: mysql:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: nombre-base-datos-auth
-    volumes:
-      - auth-db-data:/var/lib/mysql
-  mysql-portfolio:
-    image: mysql:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: nombre-base-datos-portfolio
-    volumes:
-      - portfolio-db-data:/var/lib/mysql
+      - "3000:3000"
+    restart: unless-stopped
+
+  # Astro App Service
+  astro_app:
+    build:
+      context: ./wealthIQ-landing-page
+      dockerfile: Dockerfile
+    container_name: astro_app
+    ports:
+      - "4321:4321"
+    restart: unless-stopped
+
 volumes:
-  auth-db-data:
-  portfolio-db-data:
+  db1_data:

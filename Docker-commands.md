@@ -1,5 +1,16 @@
-Certainly! Here is a summary of all the Docker commands used and needed in this guide:
-
+0. **FAST GUIDE**:
+Build:
+```bash
+docker-compose up --build -d
+```
+Start all:
+```bash
+docker-compose up -d
+```
+Stop all:
+```bash
+sudo docker stop $(sudo docker ps -q)
+```
 1. **Stop and remove existing Docker containers**:
    ```bash
    docker stop <container_id_or_name>

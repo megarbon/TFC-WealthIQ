@@ -1,22 +1,39 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import { createInvestment, getAllAssets } from "@/data/portfolios";
 
-const NewInvestmentForm = ({ portfolioId }) => {
+const NewInvestmentForm = () => {
   const [assets, setAssets] = useState([]);
   const [selectedAssetId, setSelectedAssetId] = useState("");
   const [investmentAmount, setInvestmentAmount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [portfolioId, setPortfolioId] = useState(null); // Initialize portfolioId state
 
   useEffect(() => {
+    const fetchPortfolioId = async () => {
+      try {
+        const storedPortfolioId = localStorage.getItem("userId");
+        if (storedPortfolioId) {
+          setPortfolioId(parseInt(storedPortfolioId, 10));
+        } else {
+          console.error("No portfolioId found in localStorage");
+          setError("No portfolioId found");
+        }
+      } catch (error) {
+        console.error("Error fetching portfolioId:", error);
+        setError("Failed to fetch portfolioId");
+      }
+    };
+
+    fetchPortfolioId();
+
     const fetchAssets = async () => {
       try {
         const assetsData = await getAllAssets();
         setAssets(assetsData);
         if (assetsData.length > 0) {
-          setSelectedAssetId(assetsData[0].id.toString()); // Set the default selected asset
+          setSelectedAssetId(assetsData[0].id.toString());
         }
       } catch (error) {
         console.error("Error fetching assets:", error);
@@ -36,8 +53,12 @@ const NewInvestmentForm = ({ portfolioId }) => {
           id: parseInt(selectedAssetId),
         },
         amount: parseInt(investmentAmount),
+        investmentPortfolio: {
+          id: portfolioId, // Ensure this matches your backend relationship
+        },
       };
-      await createInvestment({ ...investment, portfolioId });
+      console.log("Investment object:", investment);
+      await createInvestment(investment);
       setSelectedAssetId("");
       setInvestmentAmount("");
     } catch (error) {
@@ -96,3 +117,4 @@ const NewInvestmentForm = ({ portfolioId }) => {
 };
 
 export default NewInvestmentForm;
+

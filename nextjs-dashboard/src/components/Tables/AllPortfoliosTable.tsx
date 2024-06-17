@@ -1,4 +1,3 @@
-// components/TableTwo.tsx
 "use client";
 import React, { useEffect, useState } from "react";
 import { Portfolio } from "@/types/portfolio";
@@ -66,8 +65,8 @@ const PortfolioTable = () => {
           </div>
         </div>
 
-        {portfolioData.map((portfolio, key) => (
-          <React.Fragment key={key}>
+        {portfolioData.map((portfolio) => (
+          <React.Fragment key={portfolio.id}>
             {portfolio.investments.map((investment, idx) => (
               <div
                 className={`grid grid-cols-3 sm:grid-cols-5 ${
@@ -75,7 +74,7 @@ const PortfolioTable = () => {
                     ? ""
                     : "border-b border-stroke dark:border-strokedark"
                 }`}
-                key={idx}
+                key={investment.id}
               >
                 <div className="flex items-center justify-center p-2.5 xl:p-5">
                   <p className="text-black dark:text-white">{portfolio.id}</p>
