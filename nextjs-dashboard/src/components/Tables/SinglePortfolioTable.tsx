@@ -43,7 +43,7 @@ const PortfolioTable = () => {
     try {
       await createInvestment(investment);
       // Refresh portfolio data after adding investment
-      const updatedPortfolio = await getPortfolioById(1); // Replace with dynamic ID if needed
+      const updatedPortfolio = await getPortfolioById(1);
       setPortfolioData(updatedPortfolio);
       setShowModal(false); // Close modal after adding investment
     } catch (error) {
